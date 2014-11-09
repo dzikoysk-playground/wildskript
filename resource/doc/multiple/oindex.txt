@@ -1,0 +1,31 @@
+﻿It introduces object-oriented writing in Script! Scheme to create and use this object is the same for each typu. <br>
+<br>
+At the start we need to create/define object:
+<pre style="code-text"># General definition
+new [Type of Object] [ID];
+
+# Examples
+new Region "Cuboid";
+new Inventory "&bInventory Name"
+new Recpie "Panda";</pre><i style="font-size: 65%">Example creating items. If you forget to create a generally Wildskript should automatically create object, but his earlier definition is clearer. In particular recommended for beginners, because it allows to better understand the operation of objects.</i></p>
+After you have created, our object is:
+<pre style="code-text"># General definition
+[Object] = [ID].[Type of Object]
+
+# Examples
+"Cuboid".Region
+"&bInventory Name".Inventory
+"Panda".Recipe</pre>
+<br>
+At our object, you can you can perform many operations. All possible actions that can be performed on the object are described in the bookmark specific object.
+<br><br>
+General scheme:
+<pre style="code-text">
+# General definition
+[Object].[Action]{[Arguments]};
+
+# Examples
+"Cuboid".Region.selectLL{{_location.1}, {_location.2}};
+"&bInventory Name".Inventory.setItem{1, diamond named "&6Click me"};
+"Panda".Recipe.setResult{sugar cane named "&aBamboo"};</pre><i style="font-size: 65%">In a similar way we write expression and conditions.</i>
+<br>

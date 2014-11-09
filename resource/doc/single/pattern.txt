@@ -1,0 +1,16 @@
+﻿
+<div id="{NAME}"><div class="field">
+	<a name="{NAME}"><h2>{NAME}</h2></a>
+	<div>		
+		<table class="info" style="font-size: 120%">
+		<tbody>
+		<tr><th><div>Usage<sup></sup>:</div></th><td class="usage"><pre data-id="usage">{USAGE}</pre></td></tr><tr><th><div>Version:</div></th><td data-id="usage">{VERSION}</td></tr>
+		</tbody>
+		</table>
+		<p style="font-size: 120%">
+{DESC}
+		</p>
+	</div>
+	<div style="padding-top: 5px;"><pre style="code-text; font-size: 140%">
+{EXAMPLE}</div></div>
+</div>

@@ -1,0 +1,25 @@
+It is a set of collectoions elements. They are built from numerous <a href="./effects/" class="a">effects</a>, <a href="./conditions/" class="a">conditions</a>  and <a href="./expressions/" class="a">expressions</a>.
+<br>
+<br>
+For now we have two collectoion elements: Bossbar (4 simple effects) and Packets (One of the biggest WildSkript element)
+<pre style="code-text">
+# Examples
+# Set player's tablist to colorful player list!
+on join:
+	loop all players:
+		# Set a variable list to tablist packet, which contains loop-player
+		# (and set it's color to random color out of all chat colors)
+		set {_packet::*} to "PacketPlayOutPlayerInfo", "%random color%-%loop-player%", true and 0 
+		# Sends tablist slot to player
+		player.sendPacket{{_packet::*}};</pre>
+<br>
+It's only one of numerous packets such as PlayOutOpenWindow (opens chosen kind of inventory to player) or PlayOutSetSlot...
+<pre style="code-text">
+# Create bossbar when giant is in the world
+on spawn:
+	event-entity is giant:
+		set {_world} to world
+		loop all players in world {_world}:
+			display "&2Giant" on bossbar with 100 percent for loop-player</pre><i style="font-size: 65%">Note that you'll have to delete it after it's death, and set bossbar by yourself in 'on damage' event
+</i>
+<br>

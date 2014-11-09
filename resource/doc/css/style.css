@@ -1,0 +1,375 @@
+@import url(http://fonts.googleapis.com/css?family=Carrois+Gothic+SC);
+
+@font-face{
+	font-family: Kirvy;
+	src: url(Kirvy-Regular.otf);
+}
+
+@font-face{
+	font-family: BebasNeueRegular;
+	src: url(BebasNeueRegular.ttf);
+}
+
+html, body{
+	min-height:100%;
+	font-size: 100%;
+}
+/*#2992B8 - #2992B8
+*/
+header{
+	position: relative;
+	height: 10%;
+	width: 100%;
+	background: #262626;
+	color: white;
+}
+
+body {
+	background: white;
+    padding: 0;
+    margin: 0;
+	min-height: 100%;
+
+}
+
+footer {
+	position: relative;
+	width: 100%;
+	height: 1.5%;
+	border-top: 1px solid #444;
+}
+
+footer .footer {
+	position: absolute;
+	right: 15%;
+	padding-bottom: 0.5%;
+	font-size: 80%;
+	font-style: italic;
+	text-align: right;
+}
+
+.content{
+	margin-left: 15%;
+	margin-right: 15%;
+	font-family: sans-serif;
+	font-size: 90%;
+	min-height: 500px;
+	padding: 15px 5px;
+}
+
+div {
+	display: block;
+	padding: 0;
+	margin: 0;
+	border: none;
+}
+
+h2{
+	margin: 15px -5px 10px;
+	padding: 0 10px;
+	border-bottom: 1px solid rgb(191,191,191);
+	
+}
+
+/* FIELD STYLE */
+
+		.contentof{
+			padding: 15px 5px 15px 220px;
+			margin: auto;;
+		}
+
+		.field {
+			clear: both;
+			padding: 0;
+			margin: 0;
+			border: none;
+			font-size: 90%;
+
+		}
+		
+		
+/* END OF FIELD STYLE */
+
+/* TABLE STYLE */
+
+						.info {
+							float: right;
+							width: 40%;
+							margin: 0px 0px 0px 10px;
+							}
+						table {
+							border: 1px solid white;
+							margin: 5px;
+						}
+						table {
+							border-collapse: collapse;
+							border-spacing: 0;
+						}
+
+						tbody {
+							display: table-row-group;
+							vertical-align: middle;
+							border-color: inherit;
+						}
+
+						tr {
+							display: table-row;
+							vertical-align: inherit;
+							border-color: inherit;
+						}
+
+						.usage pre {
+							margin: -2;
+							border: none;
+							width: 400px;
+							overflow-x: auto;
+							font-size: 115%;
+						}
+						
+						.version td {
+							font-size: 115%;
+						}
+
+						th {
+							background: #2992B8;
+							color: white;
+							font-weight: normal;
+							padding: 5px 25px;
+							border-right: 1px solid white;
+							border-bottom: 1px solid white;
+						}
+
+
+/* END OF TABLE STYLE */						
+
+
+/* START OF LIST TYLE */
+
+		.line{
+			border-bottom:1px solid rgb(191,191,191);;
+			font-size: 135%;
+			font-family: "Verdana", Sans-serif;
+			
+		}
+
+
+		.list {
+			width: 200px;
+			position: absolute;
+			border-right: 1px solid rgb(191,191,191);
+			line-height: 100%;
+			list-style-type: none;
+			font-size: 80%;
+			clear: both;
+			
+		}
+
+		.list-title{
+			font-weight: bold;
+			padding: 30px 10px 1px;
+			font-size: 120%;
+			padding-left: 20px;
+			margin: auto;
+			border-bottom: 1px solid rgb(191,191,191);
+		}
+		
+/* END OF LIST STYLE */
+
+
+a.footer-link:link {
+	color: #2992B8;
+	text-decoration: none;
+}
+
+.title  {
+	font-family: BebasNeueRegular;
+	font-size: 180%;
+	padding-left: 15%;
+	padding-top: 2%;
+	/*
+	font-variant: small-caps;
+	font-family: Lynx,Helvetica,"Arial Unicode MS",Arial,"Droid Sans","DejaVu Sans",Myriad,Frutiger,Akzidenz-Grotesk,Calibri,sans-serif;
+	font-weight: bold;
+	font-size: 180%;
+	text-shadow: #333 3px 3px 5px;
+	*/
+}
+
+
+.menu{
+	position: absolute; 
+	bottom: 0; 
+	right: 15%;
+}
+
+.menu a{
+	/*
+	border-right: 1px solid white;
+	border-left: 1px solid white;
+	*/
+	padding: 3px 9px;
+	font-size: 110%;
+	transition: all 300ms ease 0ms;
+	margin-left: -1px;
+	outline-color: white;
+}
+
+.menu a.current,.menu:hover a.current:hover,.menu a:hover,.menu a:hover:active{
+	background: white;
+	color: #2992B8;
+}
+
+.menu:hover a.current{
+	background: transparent;
+	color: white;
+}
+
+a.list-b:link {
+	display: block;
+	font-size: 115%;
+/* Kirvy */
+	font-family: sans-serif;
+	margin: auto;
+	padding: 4px 10px 3px 20px;
+	transition: all 200ms ease 0ms;
+	color: black;
+	text-decoration: none;
+}
+
+a.list-b:hover {
+	color: white;
+	background: #2992B8;
+	
+}
+/* #D75A28; */
+a.a:link {
+	color: #2992B8;
+	text-decoration: none;
+}
+
+a.a:visited {
+	color: #2992B8;
+	text-decoration: none;
+}
+
+a.a:hover {
+	color: #207493;
+	text-decoration: none;
+}
+
+a.a:active {
+	color: #207493;
+	text-decoration: none;
+} 
+
+a:link {
+	color: inherit;
+	text-decoration: none;
+}
+
+a:visited {
+	color: inherit;
+	text-decoration: none;
+}
+
+a:hover {
+	color: inherit;
+	text-decoration: none;
+}
+
+a:active {
+	color: inherit;
+	text-decoration: #2992B8;
+} 
+
+
+a.footer-link:visited {
+	color: #2992B8;
+	text-decoration: none;
+}
+
+a.footer-link:hover {
+	color: #2992B8;
+	text-decoration: none;
+}
+
+a.footer-link:active {
+	color: #2992B8;
+	text-decoration: #2992B8;
+}
+
+a.menu-link {
+	text-transform: uppercase;
+	font-family: 'Carrois Gothic SC';
+	color: #FFFFFF;
+	text-decoration: none;
+}
+
+a.menu-link-2 {
+	text-transform: uppercase;
+	font-family: 'Carrois Gothic SC';
+	color: #FFFFFF;
+	text-decoration: none;
+	max-width:12.5%
+}
+
+a.menu-link:visited {
+	color:#FFFFFF;
+	text-decoration: none;
+}
+
+a.menu-link:hover {
+	color: #2992B8;
+	text-decoration: none;
+}
+
+a.menu-link:active {
+	color:#FFFFFF;
+	text-decoration: #2992B8;
+} 
+
+
+
+.code-text {
+	font-family: monospace;
+}
+
+pre {
+	white-space: pre;
+	border-top: 1px dashed #2992B8;
+	border-bottom: 1px dashed #2992B8;
+	padding: 2px 5px;
+	margin: 12px 0px;
+	overflow: auto;
+	display: inline-block;
+	max-width: 100%;
+	min-width: 100%;
+}
+
+#activated {
+	background: white;
+	color: #2992B8;
+}
+#goTop{border:dashed 0px #000000;
+-moz-border-radius-topleft: 0px;
+-moz-border-radius-topright:0px;
+-moz-border-radius-bottomleft:75px;
+-moz-border-radius-bottomright:0px;
+-webkit-border-top-left-radius:0px;
+-webkit-border-top-right-radius:0px;
+-webkit-border-bottom-left-radius:75px;
+-webkit-border-bottom-right-radius:0px;
+border-top-left-radius:0px;
+border-top-right-radius:0px;
+border-bottom-left-radius:75px;
+border-bottom-right-radius:0px;
+    background:#666;
+    padding:5px;
+    padding-left:20px;
+    padding-right:10px;
+    position:fixed;
+    width:30px;
+    top:-100px;
+    right:-10px;
+    color:#fff;
+}

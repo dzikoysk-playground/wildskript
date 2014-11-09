@@ -1,0 +1,6 @@
+﻿	</div>
+	</div>
+	<footer>
+	<p class="footer">Dzikoysk Network - WildSkript Documentation inspired by <a href="http://njol.ch/projects/skript/doc/" class="footer-link">~ njol.ch</a></p>
+	</footer>
+</body></html>

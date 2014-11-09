@@ -1,0 +1,7 @@
+{DESC}
+<br>
+<br>
+<b>List of functions</b>
+<pre style="code-text">
+{CONTENT}
+</pre>

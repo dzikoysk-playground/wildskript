@@ -1,0 +1,73 @@
+<html>
+	<head>
+		<meta name="author" content="Dzikoysk"/>
+		<meta name="viewport" content="width=device-width, user-scalable=no">
+		<meta http-equiv=Content-Type content="text/html; charset=utf-8">
+		<title>WildSkript: Documentation</title>
+		<link rel="shortcut icon" href="./css/favicon.ico">
+		<link rel="stylesheet" type="text/css" href="./css/style.css"/>
+	</head>
+	<body>
+		<header>
+			<div class="logo">
+					<p class="title"><a href="./index.html">WildSkript: Documentation</a></p>
+				</div>
+				<div class="menu">
+					<a href="./events.html"class="menu-link">Events </a>
+					<a href="./conditions.html" class="menu-link">Conditions </a>
+					<a href="./effects.html" class="menu-link">Effects </a>
+					<a href="./expressions.html" class="menu-link">Expressions </a>
+					<a href="./collections/index.html" class="menu-link">Collections </a>
+					<a href="./objects/index.html" class="menu-link">Objects </a>
+					<a href="./types.html" class="menu-link last">Types </a>
+				</div>	
+			</div>
+		</header>
+		<div class="content">
+			<p>WildSkript is addon to plugin Skript that increases the set of events, conditions, effects, expresions and this add new elements.</p>
+Simple application:<pre class ="code-text"># New Event:
+on server list ping:
+	# New Effect
+	set motd to "New Servr's Motd"
+	# New Expression
+	set {_x} to server's motd</pre><p><i style="font-size: 70%">When you refresh the server list calls the event 'on server ping', then set the motd and finally the value of the current motd is saved to a variable '{_x}'.</i></p>
+
+<p>All new elements are fully descriped in corresponding tabs: <a href="./events/" class="a">Events</a>, <a href="./conditions/" class="a">Conditions</a>, <a href="./effects/" class="a">Effects</a> and <a href="./expressions/" class="a">Expressions</a>, <a href="./types/" class="a">Types</a>, <a href="./objects/" class="a">Objects</a> and <a href="./collections/" class="a">Collections</a></p>
+		
+			<p class="line">Complex</p>
+			<p>They are elements divided into a lot of effects, expressions, conditions or even events. </p>
+			
+<b> Custom Inventory </b>
+<p> It's one of objects. It has a lot of possibilities starting at new inventory for player, up to inventory menu[simple GUI]
+<pre class ="code-text">On Script Start:
+	# Register new custom inventory
+	new Inventory "Test"
+	# Register row for "Test"
+	"Test".Inventory.setRow{2};
+	# Register new item for "Test"
+	"Test".Inventory.setItem{5, diamond of fortune 4 named "Name" };
+	
+command /inv:
+	trigger:
+		# Display custom inventory "Test"
+		"Test".Inventory.display{ player };</pre><p><i style="font-size: 65%">Object example - Custom Inventory</i></p>
+			
+			
+<b> Functions </b>
+<p>One of the widest WildSkript's possibilities. It adds functions, to Skript's syntax. However it's also a kind of complex, so it has some elements.</p>
+<pre class ="code-text"># Function Event:
+function "Utils.replaceJar" { }:
+	set {_arg} to farg-1
+	replace all ".jar" with "" in {_arg}
+	return {_arg}
+	
+on script load:
+	set {_x} to return of function "Utils.replaceJar" { "Skript.jar" }
+	send "%{_x}%" to console
+</pre><p><i style="font-size: 70%">Complex example - function</i></p>	
+		</div>
+	</body>	
+	<footer>
+		<p class="footer">Dzikoysk Network - WildSkript Documentation inspired by <a href="http://njol.ch/projects/skript/doc/" class="footer-link">~ njol.ch</a></p>
+	</footer>
+</html>

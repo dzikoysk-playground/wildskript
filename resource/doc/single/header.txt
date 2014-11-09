@@ -1,0 +1,30 @@
+﻿<html>
+	<head>
+		<meta name="author" content="Dzikoysk">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no">
+		<title>WildSkript: {TITLE} </title>
+		<link rel="shortcut icon" href="../css/favicon.ico">
+		<style type="text/css"></style>
+		<link rel="stylesheet" type="text/css" href="./css/style.css">	
+	</head>
+	<body cz-shortcut-listen="true">
+		<header>
+			<div class="logo" id="top">
+				<p class="title"><a href="./index.html">WildSkript: {TITLE}</a></p>
+                <div class="hr"></div>
+			</div>
+			<div class="menu">
+<a href="./events.html" class="menu-link" id="">Events </a>
+<a href="./conditions.html" class="menu-link" id="">Conditions </a>
+<a href="./effects.html" class="menu-link" id="">Effects </a>
+<a href="./expressions.html" class="menu-link" id="">Expressions </a>
+<a href="./collections/index.html" class="menu-link" id="">Collections </a>
+<a href="./objects/index.html" class="menu-link" id="">Objects </a>
+<a href="./types.html" class="menu-link last" id="">Types </a>
+			</div>	
+		</header>
+		<div class="content">
+			<div class="list" style="height: 100%;min-height: 500px;">
+				<p class="list-title"> Table of content</p>
+				<div style="list-style-type: none;">
