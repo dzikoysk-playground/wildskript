@@ -1,1 +1,1 @@
-<b>@info: Project abandoned</b>
+@info: <b>Project abandoned</b>
