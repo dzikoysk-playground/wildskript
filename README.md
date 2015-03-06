@@ -1,1 +1,1 @@
-@info: <b>Project abandoned</b>
+Welp, trying to add folder support for now :P
