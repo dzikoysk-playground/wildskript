@@ -22,6 +22,7 @@ import net.dzikoysk.wildskript.expressions.bukkit.ExprServerPort;
 import net.dzikoysk.wildskript.expressions.bukkit.ExprViewDistance;
 import net.dzikoysk.wildskript.expressions.files.ExprContent;
 import net.dzikoysk.wildskript.expressions.files.ExprFiles;
+import net.dzikoysk.wildskript.expressions.files.ExprFolders;
 import net.dzikoysk.wildskript.expressions.files.ExprYamlConfigurationSection;
 import net.dzikoysk.wildskript.expressions.files.ExprYamlSingleValue;
 import net.dzikoysk.wildskript.expressions.files.ExprYamlValueList;
@@ -139,7 +140,18 @@ public class Expressions {
 	
 		// Files
 		
-		
+
+		RegisterManager.registerExpression(new Element(Type.EXPRESSION)
+        .name("Folders")
+        .version("1.1")
+        .desc("Returns folders from folder into variables list ({list::*}).")
+        .example("set {scripts::*} to folders in " + '"' + "plugins/Skript/scripts" + '"')
+        .usage(new String[] {
+            "[all] folder[s] in %string%"
+        }), ExprFolders.class, String.class);
+
+
+
 		RegisterManager.registerExpression(new Element(Type.EXPRESSION)
 		.name("Content")
 		.version("1.5")
