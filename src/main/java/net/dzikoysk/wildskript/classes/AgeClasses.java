@@ -2,17 +2,17 @@ package net.dzikoysk.wildskript.classes;
 
 import net.dzikoysk.wildskript.WildSkript;
 
-public class AgeClasses{
-	
-	public enum Age{
-		BABY,
-		ADULT
-	}
-	
-	static{
-		
-		if(!WildSkript.randomSk()){
-			
+public class AgeClasses {
+
+    public enum Age {
+        BABY,
+        ADULT
+    }
+
+    static {
+
+        if (!WildSkript.randomSk()) {
+
 			/*
 			Classes.registerClass(new ClassInfo(Age.class, "age").parser(new Parser<Age>(){
 				public Age parse(String s, ParseContext pc) {
@@ -62,6 +62,6 @@ public class AgeClasses{
 					}
 				}).changer(Changers.age));
 			*/
-		}
-	}
+        }
+    }
 }

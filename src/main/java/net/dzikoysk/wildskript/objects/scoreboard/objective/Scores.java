@@ -7,22 +7,22 @@ import org.bukkit.scoreboard.Score;
 import org.bukkit.scoreboard.Scoreboard;
 
 public class Scores {
-	
-	public static Score get(Objective o, String s){
-		s =  ChatColor.translateAlternateColorCodes('&', s);
-		@SuppressWarnings("deprecation")
-		Score score = o.getScore(Bukkit.getOfflinePlayer(s));
-		return score;
-	}
-	
-	@SuppressWarnings("deprecation")
-	public static void reset(Scoreboard sb, String s){
-		s =  ChatColor.translateAlternateColorCodes('&', s);
-		sb.resetScores(Bukkit.getOfflinePlayer(s));
-	}
-	
-	public static void set(Score s, int i){
-		s.setScore(i);
-	}
+
+    public static Score get(Objective o, String s) {
+        s = ChatColor.translateAlternateColorCodes('&', s);
+        @SuppressWarnings("deprecation")
+        Score score = o.getScore(Bukkit.getOfflinePlayer(s));
+        return score;
+    }
+
+    @SuppressWarnings("deprecation")
+    public static void reset(Scoreboard sb, String s) {
+        s = ChatColor.translateAlternateColorCodes('&', s);
+        sb.resetScores(Bukkit.getOfflinePlayer(s));
+    }
+
+    public static void set(Score s, int i) {
+        s.setScore(i);
+    }
 
 }

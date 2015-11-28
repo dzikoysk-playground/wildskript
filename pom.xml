@@ -6,7 +6,7 @@
 
     <groupId>net.dzikoysk</groupId>
     <artifactId>wildskript</artifactId>
-    <version>1.9</version>
+    <version>1.8.2</version>
     <packaging>jar</packaging>
 
     <name>WildSkript</name>
@@ -92,5 +92,5 @@
             </plugin>
         </plugins>
     </build>
-    
+
 </project>

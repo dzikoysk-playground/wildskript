@@ -15,44 +15,45 @@ import java.util.zip.GZIPOutputStream;
 
 public class MetricsLite {
 
-	private static List<MetricsLite> list = new ArrayList<>();
-	
+    private static List<MetricsLite> list = new ArrayList<>();
+
     private final static int REVISION = 7;
     private static final String BASE_URL = "http://report.mcstats.org";
     private static final String REPORT_URL = "/plugin/%s";
     private final static int PING_INTERVAL = 10;
     private final Object optOutLock = new Object();
-    private Timer timer; 
-    
+    private Timer timer;
+
     private final String name;
     private String version;
 
-    private MetricsLite(String name){
+    private MetricsLite(String name) {
         this.name = name;
         timer = new Timer();
         list.add(this);
     }
-    
-    public static MetricsLite get(String name){
-    	for(MetricsLite mcs : list) if(mcs.getName().equalsIgnoreCase(name)) return mcs;
-    	return new MetricsLite(name);
+
+    public static MetricsLite get(String name) {
+        for (MetricsLite mcs : list) if (mcs.getName().equalsIgnoreCase(name)) return mcs;
+        return new MetricsLite(name);
     }
-    
-    public MetricsLite version(String version){
-    	this.version = version;
-    	return this;
+
+    public MetricsLite version(String version) {
+        this.version = version;
+        return this;
     }
-    
-    public String getName(){
-    	return this.name;
+
+    public String getName() {
+        return this.name;
     }
-    
+
     public boolean start() {
         synchronized (optOutLock) {
             if (isOptOut()) return false;
             if (timer != null) return true;
-            timer.schedule( new TimerTask(){
+            timer.schedule(new TimerTask() {
                 private boolean firstPost = true;
+
                 public void run() {
                     try {
                         synchronized (optOutLock) {
@@ -63,7 +64,8 @@ public class MetricsLite {
                         }
                         postPlugin(!firstPost);
                         firstPost = false;
-                    } catch (IOException e) { }
+                    } catch (IOException e) {
+                    }
                 }
             }, 0, PING_INTERVAL * 1200);
             return true;
@@ -71,8 +73,8 @@ public class MetricsLite {
     }
 
     public boolean isOptOut() {
-        synchronized (optOutLock){
-        	return false;
+        synchronized (optOutLock) {
+            return false;
         }
     }
 
@@ -113,7 +115,7 @@ public class MetricsLite {
         int coreCount = Runtime.getRuntime().availableProcessors();
 
         if (osarch.equals("amd64")) osarch = "x86_64";
-        
+
         appendJSONPair(json, "osname", osname);
         appendJSONPair(json, "osarch", osarch);
         appendJSONPair(json, "osversion", osversion);
@@ -126,7 +128,7 @@ public class MetricsLite {
         URL url = new URL(BASE_URL + String.format(REPORT_URL, urlEncode(pluginName)));
         URLConnection connection;
         if (isMineshafterPresent()) connection = url.openConnection(Proxy.NO_PROXY);
-        else  connection = url.openConnection();
+        else connection = url.openConnection();
         byte[] compressed = gzip(json.toString());
         connection.addRequestProperty("User-Agent", "MCStats/" + REVISION);
         connection.addRequestProperty("Content-Type", "application/json");
@@ -155,7 +157,8 @@ public class MetricsLite {
         try {
             gzos = new GZIPOutputStream(baos);
             gzos.write(input.getBytes("UTF-8"));
-        } catch (IOException e) { e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         } finally {
             if (gzos != null) try {
                 gzos.close();
@@ -184,7 +187,7 @@ public class MetricsLite {
         } catch (NumberFormatException e) {
             isValueNumeric = false;
         }
-        if (json.charAt(json.length() - 1) != '{')  json.append(',');
+        if (json.charAt(json.length() - 1) != '{') json.append(',');
         json.append(escapeJSON(key));
         json.append(':');
         if (isValueNumeric) json.append(value);
@@ -225,7 +228,7 @@ public class MetricsLite {
         builder.append('"');
         return builder.toString();
     }
-    
+
     private static String urlEncode(final String text) throws UnsupportedEncodingException {
         return URLEncoder.encode(text, "UTF-8");
     }

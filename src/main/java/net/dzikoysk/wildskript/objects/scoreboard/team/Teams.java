@@ -1,41 +1,40 @@
 package net.dzikoysk.wildskript.objects.scoreboard.team;
 
-import java.util.ArrayList;
-
 import net.dzikoysk.wildskript.objects.scoreboard.Scoreboards;
-
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.Team;
 
-public class Teams{
-	
-	public static ArrayList<Teams> list = new ArrayList<>();	
-	public static ArrayList<String> names;
-	
-	String id;
-	Team team;
-	
-	public Teams(String id){
-		Scoreboard sb = Scoreboards.getScoreboard();
-		Team t = sb.getTeam(id);
-		if(t == null) t = sb.registerNewTeam(id); 
-		this.id = id;
-		this.team = t;
-		list.add(this);
-	}
-	
-	public static Teams get(String id){
-		for(Teams team : list){
-			if(team.getID().equals(id)) return team;
-		}
-		return new Teams(id);
-	}
+import java.util.ArrayList;
 
-	public String getID(){
-		return this.id;
-	}
-	
-	public Team getTeam(){
-		return this.team;
-	}
+public class Teams {
+
+    public static ArrayList<Teams> list = new ArrayList<>();
+    public static ArrayList<String> names;
+
+    String id;
+    Team team;
+
+    public Teams(String id) {
+        Scoreboard sb = Scoreboards.getScoreboard();
+        Team t = sb.getTeam(id);
+        if (t == null) t = sb.registerNewTeam(id);
+        this.id = id;
+        this.team = t;
+        list.add(this);
+    }
+
+    public static Teams get(String id) {
+        for (Teams team : list) {
+            if (team.getID().equals(id)) return team;
+        }
+        return new Teams(id);
+    }
+
+    public String getID() {
+        return this.id;
+    }
+
+    public Team getTeam() {
+        return this.team;
+    }
 }

@@ -1,18 +1,15 @@
 package net.dzikoysk.wildskript.objects.mysql;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
 import org.bukkit.Bukkit;
 
-public class MySQL{
-	
-	public static ArrayList<MySQL> list = new ArrayList<>();
-	
-	private final String id;
+import java.sql.*;
+import java.util.ArrayList;
+
+public class MySQL {
+
+    public static ArrayList<MySQL> list = new ArrayList<>();
+
+    private final String id;
     private final String user;
     private final String database;
     private final String password;
@@ -20,10 +17,10 @@ public class MySQL{
     private final String hostname;
     private Connection connection;
 
-    
+
     public MySQL(String id, String hostname, String port, String database, String username, String password) {
         this.id = id;
-    	this.hostname = hostname;
+        this.hostname = hostname;
         this.port = port;
         this.database = database;
         this.user = username;
@@ -31,14 +28,14 @@ public class MySQL{
         this.connection = null;
         list.add(this);
     }
-    
-    public static MySQL get(String id){
-    	for(MySQL sql : list) if(sql.getID().equals(id)) return sql;
-    	return null;
+
+    public static MySQL get(String id) {
+        for (MySQL sql : list) if (sql.getID().equals(id)) return sql;
+        return null;
     }
-    
-    public String getID(){
-    	return this.id;
+
+    public String getID() {
+        return this.id;
     }
 
     public Connection openConnection() {
@@ -46,9 +43,9 @@ public class MySQL{
             Class.forName("com.mysql.jdbc.Driver");
             connection = DriverManager.getConnection("jdbc:mysql://" + this.hostname + ":" + this.port + "/" + this.database, this.user, this.password);
         } catch (SQLException e) {
-        	Bukkit.getLogger().severe("Could not connect to MySQL server! because: " + e.getMessage());
+            Bukkit.getLogger().severe("Could not connect to MySQL server! because: " + e.getMessage());
         } catch (ClassNotFoundException e) {
-        	Bukkit.getLogger().severe("JDBC Driver not found!");
+            Bukkit.getLogger().severe("JDBC Driver not found!");
         }
         return connection;
     }
@@ -66,7 +63,7 @@ public class MySQL{
             try {
                 connection.close();
             } catch (SQLException e) {
-            	Bukkit.getLogger().severe("Error closing the MySQL Connection!");
+                Bukkit.getLogger().severe("Error closing the MySQL Connection!");
                 e.printStackTrace();
             }
         }
@@ -95,17 +92,17 @@ public class MySQL{
         Statement s = null;
         try {
             s = c.createStatement();
-            for(String u : update){
-            	s.executeUpdate(u);
+            for (String u : update) {
+                s.executeUpdate(u);
             }
         } catch (SQLException e1) {
             e1.printStackTrace();
         }
         closeConnection();
     }
-    
-    public String[] getAll(){
-    	return new String[] { this.hostname, this.port, this.database, this.user, this.password  };
+
+    public String[] getAll() {
+        return new String[]{this.hostname, this.port, this.database, this.user, this.password};
     }
 
 }

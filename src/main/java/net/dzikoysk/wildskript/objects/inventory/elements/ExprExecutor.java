@@ -1,48 +1,52 @@
 package net.dzikoysk.wildskript.objects.inventory.elements;
 
-import net.dzikoysk.wildskript.objects.inventory.Inventories;
-
-import org.bukkit.event.Event;
-
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
+import net.dzikoysk.wildskript.objects.inventory.Inventories;
+import org.bukkit.event.Event;
 
-public class ExprExecutor extends SimpleExpression<String>{
+public class ExprExecutor extends SimpleExpression<String> {
 
-	private Expression<String> name;
-	private Expression<Integer> slot;
+    private Expression<String> name;
+    private Expression<Integer> slot;
 
-	protected String[] get(Event event) {
-	   
-		String name = (String)this.name.getSingle(event);
-		int i = (int)this.slot.getSingle(event);
-		if(name == null) return null;
-		
-		String exc = Inventories.get(name).getLore(i);
-		if(exc == null){
-			exc = "console";
-		}
-		
-		return new String[] { exc };
-		 
-	  }
+    protected String[] get(Event event) {
 
-	
-	public boolean isSingle() { return true; }
+        String name = (String) this.name.getSingle(event);
+        int i = (int) this.slot.getSingle(event);
+        if (name == null) return null;
 
-	public Class<? extends String> getReturnType() { return String.class; }
+        String exc = Inventories.get(name).getLore(i);
+        if (exc == null) {
+            exc = "console";
+        }
 
-	public String toString(Event event, boolean b) { return "[Inventory] Get Executor"; }
+        return new String[]{exc};
 
-	@SuppressWarnings("unchecked")
-	public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {    
-		this.name = (Expression<String>) expressions[0];
-		this.slot = (Expression<Integer>) expressions[1];
-		return true;
-	  }
-	}
+    }
+
+
+    public boolean isSingle() {
+        return true;
+    }
+
+    public Class<? extends String> getReturnType() {
+        return String.class;
+    }
+
+    public String toString(Event event, boolean b) {
+        return "[Inventory] Get Executor";
+    }
+
+    @SuppressWarnings("unchecked")
+    public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
+        this.name = (Expression<String>) expressions[0];
+        this.slot = (Expression<Integer>) expressions[1];
+        return true;
+    }
+}
 
 
 	

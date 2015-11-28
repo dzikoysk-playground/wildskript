@@ -7,12 +7,12 @@ import net.dzikoysk.wildskript.collections.obfuscator.ObfuscatorElements;
 import net.dzikoysk.wildskript.collections.packet.PacketElements;
 
 public class Collections {
-	
-	public static void registerComplex(){
-		BossHealthBarElements.register();
-		FunctionElements.register();
-		LoaderElements.register();
-		PacketElements.register();
-		ObfuscatorElements.register();
-	}
+
+    public static void registerComplex() {
+        BossHealthBarElements.register();
+        FunctionElements.register();
+        LoaderElements.register();
+        PacketElements.register();
+        ObfuscatorElements.register();
+    }
 }
