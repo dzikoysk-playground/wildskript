@@ -1,11 +1,8 @@
 package net.dzikoysk.wildskript.util;
 
-import java.io.BufferedReader;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.UnsupportedEncodingException;
+import org.bukkit.Bukkit;
+
+import java.io.*;
 import java.net.Proxy;
 import java.net.URL;
 import java.net.URLConnection;
@@ -16,8 +13,6 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.zip.GZIPOutputStream;
 
-import org.bukkit.Bukkit;
-
 public class MetricsLite {
 
 	private static List<MetricsLite> list = new ArrayList<>();
@@ -25,7 +20,7 @@ public class MetricsLite {
     private final static int REVISION = 7;
     private static final String BASE_URL = "http://report.mcstats.org";
     private static final String REPORT_URL = "/plugin/%s";
-    private final static int PING_INTERVAL = 15;
+    private final static int PING_INTERVAL = 10;
     private final Object optOutLock = new Object();
     private Timer timer; 
     
@@ -101,7 +96,7 @@ public class MetricsLite {
         boolean onlineMode = Bukkit.getOnlineMode();
         String pluginVersion = version;
         String serverVersion = Bukkit.getVersion();
-        int playersOnline = Bukkit.getOnlinePlayers().length;
+        int playersOnline = Bukkit.getOnlinePlayers().size();
 
         StringBuilder json = new StringBuilder(1024);
         json.append('{');

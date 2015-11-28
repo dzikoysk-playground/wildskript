@@ -32,7 +32,7 @@ public class Metrics {
     private final static int REVISION = 7;
     private static final String BASE_URL = "http://report.mcstats.org";
     private static final String REPORT_URL = "/plugin/%s";
-    private static final int PING_INTERVAL = 15;
+    private static final int PING_INTERVAL = 10;
     private final Plugin plugin;
     private final Set<Graph> graphs = Collections.synchronizedSet(new HashSet<Graph>());
     private final YamlConfiguration configuration;
@@ -216,7 +216,7 @@ public class Metrics {
         boolean onlineMode = Bukkit.getServer().getOnlineMode(); // TRUE if online mode is enabled
         String pluginVersion = description.getVersion();
         String serverVersion = Bukkit.getVersion();
-        int playersOnline = Bukkit.getServer().getOnlinePlayers().length;
+        int playersOnline = Bukkit.getServer().getOnlinePlayers().size();
 
         // END server software specific section -- all code below does not use any code outside of this class / Java
 

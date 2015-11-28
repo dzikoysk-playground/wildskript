@@ -1,1 +1,1 @@
-@info: <b>Project abandoned</b>
+http://dev.bukkit.org/bukkit-plugins/wildskript/

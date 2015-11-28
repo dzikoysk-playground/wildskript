@@ -1,7 +1,6 @@
 package net.dzikoysk.wildskript;
 
-import java.io.IOException;
-
+import ch.njol.skript.Skript;
 import net.dzikoysk.wildskript.events.PlayerJoin;
 import net.dzikoysk.wildskript.events.PlayerMove;
 import net.dzikoysk.wildskript.events.ServerPing;
@@ -20,7 +19,8 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
-import ch.njol.skript.Skript;
+
+import java.io.IOException;
 
 public class WildSkript extends JavaPlugin {
 
@@ -71,7 +71,7 @@ public class WildSkript extends JavaPlugin {
 		if(Data.doc) Documentation.generate();
 		if(Data.mcstats) metrics();
 			
-		log("~ Created by & © Dzikoysk ~");
+		log("~ Created by & ï¿½ Dzikoysk ~");
 		
 		checkUpdate();
 	}
@@ -116,7 +116,7 @@ public class WildSkript extends JavaPlugin {
 		    global.addPlotter(new Metrics.Plotter("Players"){
 				@Override
 				public int getValue() {
-					return Bukkit.getOnlinePlayers().length;
+					return Bukkit.getOnlinePlayers().size();
 				}
 		    });
 		    metrics.addGraph(global);

@@ -1,14 +1,11 @@
 package net.dzikoysk.wildskript.effects;
 
-import net.dzikoysk.wildskript.util.SkinUtils;
-
-import org.bukkit.entity.Player;
-import org.bukkit.event.Event;
-
 import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.util.Kleenean;
+import org.bukkit.entity.Player;
+import org.bukkit.event.Event;
 
 public class EffSkin extends Effect {
 
@@ -19,7 +16,6 @@ public class EffSkin extends Effect {
 		Player p = this.p.getSingle(event);
 		String to = this.to.getSingle(event);
 		if(p == null || to == null) return;
-		SkinUtils.change(p, to);
 	}
 
 	public String toString(Event event, boolean bool) {
