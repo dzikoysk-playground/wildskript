@@ -71,7 +71,7 @@ public class WildSkript extends JavaPlugin {
         if (Data.doc) Documentation.generate();
         if (Data.mcstats) metrics();
 
-        log("~ Created by & � Dzikoysk ~");
+        log("~ Created by \u2764 Dzikoysk ~");
 
         checkUpdate();
     }
@@ -89,10 +89,6 @@ public class WildSkript extends JavaPlugin {
             if (plugin.getName().equalsIgnoreCase("randomSk")) {
                 log("RandomSK hooked!");
                 randomSk = true;
-            }
-            if (plugin.getName().equalsIgnoreCase("llc")) {
-                severe("Unsupported Skript addon (LLC)! Disabling WildSkript ... ");
-                return true;
             }
         }
         if (!skript) {

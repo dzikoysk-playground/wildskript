@@ -16,22 +16,28 @@ public class User {
 
     private User(Player player) {
         this.player = player;
-        this.scoreboard = Bukkit.getScoreboardManager().getNewScoreboard();
         users.add(this);
     }
 
     public static User get(Player player) {
-        for (User u : users) if (u.getPlayer().equals(player)) return u;
+        for (User user : users) {
+            if (user.getPlayer().equals(player)) {
+                return user;
+            }
+        }
         return new User(player);
     }
 
-    public void setScoreboard(Scoreboard sb) {
-        scoreboard = sb;
-        player.setScoreboard(scoreboard);
+    public void setScoreboard(Scoreboard scoreboard) {
+        this.scoreboard = scoreboard;
+        this.player.setScoreboard(scoreboard);
     }
 
     public Scoreboard getScoreboard() {
-        if (scoreboard == null) scoreboard = Bukkit.getScoreboardManager().getNewScoreboard();
+        if (scoreboard == null) {
+            this.scoreboard = Bukkit.getScoreboardManager().getNewScoreboard();
+            this.player.setScoreboard(scoreboard);
+        }
         return scoreboard;
     }
 

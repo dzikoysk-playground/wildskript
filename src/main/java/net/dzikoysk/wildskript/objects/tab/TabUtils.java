@@ -34,7 +34,7 @@ public class TabUtils {
     public static void sendTab(Tab tab, User user) throws Exception {
         Scoreboard sb = user.getScoreboard();
         if (tab.isSent()) PacketUtils.sendPacket(user.getPlayer(), packets(tab.getBackup()[1], false));
-        Player[] ps = Bukkit.getOnlinePlayers();
+        Player[] ps = Bukkit.getOnlinePlayers().toArray(new Player[Bukkit.getOnlinePlayers().size()]);
         String[] ss = new String[ps.length];
         for (int i = 0; i < ps.length; i++) ss[i] = ps[i].getPlayerListName();
         PacketUtils.sendPacket(user.getPlayer(), packets(ss, false));
