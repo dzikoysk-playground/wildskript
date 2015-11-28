@@ -1,6 +1,6 @@
 ﻿name: WildSkript
-version: 1.8.1
+version: 1.8.2
 author: Dzikoysk
 website: http://www.dzikoysk.net/
 main: net.dzikoysk.wildskript.WildSkript
-loadbefore: [Skript, skQuery, RandomSK, LLC]
+loadbefore: [Skript, skQuery, RandomSK]

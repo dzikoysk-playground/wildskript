@@ -11,7 +11,6 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="Maven: org.panda_lang:panda:1.0.0-SNAPSHOT" level="project" />
     <orderEntry type="library" name="Maven: ch.njol:skript:2.1" level="project" />
     <orderEntry type="library" name="Maven: ch.njol:utils:1.0-SNAPSHOT" level="project" />
     <orderEntry type="library" name="Maven: org.eclipse:jdt.annotation:1.1.0" level="project" />
