@@ -70,6 +70,30 @@ public class Regions {
         }
     }
 
+    public void delete() {
+        regions.remove(this);
+        this.id = null;
+        this.world = null;
+        this.center = null;
+        this.l = null;
+        this.p = null;
+    }
+
+    public boolean isIn(Location loc) {
+        if (loc == null) {
+            return false;
+        }
+        this.update();
+        if (loc.getBlockX() > this.getLowerX() && loc.getBlockX() < this.getUpperX()) {
+            if (loc.getBlockY() > this.getLowerY() && loc.getBlockY() < this.getUpperY()) {
+                if (loc.getBlockZ() > this.getLowerZ() && loc.getBlockZ() < this.getUpperZ()) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     public void setCenter(Location loc) {
         this.center = loc;
         this.world = loc.getWorld();
@@ -101,28 +125,6 @@ public class Regions {
         this.update();
     }
 
-    public void delete() {
-        regions.remove(this);
-        this.id = null;
-        this.world = null;
-        this.center = null;
-        this.l = null;
-        this.p = null;
-    }
-
-    public boolean isIn(Location loc) {
-        if (loc == null) return false;
-        this.update();
-        if (loc.getBlockX() > this.getLowerX() && loc.getBlockX() < this.getUpperX()) {
-            if (loc.getBlockY() > this.getLowerY() && loc.getBlockY() < this.getUpperY()) {
-                if (loc.getBlockZ() > this.getLowerZ() && loc.getBlockZ() < this.getUpperZ()) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
     public String getID() {
         return this.id;
     }
@@ -130,7 +132,8 @@ public class Regions {
     public Location getCenter() {
         if (this.center != null) {
             return this.center;
-        } else {
+        }
+        else {
             this.update();
             int x1 = this.getUpperX();
             int y1 = this.getLowerY();

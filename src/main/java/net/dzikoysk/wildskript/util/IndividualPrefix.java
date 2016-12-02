@@ -15,11 +15,17 @@ public class IndividualPrefix {
                 if (team == null) {
                     String[] n = p.getName().split("(?<=\\G..............)");
                     team = sb.getTeam("ws" + n[0]);
-                    if (team == null) team = sb.registerNewTeam("ws" + n[0]);
+                    if (team == null) {
+                        team = sb.registerNewTeam("ws" + n[0]);
+                    }
                     team.addPlayer(p);
                 }
-                if (prefix != null) team.setPrefix(prefix);
-                if (suffix != null) team.setSuffix(suffix);
+                if (prefix != null) {
+                    team.setPrefix(prefix);
+                }
+                if (suffix != null) {
+                    team.setSuffix(suffix);
+                }
             }
             u.setScoreboard(sb);
         }

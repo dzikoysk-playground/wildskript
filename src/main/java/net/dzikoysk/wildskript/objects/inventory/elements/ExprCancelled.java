@@ -16,13 +16,22 @@ public class ExprCancelled extends SimpleExpression<Boolean> {
 
         String name = this.name.getSingle(event);
         Number slot = this.slot.getSingle(event);
-        if (name == null) return null;
+        if (name == null) {
+            return null;
+        }
 
         int i = slot.intValue();
-        return new Boolean[]{Inventories.get(name).getCancelled(i)};
+        return new Boolean[]{ Inventories.get(name).getCancelled(i) };
 
     }
 
+    @SuppressWarnings("unchecked")
+    public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
+
+        this.name = (Expression<String>) expressions[0];
+        this.slot = (Expression<Number>) expressions[1];
+        return true;
+    }
 
     public boolean isSingle() {
         return true;
@@ -34,14 +43,6 @@ public class ExprCancelled extends SimpleExpression<Boolean> {
 
     public String toString(Event event, boolean b) {
         return "[Inventory] Get Cancelled";
-    }
-
-    @SuppressWarnings("unchecked")
-    public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
-
-        this.name = (Expression<String>) expressions[0];
-        this.slot = (Expression<Number>) expressions[1];
-        return true;
     }
 }
 

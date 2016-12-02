@@ -17,12 +17,10 @@ public class EffPut extends Effect {
         String name = (String) this.name.getSingle(event);
         Object key = (Object) this.key.getSingle(event);
         Object value = (Object) this.value.getSingle(event);
-        if (name == null || key == null || value == null) return;
+        if (name == null || key == null || value == null) {
+            return;
+        }
         SkriptHashMap.get(name).getHashMap().put(key, value);
-    }
-
-    public String toString(Event event, boolean bool) {
-        return this.getClass().getName();
     }
 
     @SuppressWarnings("unchecked")
@@ -31,6 +29,10 @@ public class EffPut extends Effect {
         this.key = (Expression<Object>) expressions[1];
         this.value = (Expression<Object>) expressions[2];
         return true;
+    }
+
+    public String toString(Event event, boolean bool) {
+        return this.getClass().getName();
     }
 }
 

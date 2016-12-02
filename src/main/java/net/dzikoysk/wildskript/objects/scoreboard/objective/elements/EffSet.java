@@ -19,14 +19,11 @@ public class EffSet extends Effect {
         String id = this.id.getSingle(event);
         String s = this.s.getSingle(event);
         Integer i = this.i.getSingle(event).intValue();
-        if (id == null || s == null || i == null) return;
+        if (id == null || s == null || i == null) {
+            return;
+        }
 
         Scores.set(Scores.get(Objectives.get(id, "dummy"), s), i);
-    }
-
-
-    public String toString(Event e, boolean bool) {
-        return "";
     }
 
     @SuppressWarnings("unchecked")
@@ -35,6 +32,10 @@ public class EffSet extends Effect {
         this.s = (Expression<String>) expressions[1];
         this.i = (Expression<Number>) expressions[2];
         return true;
+    }
+
+    public String toString(Event e, boolean bool) {
+        return "";
     }
 
 }

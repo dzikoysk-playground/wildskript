@@ -15,8 +15,16 @@ public class ExprPercent extends SimpleExpression<Integer> {
     protected Integer[] get(Event event) {
         Player p = this.p.getSingle(event);
         Float f = BossHealthBar.percents.get(p);
-        if (f != null) return new Integer[]{f.intValue() * 100};
-        return new Integer[]{0};
+        if (f != null) {
+            return new Integer[]{ f.intValue() * 100 };
+        }
+        return new Integer[]{ 0 };
+    }
+
+    @SuppressWarnings("unchecked")
+    public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
+        this.p = (Expression<Player>) expressions[0];
+        return true;
     }
 
     public boolean isSingle() {
@@ -29,12 +37,6 @@ public class ExprPercent extends SimpleExpression<Integer> {
 
     public String toString(Event event, boolean b) {
         return this.getClass().getName();
-    }
-
-    @SuppressWarnings("unchecked")
-    public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
-        this.p = (Expression<Player>) expressions[0];
-        return true;
     }
 }
 

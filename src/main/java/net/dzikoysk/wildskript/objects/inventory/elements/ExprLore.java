@@ -15,12 +15,21 @@ public class ExprLore extends SimpleExpression<String> {
     protected String[] get(Event event) {
         String name = (String) this.name.getSingle(event);
         Number slot = this.slot.getSingle(event);
-        if (name == null) return null;
+        if (name == null) {
+            return null;
+        }
         int i = slot.intValue();
-        return new String[]{Inventories.get(name).getLore(i)};
+        return new String[]{ Inventories.get(name).getLore(i) };
 
     }
 
+    @SuppressWarnings("unchecked")
+    public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
+
+        this.name = (Expression<String>) expressions[0];
+        this.slot = (Expression<Number>) expressions[1];
+        return true;
+    }
 
     public boolean isSingle() {
         return true;
@@ -32,14 +41,6 @@ public class ExprLore extends SimpleExpression<String> {
 
     public String toString(Event event, boolean b) {
         return "[Inventory] Get Lore";
-    }
-
-    @SuppressWarnings("unchecked")
-    public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
-
-        this.name = (Expression<String>) expressions[0];
-        this.slot = (Expression<Number>) expressions[1];
-        return true;
     }
 }
 

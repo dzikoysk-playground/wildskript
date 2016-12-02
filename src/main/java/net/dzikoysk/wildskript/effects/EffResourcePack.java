@@ -15,12 +15,10 @@ public class EffResourcePack extends Effect {
     protected void execute(Event event) {
         Player p = this.p.getSingle(event);
         String url = this.url.getSingle(event);
-        if (p == null || url == null) return;
+        if (p == null || url == null) {
+            return;
+        }
         p.setResourcePack(url);
-    }
-
-    public String toString(Event event, boolean bool) {
-        return this.getClass().getName();
     }
 
     @SuppressWarnings("unchecked")
@@ -28,6 +26,10 @@ public class EffResourcePack extends Effect {
         this.url = (Expression<String>) expressions[0];
         this.p = (Expression<Player>) expressions[1];
         return true;
+    }
+
+    public String toString(Event event, boolean bool) {
+        return this.getClass().getName();
     }
 }
 

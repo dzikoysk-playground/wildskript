@@ -19,10 +19,15 @@ public class ExprWorld extends SimpleExpression<World> {
         String id = this.id.getSingle(event);
 
         World world = RegionsUtils.get(id).getWorld();
-        return new World[]{world};
+        return new World[]{ world };
 
     }
 
+    @SuppressWarnings("unchecked")
+    public boolean init(Expression<?>[] e, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
+        this.id = (Expression<String>) e[0];
+        return true;
+    }
 
     public boolean isSingle() {
         return true;
@@ -34,12 +39,6 @@ public class ExprWorld extends SimpleExpression<World> {
 
     public String toString(Event event, boolean b) {
         return "";
-    }
-
-    @SuppressWarnings("unchecked")
-    public boolean init(Expression<?>[] e, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
-        this.id = (Expression<String>) e[0];
-        return true;
     }
 }
 

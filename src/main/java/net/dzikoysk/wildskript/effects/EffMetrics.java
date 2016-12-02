@@ -15,15 +15,13 @@ public class EffMetrics extends Effect {
     protected void execute(Event event) {
         String sk = this.sk.getSingle(event);
         String ver = this.ver.getSingle(event);
-        if (sk == null || ver == null) return;
+        if (sk == null || ver == null) {
+            return;
+        }
 
         MetricsLite mcs = MetricsLite.get(sk);
         mcs.version(ver);
         mcs.start();
-    }
-
-    public String toString(Event event, boolean bool) {
-        return this.getClass().getName();
     }
 
     @SuppressWarnings("unchecked")
@@ -31,5 +29,9 @@ public class EffMetrics extends Effect {
         this.sk = (Expression<String>) expressions[0];
         this.ver = (Expression<String>) expressions[1];
         return true;
+    }
+
+    public String toString(Event event, boolean bool) {
+        return this.getClass().getName();
     }
 }

@@ -17,15 +17,12 @@ public class EffRemove extends Effect {
 
         String id = this.id.getSingle(event);
         Player p = this.p.getSingle(event);
-        if (id == null || p == null) return;
+        if (id == null || p == null) {
+            return;
+        }
 
         Teams.get(id).getTeam().removePlayer(p);
 
-    }
-
-
-    public String toString(Event e, boolean bool) {
-        return "";
     }
 
     @SuppressWarnings("unchecked")
@@ -34,6 +31,10 @@ public class EffRemove extends Effect {
         this.p = (Expression<Player>) expressions[1];
 
         return true;
+    }
+
+    public String toString(Event e, boolean bool) {
+        return "";
     }
 
 }

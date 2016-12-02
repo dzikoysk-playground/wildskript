@@ -16,14 +16,12 @@ public class EffHeight extends Effect {
 
         String id = this.id.getSingle(event);
         Number s = this.s.getSingle(event);
-        if (id == null || s == null) return;
+        if (id == null || s == null) {
+            return;
+        }
         int i = s.intValue();
 
         RegionsUtils.get(id).setHeight(i);
-    }
-
-    public String toString(Event event, boolean bool) {
-        return "";
     }
 
     @SuppressWarnings("unchecked")
@@ -31,6 +29,10 @@ public class EffHeight extends Effect {
         this.id = (Expression<String>) e[0];
         this.s = (Expression<Number>) e[1];
         return true;
+    }
+
+    public String toString(Event event, boolean bool) {
+        return "";
     }
 
 }

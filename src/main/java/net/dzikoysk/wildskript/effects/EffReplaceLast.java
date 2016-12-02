@@ -16,13 +16,11 @@ public class EffReplaceLast extends Effect {
         String s = this.string.getSingle(e);
         String f = this.from.getSingle(e);
         String t = this.to.getSingle(e);
-        if (s == null || f == null || t == null) return;
+        if (s == null || f == null || t == null) {
+            return;
+        }
         StringBuilder b = new StringBuilder(s);
         s = (b.replace(s.lastIndexOf(f), s.lastIndexOf(f) + 1, t)).toString();
-    }
-
-    public String toString(Event event, boolean bool) {
-        return this.getClass().getName();
     }
 
     @SuppressWarnings("unchecked")
@@ -31,5 +29,9 @@ public class EffReplaceLast extends Effect {
         this.to = (Expression<String>) expressions[1];
         this.string = (Expression<String>) expressions[2];
         return true;
+    }
+
+    public String toString(Event event, boolean bool) {
+        return this.getClass().getName();
     }
 }

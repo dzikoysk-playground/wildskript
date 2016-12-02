@@ -21,7 +21,9 @@ public class ExprYamlValueList extends SimpleExpression<String> {
     protected String[] get(Event event) {
         String v = (String) this.value.getSingle(event);
         String f = (String) this.file.getSingle(event);
-        if ((v == null) || (f == null)) return null;
+        if ((v == null) || (f == null)) {
+            return null;
+        }
 
         File file = new File(f.replaceAll("/", Matcher.quoteReplacement(File.separator)));
         if (!file.exists()) {
@@ -37,6 +39,13 @@ public class ExprYamlValueList extends SimpleExpression<String> {
         return list.toArray(s);
     }
 
+    @SuppressWarnings("unchecked")
+    public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
+        this.value = (Expression<String>) expressions[0];
+        this.file = (Expression<String>) expressions[1];
+        return true;
+    }
+
     public boolean isSingle() {
         return true;
     }
@@ -47,13 +56,6 @@ public class ExprYamlValueList extends SimpleExpression<String> {
 
     public String toString(Event event, boolean b) {
         return this.getClass().getName();
-    }
-
-    @SuppressWarnings("unchecked")
-    public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
-        this.value = (Expression<String>) expressions[0];
-        this.file = (Expression<String>) expressions[1];
-        return true;
     }
 }
 

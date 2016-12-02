@@ -14,20 +14,22 @@ public class EffNew extends Effect {
     protected void execute(Event event) {
 
         String id = this.id.getSingle(event);
-        if (id == null) return;
+        if (id == null) {
+            return;
+        }
 
         RegionsUtils.get(id);
 
-    }
-
-    public String toString(Event event, boolean bool) {
-        return "";
     }
 
     @SuppressWarnings("unchecked")
     public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
         this.id = (Expression<String>) expressions[0];
         return true;
+    }
+
+    public String toString(Event event, boolean bool) {
+        return "";
     }
 }
 

@@ -10,7 +10,11 @@ import org.bukkit.event.Event;
 public class ExprServerPort extends SimpleExpression<Integer> {
 
     protected Integer[] get(Event event) {
-        return new Integer[]{Bukkit.getPort()};
+        return new Integer[]{ Bukkit.getPort() };
+    }
+
+    public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
+        return true;
     }
 
     public boolean isSingle() {
@@ -23,9 +27,5 @@ public class ExprServerPort extends SimpleExpression<Integer> {
 
     public String toString(Event event, boolean b) {
         return this.getClass().getName();
-    }
-
-    public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
-        return true;
     }
 }	

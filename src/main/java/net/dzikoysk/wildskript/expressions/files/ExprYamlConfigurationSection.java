@@ -22,7 +22,9 @@ public class ExprYamlConfigurationSection extends SimpleExpression<String> {
     protected String[] get(Event event) {
         String k = (String) this.key.getSingle(event);
         String f = (String) this.file.getSingle(event);
-        if ((k == null) || (f == null)) return null;
+        if ((k == null) || (f == null)) {
+            return null;
+        }
         File file = new File(f.replaceAll("/", Matcher.quoteReplacement(File.separator)));
         if (!file.exists()) {
             try {
@@ -32,13 +34,26 @@ public class ExprYamlConfigurationSection extends SimpleExpression<String> {
             }
         }
         YamlConfiguration yml = YamlConfiguration.loadConfiguration(file);
-        if (yml == null) return null;
+        if (yml == null) {
+            return null;
+        }
         ConfigurationSection cs = yml.getConfigurationSection(k);
-        if (cs == null) return null;
+        if (cs == null) {
+            return null;
+        }
         ArrayList<String> list = new ArrayList<String>();
-        for (String key : cs.getKeys(false)) list.add(key);
+        for (String key : cs.getKeys(false)) {
+            list.add(key);
+        }
         String[] s = new String[list.size()];
         return list.toArray(s);
+    }
+
+    @SuppressWarnings("unchecked")
+    public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
+        this.key = (Expression<String>) expressions[0];
+        this.file = (Expression<String>) expressions[1];
+        return true;
     }
 
     public boolean isSingle() {
@@ -51,13 +66,6 @@ public class ExprYamlConfigurationSection extends SimpleExpression<String> {
 
     public String toString(Event event, boolean b) {
         return this.getClass().getName();
-    }
-
-    @SuppressWarnings("unchecked")
-    public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
-        this.key = (Expression<String>) expressions[0];
-        this.file = (Expression<String>) expressions[1];
-        return true;
     }
 }
 

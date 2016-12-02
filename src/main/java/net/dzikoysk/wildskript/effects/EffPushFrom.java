@@ -17,13 +17,11 @@ public class EffPushFrom extends Effect {
     protected void execute(Event event) {
         Player p = this.player.getSingle(event);
         Location n = this.loc.getSingle(event);
-        if (p == null || n == null) return;
+        if (p == null || n == null) {
+            return;
+        }
         Vector direction = p.getLocation().toVector().subtract(n.toVector()).normalize();
         p.setVelocity(direction);
-    }
-
-    public String toString(Event event, boolean bool) {
-        return this.getClass().getName();
     }
 
     @SuppressWarnings("unchecked")
@@ -31,5 +29,9 @@ public class EffPushFrom extends Effect {
         this.player = (Expression<Player>) expressions[0];
         this.loc = (Expression<Location>) expressions[1];
         return true;
+    }
+
+    public String toString(Event event, boolean bool) {
+        return this.getClass().getName();
     }
 }

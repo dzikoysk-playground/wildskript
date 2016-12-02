@@ -12,12 +12,12 @@ public class UtilComments extends Effect {
         return;
     }
 
-    public String toString(Event event, boolean bool) {
-        return this.getClass().getName();
-    }
-
     public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
         return true;
+    }
+
+    public String toString(Event event, boolean bool) {
+        return this.getClass().getName();
     }
 
 }

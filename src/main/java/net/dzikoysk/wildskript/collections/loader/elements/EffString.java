@@ -13,18 +13,20 @@ public class EffString extends Effect {
 
     protected void execute(Event event) {
         String s = this.s.getSingle(event);
-        if (s == null) return;
+        if (s == null) {
+            return;
+        }
         Loader.loadString(s);
-    }
-
-    public String toString(Event event, boolean bool) {
-        return this.getClass().getName();
     }
 
     @SuppressWarnings("unchecked")
     public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
         this.s = (Expression<String>) expressions[0];
         return true;
+    }
+
+    public String toString(Event event, boolean bool) {
+        return this.getClass().getName();
     }
 }
 

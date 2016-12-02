@@ -18,13 +18,11 @@ public class EffCenter extends Effect {
         String id = this.id.getSingle(event);
         Location c = this.c.getSingle(event);
 
-        if (id == null || c == null) return;
+        if (id == null || c == null) {
+            return;
+        }
 
         RegionsUtils.get(id).setCenter(c);
-    }
-
-    public String toString(Event event, boolean bool) {
-        return "";
     }
 
     @SuppressWarnings("unchecked")
@@ -32,6 +30,10 @@ public class EffCenter extends Effect {
         this.id = (Expression<String>) e[0];
         this.c = (Expression<Location>) e[1];
         return true;
+    }
+
+    public String toString(Event event, boolean bool) {
+        return "";
     }
 
 }

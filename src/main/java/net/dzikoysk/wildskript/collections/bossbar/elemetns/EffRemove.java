@@ -14,18 +14,20 @@ public class EffRemove extends Effect {
 
     protected void execute(Event event) {
         Player player = this.player.getSingle(event);
-        if (player == null) return;
+        if (player == null) {
+            return;
+        }
         BossHealthBar.remove(player);
-    }
-
-    public String toString(Event e, boolean bool) {
-        return this.getClass().getName();
     }
 
     @SuppressWarnings("unchecked")
     public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
         this.player = (Expression<Player>) expressions[0];
         return true;
+    }
+
+    public String toString(Event e, boolean bool) {
+        return this.getClass().getName();
     }
 }
 

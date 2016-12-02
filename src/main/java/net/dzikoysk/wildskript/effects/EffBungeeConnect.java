@@ -20,8 +20,21 @@ public class EffBungeeConnect extends Effect {
     protected void execute(Event event) {
         Player p = this.p.getSingle(event);
         String srv = this.srv.getSingle(event);
-        if (p == null || srv == null) return;
+        if (p == null || srv == null) {
+            return;
+        }
         connect(p, srv);
+    }
+
+    @SuppressWarnings("unchecked")
+    public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
+        this.p = (Expression<Player>) expressions[0];
+        this.srv = (Expression<String>) expressions[1];
+        return true;
+    }
+
+    public String toString(Event event, boolean bool) {
+        return this.getClass().getName();
     }
 
     public static void connect(Player p, String srv) {
@@ -33,17 +46,6 @@ public class EffBungeeConnect extends Effect {
         } catch (IOException e) {
         }
         p.sendPluginMessage(WildSkript.getInstance(), "BungeeCord", b.toByteArray());
-    }
-
-    public String toString(Event event, boolean bool) {
-        return this.getClass().getName();
-    }
-
-    @SuppressWarnings("unchecked")
-    public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
-        this.p = (Expression<Player>) expressions[0];
-        this.srv = (Expression<String>) expressions[1];
-        return true;
     }
 
 

@@ -203,7 +203,7 @@ public class Effects {
                 , EffBungeeConnect.class);
 
 		/*
-		RegisterManager.registerEffect(new Element(Type.EFFECT)
+        RegisterManager.registerEffect(new Element(Type.EFFECT)
 		.name("Particle")
 		.version("1.5")
 		.desc("#TODO")

@@ -15,12 +15,10 @@ public class EffChange extends Effect {
     protected void execute(Event event) {
         String s = this.s.getSingle(event);
         String n[] = this.l.getArray(event);
-        if (s == null || n == null) return;
+        if (s == null || n == null) {
+            return;
+        }
         Hologram.get(s).change(n);
-    }
-
-    public String toString(Event event, boolean bool) {
-        return this.getClass().getName();
     }
 
     @SuppressWarnings("unchecked")
@@ -28,5 +26,9 @@ public class EffChange extends Effect {
         this.s = (Expression<String>) expressions[0];
         this.l = (Expression<String>) expressions[1];
         return true;
+    }
+
+    public String toString(Event event, boolean bool) {
+        return this.getClass().getName();
     }
 }

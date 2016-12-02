@@ -15,7 +15,11 @@ public class ExprRandomLetter extends SimpleExpression<String> {
     protected String[] get(Event event) {
         Random r = new Random();
         String rc = String.valueOf((char) (r.nextInt(26) + 'a'));
-        return new String[]{rc};
+        return new String[]{ rc };
+    }
+
+    public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
+        return true;
     }
 
     public boolean isSingle() {
@@ -28,10 +32,6 @@ public class ExprRandomLetter extends SimpleExpression<String> {
 
     public String toString(Event event, boolean b) {
         return this.getClass().getName();
-    }
-
-    public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
-        return true;
     }
 }
 

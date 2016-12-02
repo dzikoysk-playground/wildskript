@@ -22,20 +22,26 @@ public class EffIndividual extends Effect {
         Player[] psy = this.b.getAll(event);
         String text = this.text.getSingle(event);
 
-        if (psx == null || psy == null || text == null) return;
+        if (psx == null || psy == null || text == null) {
+            return;
+        }
 
         User[] us = new User[psx.length];
         User[] bs = new User[psy.length];
 
-        for (int i = 0; i < psx.length; i++) us[i] = User.get(psx[i]);
-        for (int i = 0; i < psy.length; i++) bs[i] = User.get(psy[i]);
+        for (int i = 0; i < psx.length; i++) {
+            us[i] = User.get(psx[i]);
+        }
+        for (int i = 0; i < psy.length; i++) {
+            bs[i] = User.get(psy[i]);
+        }
 
-        if (i == 1) IndividualPrefix.see(us, bs, "", text);
-        else IndividualPrefix.see(us, bs, text, "");
-    }
-
-    public String toString(Event e, boolean bool) {
-        return this.getClass().getName();
+        if (i == 1) {
+            IndividualPrefix.see(us, bs, "", text);
+        }
+        else {
+            IndividualPrefix.see(us, bs, text, "");
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -45,5 +51,9 @@ public class EffIndividual extends Effect {
         this.b = (Expression<Player>) expressions[1];
         this.text = (Expression<String>) expressions[2];
         return true;
+    }
+
+    public String toString(Event e, boolean bool) {
+        return this.getClass().getName();
     }
 }

@@ -11,7 +11,11 @@ public class ExprTPS extends SimpleExpression<Double> {
 
     protected Double[] get(Event event) {
         double tps = WildSkript.getTimer().getTPS();
-        return new Double[]{tps};
+        return new Double[]{ tps };
+    }
+
+    public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
+        return true;
     }
 
     public boolean isSingle() {
@@ -24,10 +28,6 @@ public class ExprTPS extends SimpleExpression<Double> {
 
     public String toString(Event event, boolean b) {
         return this.getClass().getName();
-    }
-
-    public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
-        return true;
     }
 }	
 

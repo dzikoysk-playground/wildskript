@@ -13,14 +13,18 @@ public class RegisterManager {
 
     public static <E extends Event> void registerEvent(Element e, Class<E> c) {
         String[] usage = e.getRegisterUsage();
-        for (int i = 0; i < usage.length; i++) usage[i] = usage[i].replace("on ", "").replace(":", "");
+        for (int i = 0; i < usage.length; i++) {
+            usage[i] = usage[i].replace("on ", "").replace(":", "");
+        }
         Skript.registerEvent(e.getName(), SimpleEvent.class, c, usage);
         Documentation.addElement(e);
     }
 
     public static <E extends SkriptEvent> void registerEvent(Element e, Class<E> adapter, Class<? extends Event> c) {
         String[] usage = e.getRegisterUsage();
-        for (int i = 0; i < usage.length; i++) usage[i] = usage[i].replace("on ", "").replace(":", "");
+        for (int i = 0; i < usage.length; i++) {
+            usage[i] = usage[i].replace("on ", "").replace(":", "");
+        }
         Skript.registerEvent(e.getName(), adapter, c, usage);
         Documentation.addElement(e);
     }

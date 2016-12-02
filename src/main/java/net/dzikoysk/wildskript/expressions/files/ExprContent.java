@@ -20,7 +20,9 @@ public class ExprContent extends SimpleExpression<String> {
 
     protected String[] get(Event event) {
         String f = this.file.getSingle(event);
-        if (f == null) return null;
+        if (f == null) {
+            return null;
+        }
         File file = new File(f.replaceAll("/", Matcher.quoteReplacement(File.separator)));
         StringBuilder sb = new StringBuilder("");
         try {
@@ -39,7 +41,13 @@ public class ExprContent extends SimpleExpression<String> {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return new String[]{sb.toString()};
+        return new String[]{ sb.toString() };
+    }
+
+    @SuppressWarnings("unchecked")
+    public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
+        this.file = (Expression<String>) expressions[0];
+        return true;
     }
 
     public boolean isSingle() {
@@ -52,12 +60,6 @@ public class ExprContent extends SimpleExpression<String> {
 
     public String toString(Event event, boolean b) {
         return this.getClass().getName();
-    }
-
-    @SuppressWarnings("unchecked")
-    public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
-        this.file = (Expression<String>) expressions[0];
-        return true;
     }
 }
 

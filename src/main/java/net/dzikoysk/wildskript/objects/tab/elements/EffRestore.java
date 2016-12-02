@@ -15,10 +15,14 @@ public class EffRestore extends Effect {
     protected void execute(Event event) {
         String id = this.id.getSingle(event);
         String s = this.b.getSingle(event);
-        if (id == null || s == null) return;
+        if (id == null || s == null) {
+            return;
+        }
 
         String[] b = s.split(";;;");
-        if (b.length < 60) return;
+        if (b.length < 60) {
+            return;
+        }
         String[] prefix = new String[60];
         String[] center = new String[60];
         String[] suffix = new String[60];
@@ -32,14 +36,14 @@ public class EffRestore extends Effect {
         TabUtils.get(id).backup(prefix, center, suffix);
     }
 
-    public String toString(Event event, boolean bool) {
-        return this.getClass().getName();
-    }
-
     @SuppressWarnings("unchecked")
     public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
         this.id = (Expression<String>) expressions[0];
         this.b = (Expression<String>) expressions[1];
         return true;
+    }
+
+    public String toString(Event event, boolean bool) {
+        return this.getClass().getName();
     }
 }

@@ -15,19 +15,21 @@ public class EffDelete extends Effect {
 
     protected void execute(Event event) {
         String f = (String) this.file.getSingle(event);
-        if (f == null) return;
+        if (f == null) {
+            return;
+        }
         File file = new File(f.replaceAll("/", Matcher.quoteReplacement(File.separator)));
         file.delete();
-    }
-
-    public String toString(Event event, boolean bool) {
-        return this.getClass().getName();
     }
 
     @SuppressWarnings("unchecked")
     public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
         this.file = (Expression<String>) expressions[0];
         return true;
+    }
+
+    public String toString(Event event, boolean bool) {
+        return this.getClass().getName();
     }
 }
 

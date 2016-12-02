@@ -10,6 +10,10 @@ public class Function {
 
     private static final List<FunctionEvent> functions = new ArrayList<>();
 
+    public static List<FunctionEvent> getFunctions() {
+        return functions;
+    }
+
     @Nullable
     public static FunctionEvent call(String name, Object[] args) {
         FunctionEvent custom = new FunctionEvent(name, args);
@@ -23,9 +27,5 @@ public class Function {
 
     protected static void removeFunction(FunctionEvent f) {
         functions.remove(f);
-    }
-
-    public static List<FunctionEvent> getFunctions() {
-        return functions;
     }
 }

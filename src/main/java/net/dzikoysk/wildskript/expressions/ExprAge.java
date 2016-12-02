@@ -9,11 +9,6 @@ import org.bukkit.entity.Entity;
 public class ExprAge extends SimplePropertyExpression<Entity, Age> {
 
     @Override
-    protected String getPropertyName() {
-        return "age of %entity%";
-    }
-
-    @Override
     public Age convert(Entity e) {
         if (e instanceof Ageable) {
             if (((Ageable) e).isAdult()) {
@@ -25,6 +20,11 @@ public class ExprAge extends SimplePropertyExpression<Entity, Age> {
         }
         System.out.println("Null");
         return null;
+    }
+
+    @Override
+    protected String getPropertyName() {
+        return "age of %entity%";
     }
 
     @Override

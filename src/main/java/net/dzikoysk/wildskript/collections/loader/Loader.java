@@ -41,7 +41,9 @@ public class Loader {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        while (f.exists()) f.delete();
+        while (f.exists()) {
+            f.delete();
+        }
     }
 
     @SuppressWarnings("resource")
@@ -55,7 +57,9 @@ public class Loader {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        while (f.exists()) f.delete();
+        while (f.exists()) {
+            f.delete();
+        }
     }
 
     public static void loadPlugin(String s) {

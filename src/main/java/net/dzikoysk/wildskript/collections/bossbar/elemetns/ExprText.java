@@ -14,7 +14,13 @@ public class ExprText extends SimpleExpression<String> {
 
     protected String[] get(Event event) {
         Player p = this.p.getSingle(event);
-        return new String[]{BossHealthBar.texts.get(p)};
+        return new String[]{ BossHealthBar.texts.get(p) };
+    }
+
+    @SuppressWarnings("unchecked")
+    public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
+        this.p = (Expression<Player>) expressions[0];
+        return true;
     }
 
     public boolean isSingle() {
@@ -27,12 +33,6 @@ public class ExprText extends SimpleExpression<String> {
 
     public String toString(Event event, boolean b) {
         return this.getClass().getName();
-    }
-
-    @SuppressWarnings("unchecked")
-    public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
-        this.p = (Expression<Player>) expressions[0];
-        return true;
     }
 }
 

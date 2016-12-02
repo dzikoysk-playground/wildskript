@@ -23,7 +23,9 @@ public class EffDownload extends Effect {
     protected void execute(Event event) {
         String u = this.url.getSingle(event);
         String f = this.file.getSingle(event);
-        if (u == null || f == null) return;
+        if (u == null || f == null) {
+            return;
+        }
 
         EvtDownload custom = new EvtDownload(u);
         Bukkit.getServer().getPluginManager().callEvent(custom);
@@ -37,15 +39,15 @@ public class EffDownload extends Effect {
         }
     }
 
-    public String toString(Event event, boolean bool) {
-        return this.getClass().getName();
-    }
-
     @SuppressWarnings("unchecked")
     public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
         this.url = (Expression<String>) expressions[0];
         this.file = (Expression<String>) expressions[1];
         return true;
+    }
+
+    public String toString(Event event, boolean bool) {
+        return this.getClass().getName();
     }
 
     @SuppressWarnings("resource")

@@ -11,8 +11,14 @@ public class ExprMaxMemory extends SimpleExpression<Integer> {
     protected Integer[] get(Event event) {
         long l = Runtime.getRuntime().maxMemory();
         int i = 0;
-        if (!(l < Integer.MIN_VALUE || l > Integer.MAX_VALUE)) i = (int) l;
-        return new Integer[]{i};
+        if (!(l < Integer.MIN_VALUE || l > Integer.MAX_VALUE)) {
+            i = (int) l;
+        }
+        return new Integer[]{ i };
+    }
+
+    public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
+        return true;
     }
 
     public boolean isSingle() {
@@ -25,9 +31,5 @@ public class ExprMaxMemory extends SimpleExpression<Integer> {
 
     public String toString(Event event, boolean b) {
         return this.getClass().getName();
-    }
-
-    public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
-        return true;
     }
 }	

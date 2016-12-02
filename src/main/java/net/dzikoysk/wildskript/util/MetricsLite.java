@@ -34,7 +34,11 @@ public class MetricsLite {
     }
 
     public static MetricsLite get(String name) {
-        for (MetricsLite mcs : list) if (mcs.getName().equalsIgnoreCase(name)) return mcs;
+        for (MetricsLite mcs : list) {
+            if (mcs.getName().equalsIgnoreCase(name)) {
+                return mcs;
+            }
+        }
         return new MetricsLite(name);
     }
 
@@ -49,8 +53,12 @@ public class MetricsLite {
 
     public boolean start() {
         synchronized (optOutLock) {
-            if (isOptOut()) return false;
-            if (timer != null) return true;
+            if (isOptOut()) {
+                return false;
+            }
+            if (timer != null) {
+                return true;
+            }
             timer.schedule(new TimerTask() {
                 private boolean firstPost = true;
 
@@ -80,7 +88,9 @@ public class MetricsLite {
 
     public void enable() throws IOException {
         synchronized (optOutLock) {
-            if (timer == null) start();
+            if (timer == null) {
+                start();
+            }
         }
     }
 
@@ -114,7 +124,9 @@ public class MetricsLite {
         String java_version = System.getProperty("java.version");
         int coreCount = Runtime.getRuntime().availableProcessors();
 
-        if (osarch.equals("amd64")) osarch = "x86_64";
+        if (osarch.equals("amd64")) {
+            osarch = "x86_64";
+        }
 
         appendJSONPair(json, "osname", osname);
         appendJSONPair(json, "osarch", osarch);
@@ -123,12 +135,18 @@ public class MetricsLite {
         appendJSONPair(json, "auth_mode", onlineMode ? "1" : "0");
         appendJSONPair(json, "java_version", java_version);
 
-        if (isPing) appendJSONPair(json, "ping", "1");
+        if (isPing) {
+            appendJSONPair(json, "ping", "1");
+        }
         json.append('}');
         URL url = new URL(BASE_URL + String.format(REPORT_URL, urlEncode(pluginName)));
         URLConnection connection;
-        if (isMineshafterPresent()) connection = url.openConnection(Proxy.NO_PROXY);
-        else connection = url.openConnection();
+        if (isMineshafterPresent()) {
+            connection = url.openConnection(Proxy.NO_PROXY);
+        }
+        else {
+            connection = url.openConnection();
+        }
         byte[] compressed = gzip(json.toString());
         connection.addRequestProperty("User-Agent", "MCStats/" + REVISION);
         connection.addRequestProperty("Content-Type", "application/json");
@@ -145,8 +163,12 @@ public class MetricsLite {
         os.close();
         reader.close();
         if (response == null || response.startsWith("ERR") || response.startsWith("7")) {
-            if (response == null) response = "null";
-            else if (response.startsWith("7")) response = response.substring(response.startsWith("7,") ? 2 : 1);
+            if (response == null) {
+                response = "null";
+            }
+            else if (response.startsWith("7")) {
+                response = response.substring(response.startsWith("7,") ? 2 : 1);
+            }
             throw new IOException(response);
         }
     }
@@ -160,15 +182,15 @@ public class MetricsLite {
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
-            if (gzos != null) try {
-                gzos.close();
-            } catch (IOException ignore) {
+            if (gzos != null) {
+                try {
+                    gzos.close();
+                } catch (IOException ignore) {
+                }
             }
         }
         return baos.toByteArray();
-    }
-
-    private boolean isMineshafterPresent() {
+    }    private boolean isMineshafterPresent() {
         try {
             Class.forName("mineshafter.MineServer");
             return true;
@@ -187,11 +209,17 @@ public class MetricsLite {
         } catch (NumberFormatException e) {
             isValueNumeric = false;
         }
-        if (json.charAt(json.length() - 1) != '{') json.append(',');
+        if (json.charAt(json.length() - 1) != '{') {
+            json.append(',');
+        }
         json.append(escapeJSON(key));
         json.append(':');
-        if (isValueNumeric) json.append(value);
-        else json.append(escapeJSON(value));
+        if (isValueNumeric) {
+            json.append(value);
+        }
+        else {
+            json.append(escapeJSON(value));
+        }
     }
 
     private static String escapeJSON(String text) {
@@ -221,7 +249,10 @@ public class MetricsLite {
                     if (chr < ' ') {
                         String t = "000" + Integer.toHexString(chr);
                         builder.append("\\u" + t.substring(t.length() - 4));
-                    } else builder.append(chr);
+                    }
+                    else {
+                        builder.append(chr);
+                    }
                     break;
             }
         }

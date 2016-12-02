@@ -17,14 +17,14 @@ public class EffSet extends Effect {
         String id = this.id.getSingle(event);
         Number n = this.n.getSingle(event);
         String text = this.text.getSingle(event);
-        if (id == null || n == null || text == null) return;
+        if (id == null || n == null || text == null) {
+            return;
+        }
         int i = n.intValue();
-        if (i < 1 || i > 60) return;
+        if (i < 1 || i > 60) {
+            return;
+        }
         TabUtils.get(id).set(i - 1, text);
-    }
-
-    public String toString(Event event, boolean bool) {
-        return this.getClass().getName();
     }
 
     @SuppressWarnings("unchecked")
@@ -33,5 +33,9 @@ public class EffSet extends Effect {
         this.n = (Expression<Number>) expressions[1];
         this.text = (Expression<String>) expressions[2];
         return true;
+    }
+
+    public String toString(Event event, boolean bool) {
+        return this.getClass().getName();
     }
 }

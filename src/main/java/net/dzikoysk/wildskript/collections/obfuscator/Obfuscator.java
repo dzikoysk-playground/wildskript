@@ -8,7 +8,9 @@ public class Obfuscator {
 
     public static void to(String from, String to, int power) throws Exception {
         File sk = new File(from.replaceAll("/", Matcher.quoteReplacement(File.separator)));
-        if (!sk.exists()) return;
+        if (!sk.exists()) {
+            return;
+        }
         File file = new File(to.replaceAll("/", Matcher.quoteReplacement(File.separator)));
         if (!file.exists()) {
             file.getParentFile().mkdirs();
@@ -37,7 +39,9 @@ public class Obfuscator {
         String[] values = pasd.split("-");
         StringBuilder code = new StringBuilder("");
         for (String un : values) {
-            if (un == null || un.isEmpty()) continue;
+            if (un == null || un.isEmpty()) {
+                continue;
+            }
             int i = Integer.valueOf(un);
             i = i / power;
             code.append((char) i);

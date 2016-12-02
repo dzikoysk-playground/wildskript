@@ -21,10 +21,17 @@ public class ExprFrom extends SimpleExpression<Location> {
         if (event instanceof PlayerMoveEvent) {
             from = ((PlayerMoveEvent) event).getFrom();
         }
-        return new Location[]{from};
+        return new Location[]{ from };
 
     }
 
+    public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
+        if (!ScriptLoader.isCurrentEvent(PlayerMoveEvent.class)) {
+            Skript.error("Cannot use function argument outside of a server list ping event!", ErrorQuality.SEMANTIC_ERROR);
+            return false;
+        }
+        return true;
+    }
 
     public boolean isSingle() {
         return true;
@@ -36,14 +43,6 @@ public class ExprFrom extends SimpleExpression<Location> {
 
     public String toString(Event event, boolean b) {
         return "";
-    }
-
-    public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
-        if (!ScriptLoader.isCurrentEvent(PlayerMoveEvent.class)) {
-            Skript.error("Cannot use function argument outside of a server list ping event!", ErrorQuality.SEMANTIC_ERROR);
-            return false;
-        }
-        return true;
     }
 }
 

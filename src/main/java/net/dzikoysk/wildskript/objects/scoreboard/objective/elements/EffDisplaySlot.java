@@ -16,15 +16,12 @@ public class EffDisplaySlot extends Effect {
 
         String id = this.id.getSingle(event);
         String s = this.slot.getSingle(event);
-        if (id == null || s == null) return;
+        if (id == null || s == null) {
+            return;
+        }
 
         Objectives.setDisplaySlot(Objectives.get(id, "dummy"), s);
 
-    }
-
-
-    public String toString(Event e, boolean bool) {
-        return "";
     }
 
     @SuppressWarnings("unchecked")
@@ -33,6 +30,10 @@ public class EffDisplaySlot extends Effect {
         this.slot = (Expression<String>) expressions[1];
 
         return true;
+    }
+
+    public String toString(Event e, boolean bool) {
+        return "";
     }
 
 }

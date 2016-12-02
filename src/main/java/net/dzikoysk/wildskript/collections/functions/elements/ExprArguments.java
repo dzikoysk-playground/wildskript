@@ -13,8 +13,18 @@ import org.bukkit.event.Event;
 public class ExprArguments extends SimpleExpression<Object> {
 
     protected Object[] get(Event event) {
-        if (event instanceof FunctionEvent) return new Object[]{((FunctionEvent) event).getArgs()};
+        if (event instanceof FunctionEvent) {
+            return new Object[]{ ((FunctionEvent) event).getArgs() };
+        }
         return null;
+    }
+
+    public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
+        if (ScriptLoader.isCurrentEvent(FunctionEvent.class)) {
+            return true;
+        }
+        Skript.error("Cannot use function argument outside of a function!", ErrorQuality.SEMANTIC_ERROR);
+        return false;
     }
 
     public boolean isSingle() {
@@ -27,12 +37,6 @@ public class ExprArguments extends SimpleExpression<Object> {
 
     public String toString(Event event, boolean bool) {
         return this.getClass().getName();
-    }
-
-    public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
-        if (ScriptLoader.isCurrentEvent(FunctionEvent.class)) return true;
-        Skript.error("Cannot use function argument outside of a function!", ErrorQuality.SEMANTIC_ERROR);
-        return false;
     }
 }
 

@@ -17,16 +17,14 @@ public class EffObfuscate extends Effect {
         String from = this.from.getSingle(event);
         String to = this.to.getSingle(event);
         Number power = this.power.getSingle(event);
-        if (from == null || to == null || power == null) return;
+        if (from == null || to == null || power == null) {
+            return;
+        }
         try {
             Obfuscator.to(from, to, power.intValue());
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    public String toString(Event event, boolean bool) {
-        return this.getClass().getName();
     }
 
     @SuppressWarnings("unchecked")
@@ -35,5 +33,9 @@ public class EffObfuscate extends Effect {
         this.to = (Expression<String>) expressions[1];
         this.power = (Expression<Number>) expressions[2];
         return true;
+    }
+
+    public String toString(Event event, boolean bool) {
+        return this.getClass().getName();
     }
 }

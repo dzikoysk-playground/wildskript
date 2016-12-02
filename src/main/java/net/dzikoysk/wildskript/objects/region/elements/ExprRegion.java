@@ -17,10 +17,15 @@ public class ExprRegion extends SimpleExpression<Regions> {
         String id = this.id.getSingle(event);
 
         Regions r = RegionsUtils.get(id);
-        return new Regions[]{r};
+        return new Regions[]{ r };
 
     }
 
+    @SuppressWarnings("unchecked")
+    public boolean init(Expression<?>[] e, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
+        this.id = (Expression<String>) e[0];
+        return true;
+    }
 
     public boolean isSingle() {
         return true;
@@ -32,12 +37,6 @@ public class ExprRegion extends SimpleExpression<Regions> {
 
     public String toString(Event event, boolean b) {
         return "";
-    }
-
-    @SuppressWarnings("unchecked")
-    public boolean init(Expression<?>[] e, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
-        this.id = (Expression<String>) e[0];
-        return true;
     }
 }
 

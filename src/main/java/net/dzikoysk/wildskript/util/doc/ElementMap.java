@@ -13,12 +13,16 @@ public class ElementMap<K, V> {
     }
 
     public boolean containsKey(String key) {
-        if (content.containsKey(key)) return true;
+        if (content.containsKey(key)) {
+            return true;
+        }
         return false;
     }
 
     public boolean containsValue(List<Element> value) {
-        if (content.containsValue(value)) return true;
+        if (content.containsValue(value)) {
+            return true;
+        }
         return false;
     }
 
@@ -27,7 +31,9 @@ public class ElementMap<K, V> {
     }
 
     public List<Element> get(String key) {
-        if (!this.containsKey(key)) content.put(key, new ArrayList<Element>());
+        if (!this.containsKey(key)) {
+            content.put(key, new ArrayList<Element>());
+        }
         return content.get(key);
     }
 
@@ -35,23 +41,8 @@ public class ElementMap<K, V> {
         return content.get(i);
     }
 
-    public boolean isEmpty() {
-        if (content.isEmpty()) return true;
-        return false;
-    }
-
     public Set<String> keySet() {
         return content.keySet();
-    }
-
-    public void add(Element e) {
-        if (e.getType() == Type.COLLECTION) this.get(e.getCollection()).add(e);
-        else if (e.getType() == Type.OBJECT) this.get(e.getObject()).add(e);
-    }
-
-    public void remove(Element e) {
-        if (e.getType() == Type.COLLECTION) this.get(e.getCollection()).remove(e);
-        else if (e.getType() == Type.OBJECT) this.get(e.getObject()).remove(e);
     }
 
     public int size() {
@@ -60,5 +51,30 @@ public class ElementMap<K, V> {
 
     public Collection<List<Element>> values() {
         return content.values();
+    }
+
+    public void add(Element e) {
+        if (e.getType() == Type.COLLECTION) {
+            this.get(e.getCollection()).add(e);
+        }
+        else if (e.getType() == Type.OBJECT) {
+            this.get(e.getObject()).add(e);
+        }
+    }
+
+    public void remove(Element e) {
+        if (e.getType() == Type.COLLECTION) {
+            this.get(e.getCollection()).remove(e);
+        }
+        else if (e.getType() == Type.OBJECT) {
+            this.get(e.getObject()).remove(e);
+        }
+    }
+
+    public boolean isEmpty() {
+        if (content.isEmpty()) {
+            return true;
+        }
+        return false;
     }
 }

@@ -13,7 +13,7 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Maven: ch.njol:skript:2.1" level="project" />
     <orderEntry type="library" name="Maven: ch.njol:utils:1.0-SNAPSHOT" level="project" />
-    <orderEntry type="library" name="Maven: org.eclipse:jdt.annotation:1.1.0" level="project" />
+    <orderEntry type="library" name="Maven: org.eclipse.jdt:org.eclipse.jdt.annotation:1.1.0" level="project" />
     <orderEntry type="library" name="Maven: com.google.code.findbugs:findbugs:2.0.3" level="project" />
     <orderEntry type="library" name="Maven: net.jcip:jcip-annotations:1.0" level="project" />
     <orderEntry type="library" name="Maven: com.google.code.findbugs:jsr305:2.0.1" level="project" />
@@ -27,6 +27,7 @@
     <orderEntry type="library" name="Maven: com.apple:AppleJavaExtensions:1.4" level="project" />
     <orderEntry type="library" name="Maven: jaxen:jaxen:1.1.6" level="project" />
     <orderEntry type="library" name="Maven: ch.njol:yggdrasil:1.0-SNAPSHOT" level="project" />
+    <orderEntry type="library" name="Maven: org.eclipse:jdt.annotation:1.1.0" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT" level="project" />
     <orderEntry type="library" name="Maven: commons-lang:commons-lang:2.6" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: com.googlecode.json-simple:json-simple:1.1.1" level="project" />

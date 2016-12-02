@@ -15,13 +15,13 @@ public class EffUpdate extends Effect {
     protected void execute(Event event) {
         String id = this.id.getSingle(event);
         String[] update = this.update.getAll(event);
-        if (id == null || update == null) return;
+        if (id == null || update == null) {
+            return;
+        }
         MySQL sql = MySQL.get(id);
-        if (sql != null) sql.updateSQL(update);
-    }
-
-    public String toString(Event event, boolean bool) {
-        return this.getClass().getName();
+        if (sql != null) {
+            sql.updateSQL(update);
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -29,6 +29,10 @@ public class EffUpdate extends Effect {
         this.id = (Expression<String>) e[0];
         this.update = (Expression<String>) e[1];
         return true;
+    }
+
+    public String toString(Event event, boolean bool) {
+        return this.getClass().getName();
     }
 }
 

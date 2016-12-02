@@ -16,15 +16,13 @@ public class EffRemoveExecutor extends Effect {
 
         String name = (String) this.name.getSingle(event);
         Number slot = (Number) this.slot.getSingle(event);
-        if (name == null || slot == null) return;
+        if (name == null || slot == null) {
+            return;
+        }
 
         int i = slot.intValue();
         Inventories.get(name).removeExecutor(i);
 
-    }
-
-    public String toString(Event event, boolean bool) {
-        return "[Inventory] Remove Executor";
     }
 
     @SuppressWarnings("unchecked")
@@ -32,6 +30,10 @@ public class EffRemoveExecutor extends Effect {
         this.name = (Expression<String>) expressions[0];
         this.slot = (Expression<Number>) expressions[1];
         return true;
+    }
+
+    public String toString(Event event, boolean bool) {
+        return "[Inventory] Remove Executor";
     }
 }
 

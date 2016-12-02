@@ -16,15 +16,13 @@ public class EffRestore extends Effect {
     protected void execute(Event event) {
         String id = this.id.getSingle(event);
         Regions f = this.f.getSingle(event);
-        if (id == null || f == null) return;
+        if (id == null || f == null) {
+            return;
+        }
 
         @SuppressWarnings("unused")
         Regions r = RegionsUtils.get(id);
         r = f;
-    }
-
-    public String toString(Event event, boolean bool) {
-        return "";
     }
 
     @SuppressWarnings("unchecked")
@@ -32,6 +30,10 @@ public class EffRestore extends Effect {
         this.id = (Expression<String>) expressions[0];
         this.f = (Expression<Regions>) expressions[1];
         return true;
+    }
+
+    public String toString(Event event, boolean bool) {
+        return "";
     }
 }
 

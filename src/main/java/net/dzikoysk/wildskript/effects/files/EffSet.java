@@ -21,7 +21,9 @@ public class EffSet extends Effect {
         String path = this.file.getSingle(event);
         String key = this.key.getSingle(event);
         String value = this.value.getSingle(event);
-        if (path == null || key == null) return;
+        if (path == null || key == null) {
+            return;
+        }
         File file = new File(path.replaceAll("/", Matcher.quoteReplacement(File.separator)));
         try {
             if (!file.exists()) {
@@ -36,16 +38,16 @@ public class EffSet extends Effect {
         }
     }
 
-    public String toString(Event event, boolean bool) {
-        return this.getClass().getName();
-    }
-
     @SuppressWarnings("unchecked")
     public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
         this.key = (Expression<String>) expressions[0];
         this.value = (Expression<String>) expressions[1];
         this.file = (Expression<String>) expressions[2];
         return true;
+    }
+
+    public String toString(Event event, boolean bool) {
+        return this.getClass().getName();
     }
 }
 

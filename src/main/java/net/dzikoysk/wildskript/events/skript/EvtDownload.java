@@ -15,6 +15,10 @@ public class EvtDownload extends Event implements Cancellable {
         this.url = url;
     }
 
+    public void setCancelled(boolean c) {
+        this.cancel = c;
+    }
+
     public String getUrl() {
         return this.url;
     }
@@ -30,10 +34,6 @@ public class EvtDownload extends Event implements Cancellable {
 
     public boolean isCancelled() {
         return cancel;
-    }
-
-    public void setCancelled(boolean c) {
-        this.cancel = c;
     }
 
 

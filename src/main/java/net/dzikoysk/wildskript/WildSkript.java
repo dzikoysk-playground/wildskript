@@ -42,7 +42,9 @@ public class WildSkript extends JavaPlugin {
         wildskript = this;
 
         // Check
-        if (cannot()) return;
+        if (cannot()) {
+            return;
+        }
 
         // Data start
         Data.load();
@@ -68,8 +70,12 @@ public class WildSkript extends JavaPlugin {
         Register.register();
 
         // Documentation
-        if (Data.doc) Documentation.generate();
-        if (Data.mcstats) metrics();
+        if (Data.doc) {
+            Documentation.generate();
+        }
+        if (Data.mcstats) {
+            metrics();
+        }
 
         log("~ Created by \u2764 Dzikoysk ~");
 
@@ -126,8 +132,12 @@ public class WildSkript extends JavaPlugin {
         final Thread thread = new Thread() {
             public void run() {
                 String latest = IOUtils.getContent("http://www.dzikoysk.net/projects/wildskript/download/latest.info");
-                if (latest == null || latest.isEmpty()) update("Failed to check the new version of WildSkript.");
-                else if (latest.equalsIgnoreCase(getVersion())) update("You have a current version of WildSkript.");
+                if (latest == null || latest.isEmpty()) {
+                    update("Failed to check the new version of WildSkript.");
+                }
+                else if (latest.equalsIgnoreCase(getVersion())) {
+                    update("You have a current version of WildSkript.");
+                }
                 else {
                     update("");
                     update("Available is new version of WildSkript!");
@@ -147,7 +157,21 @@ public class WildSkript extends JavaPlugin {
     private void utils() {
         timer = new WildSkriptTimer();
         Bukkit.getScheduler().scheduleSyncRepeatingTask(this, timer, 1000L, 50L);
-        for (Player p : Bukkit.getOnlinePlayers()) User.get(p);
+        for (Player p : Bukkit.getOnlinePlayers()) {
+            User.get(p);
+        }
+    }
+
+    public static WildSkript getInstance() {
+        return wildskript;
+    }
+
+    public static String getVersion() {
+        return version;
+    }
+
+    public static WildSkriptTimer getTimer() {
+        return timer;
     }
 
     public static void update(String content) {
@@ -175,18 +199,6 @@ public class WildSkript extends JavaPlugin {
         Bukkit.getLogger().severe("[WildSkript][Error] #!# " + log);
         Bukkit.getLogger().severe("[WildSkript][Error] #!#");
         Bukkit.getLogger().severe("[WildSkript][Error] #!#");
-    }
-
-    public static WildSkript getInstance() {
-        return wildskript;
-    }
-
-    public static String getVersion() {
-        return version;
-    }
-
-    public static WildSkriptTimer getTimer() {
-        return timer;
     }
 
     public static boolean skQuery() {

@@ -21,13 +21,13 @@ public class EffAnvil extends Effect {
 
     }
 
-    public String toString(Event e, boolean bool) {
-        return this.getClass().getName();
-    }
-
     @SuppressWarnings("unchecked")
     public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
         this.player = (Expression<Player>) expressions[0];
         return true;
+    }
+
+    public String toString(Event e, boolean bool) {
+        return this.getClass().getName();
     }
 }

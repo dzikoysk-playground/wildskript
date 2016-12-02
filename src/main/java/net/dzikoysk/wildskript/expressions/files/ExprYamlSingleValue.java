@@ -20,7 +20,9 @@ public class ExprYamlSingleValue extends SimpleExpression<String> {
     protected String[] get(Event event) {
         String v = this.value.getSingle(event);
         String f = this.file.getSingle(event);
-        if (v == null || f == null) return null;
+        if (v == null || f == null) {
+            return null;
+        }
         File file = new File(f.replaceAll("/", Matcher.quoteReplacement(File.separator)));
         try {
             if (!file.exists()) {
@@ -29,9 +31,13 @@ public class ExprYamlSingleValue extends SimpleExpression<String> {
             }
             YamlConfiguration yml = YamlConfiguration.loadConfiguration(file);
             Object res = yml.get(v);
-            if (res == null) return null;
+            if (res == null) {
+                return null;
+            }
             String ret = res.toString();
-            if (ret == null) return null;
+            if (ret == null) {
+                return null;
+            }
             ret = ret
                     .replace("�", "") // Text
                     .replace("�", ""); // Color
@@ -39,11 +45,18 @@ public class ExprYamlSingleValue extends SimpleExpression<String> {
                 WildSkript.log("Custom Yaml Configuration Error! - You can't use read simple value expression to yaml configuration section!");
                 return null;
             }
-            return new String[]{ret};
+            return new String[]{ ret };
         } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
+    }
+
+    @SuppressWarnings("unchecked")
+    public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
+        this.value = (Expression<String>) expressions[0];
+        this.file = (Expression<String>) expressions[1];
+        return true;
     }
 
     public boolean isSingle() {
@@ -56,13 +69,6 @@ public class ExprYamlSingleValue extends SimpleExpression<String> {
 
     public String toString(Event event, boolean b) {
         return this.getClass().getName();
-    }
-
-    @SuppressWarnings("unchecked")
-    public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
-        this.value = (Expression<String>) expressions[0];
-        this.file = (Expression<String>) expressions[1];
-        return true;
     }
 }
 

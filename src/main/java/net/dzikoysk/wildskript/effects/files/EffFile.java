@@ -17,10 +17,16 @@ public class EffFile extends Effect {
 
     protected void execute(Event event) {
         String d = (String) this.f.getSingle(event);
-        if (f == null) return;
+        if (f == null) {
+            return;
+        }
         File file = new File(d.replaceAll("/", Matcher.quoteReplacement(File.separator)));
-        if (file.exists()) return;
-        if (pattern == 1) file.mkdir();
+        if (file.exists()) {
+            return;
+        }
+        if (pattern == 1) {
+            file.mkdir();
+        }
         else {
             try {
                 file.getParentFile().mkdirs();
@@ -31,15 +37,15 @@ public class EffFile extends Effect {
         }
     }
 
-    public String toString(Event event, boolean bool) {
-        return this.getClass().getName();
-    }
-
     @SuppressWarnings("unchecked")
     public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
         this.pattern = i;
         this.f = (Expression<String>) expressions[0];
         return true;
+    }
+
+    public String toString(Event event, boolean bool) {
+        return this.getClass().getName();
     }
 
 

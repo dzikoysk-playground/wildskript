@@ -32,21 +32,6 @@ public class Inventories {
         inventories.add(this);
     }
 
-    public static Inventories get(String name) {
-        for (Inventories inv : inventories) {
-            if (inv.getName().equals(name)) return inv;
-        }
-        return new Inventories(name);
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setRow(int row) {
-        this.row = row;
-    }
-
     public void setItem(int slot, ItemType item) {
         this.item.put(slot, item.getRandom());
     }
@@ -107,7 +92,9 @@ public class Inventories {
                     if (l != null) {
                         String[] table = l.split(";");
                         ArrayList<String> lore = new ArrayList<String>();
-                        for (String line : table) lore.add(line);
+                        for (String line : table) {
+                            lore.add(line);
+                        }
                         im.setLore(lore);
                         item.setItemMeta(im);
                     }
@@ -145,11 +132,54 @@ public class Inventories {
         this.closed = null;
     }
 
-    public static boolean nameExists(String name) {
-        for (Inventories inv : inventories) {
-            if (inv.getName().equals(name)) return true;
+    public ItemStack getItem(int i) {
+        if (this.item.containsKey(i)) {
+            return this.item.get(i);
         }
-        return false;
+        return null;
+    }
+
+    public String getLore(int i) {
+        if (this.lore.containsKey(i)) {
+            return this.lore.get(i);
+        }
+        return null;
+    }
+
+    public String getCommand(int i) {
+        if (this.command.containsKey(i)) {
+            return this.command.get(i);
+        }
+        return null;
+    }
+
+    public String getExecutor(int i) {
+        if (this.executor.containsKey(i)) {
+            return this.executor.get(i);
+        }
+        return null;
+    }
+
+    public boolean getCancelled(int i) {
+        if (this.cancelled.containsKey(i)) {
+            return this.cancelled.get(i);
+        }
+        return true;
+    }
+
+    public boolean getClosed(int i) {
+        if (this.closed.containsKey(i)) {
+            return this.closed.get(i);
+        }
+        return true;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setRow(int row) {
+        this.row = row;
     }
 
     public String getName() {
@@ -164,40 +194,30 @@ public class Inventories {
         return this.inv;
     }
 
-    public ItemStack getItem(int i) {
-        if (this.item.containsKey(i)) return this.item.get(i);
-        return null;
-    }
-
-    public String getLore(int i) {
-        if (this.lore.containsKey(i)) return this.lore.get(i);
-        return null;
-    }
-
-    public String getCommand(int i) {
-        if (this.command.containsKey(i)) return this.command.get(i);
-        return null;
-    }
-
-    public String getExecutor(int i) {
-        if (this.executor.containsKey(i)) return this.executor.get(i);
-        return null;
-    }
-
-    public boolean getCancelled(int i) {
-        if (this.cancelled.containsKey(i)) return this.cancelled.get(i);
-        return true;
-    }
-
-    public boolean getClosed(int i) {
-        if (this.closed.containsKey(i)) return this.closed.get(i);
-        return true;
-    }
-
     public int getFirstEmpty() {
         for (int i = 1; i < this.row * 9 + 1; i++) {
-            if (!this.item.containsKey(i)) return i;
+            if (!this.item.containsKey(i)) {
+                return i;
+            }
         }
         return 0;
+    }
+
+    public static Inventories get(String name) {
+        for (Inventories inv : inventories) {
+            if (inv.getName().equals(name)) {
+                return inv;
+            }
+        }
+        return new Inventories(name);
+    }
+
+    public static boolean nameExists(String name) {
+        for (Inventories inv : inventories) {
+            if (inv.getName().equals(name)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

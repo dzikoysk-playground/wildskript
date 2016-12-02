@@ -9,6 +9,12 @@ import java.lang.reflect.Method;
 
 public class ReflectionUtils {
 
+    public static String getVersion() {
+        String name = Bukkit.getServer().getClass().getPackage().getName();
+        String version = name.substring(name.lastIndexOf('.') + 1) + ".";
+        return version;
+    }
+
     public static Class<?> getCraftClass(String ClassName) {
         String className = "net.minecraft.server." + getVersion() + ClassName;
         Class<?> c = null;
@@ -48,35 +54,35 @@ public class ReflectionUtils {
     }
 
     public static Method getMethod(Class<?> cl, String method, Class<?>... args) {
-        for (Method m : cl.getMethods())
-            if (m.getName().equals(method) && ClassListEqual(args, m.getParameterTypes()))
+        for (Method m : cl.getMethods()) {
+            if (m.getName().equals(method) && ClassListEqual(args, m.getParameterTypes())) {
                 return m;
+            }
+        }
         return null;
     }
 
     public static Method getMethod(Class<?> cl, String method) {
-        for (Method m : cl.getMethods())
-            if (m.getName().equals(method))
+        for (Method m : cl.getMethods()) {
+            if (m.getName().equals(method)) {
                 return m;
+            }
+        }
         return null;
     }
 
     public static boolean ClassListEqual(Class<?>[] l1, Class<?>[] l2) {
         boolean equal = true;
-        if (l1.length != l2.length)
+        if (l1.length != l2.length) {
             return false;
-        for (int i = 0; i < l1.length; i++)
+        }
+        for (int i = 0; i < l1.length; i++) {
             if (l1[i] != l2[i]) {
                 equal = false;
                 break;
             }
+        }
         return equal;
-    }
-
-    public static String getVersion() {
-        String name = Bukkit.getServer().getClass().getPackage().getName();
-        String version = name.substring(name.lastIndexOf('.') + 1) + ".";
-        return version;
     }
 
 }

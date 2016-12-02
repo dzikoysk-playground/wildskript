@@ -16,15 +16,12 @@ public class EffDisplayName extends Effect {
 
         String id = this.id.getSingle(event);
         String s = this.s.getSingle(event);
-        if (id == null || s == null) return;
+        if (id == null || s == null) {
+            return;
+        }
 
         Teams.get(id).getTeam().setDisplayName(s);
 
-    }
-
-
-    public String toString(Event e, boolean bool) {
-        return "";
     }
 
     @SuppressWarnings("unchecked")
@@ -33,6 +30,10 @@ public class EffDisplayName extends Effect {
         this.s = (Expression<String>) expressions[1];
 
         return true;
+    }
+
+    public String toString(Event e, boolean bool) {
+        return "";
     }
 
 }

@@ -19,7 +19,9 @@ public class ObfuscatorUtils {
             zos.putNextEntry(ze);
             FileInputStream in = new FileInputStream(input);
             int len;
-            while ((len = in.read(buffer)) > 0) zos.write(buffer, 0, len);
+            while ((len = in.read(buffer)) > 0) {
+                zos.write(buffer, 0, len);
+            }
             in.close();
             zos.closeEntry();
             zos.close();
@@ -72,7 +74,9 @@ public class ObfuscatorUtils {
         StringBuilder sb = new StringBuilder("");
         int[] is = new int[10];
         Random r = new Random();
-        for (@SuppressWarnings("unused") int i : is) sb.append((char) (r.nextInt(26) + 'a') + File.separator);
+        for (@SuppressWarnings("unused") int i : is) {
+            sb.append((char) (r.nextInt(26) + 'a') + File.separator);
+        }
         return sb.toString();
     }
 }

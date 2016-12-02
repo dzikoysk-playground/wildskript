@@ -15,6 +15,10 @@ public class EvtJump extends Event implements Cancellable {
         this.p = p;
     }
 
+    public void setCancelled(boolean c) {
+        this.cancel = c;
+    }
+
     public Player getPlayer() {
         return this.p;
     }
@@ -30,10 +34,6 @@ public class EvtJump extends Event implements Cancellable {
 
     public boolean isCancelled() {
         return cancel;
-    }
-
-    public void setCancelled(boolean c) {
-        this.cancel = c;
     }
 
 

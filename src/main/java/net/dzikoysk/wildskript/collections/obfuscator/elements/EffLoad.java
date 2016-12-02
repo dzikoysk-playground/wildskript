@@ -19,7 +19,9 @@ public class EffLoad extends Effect {
     protected void execute(Event event) {
         String from = this.from.getSingle(event);
         Number power = this.n.getSingle(event);
-        if (from == null || power == null) return;
+        if (from == null || power == null) {
+            return;
+        }
         String code = "";
         try {
             code = Obfuscator.load(new File(from.replaceAll("/", Matcher.quoteReplacement(File.separator))), power.intValue());
@@ -29,14 +31,14 @@ public class EffLoad extends Effect {
         Loader.loadString(code);
     }
 
-    public String toString(Event event, boolean bool) {
-        return this.getClass().getName();
-    }
-
     @SuppressWarnings("unchecked")
     public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
         this.from = (Expression<String>) expressions[0];
         this.n = (Expression<Number>) expressions[1];
         return true;
+    }
+
+    public String toString(Event event, boolean bool) {
+        return this.getClass().getName();
     }
 }

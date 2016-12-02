@@ -14,13 +14,15 @@ public class EffFlight extends Effect {
 
     protected void execute(Event event) {
         Player p = this.player.getSingle(event);
-        if (p == null) return;
-        if (this.i == 1) p.setAllowFlight(false);
-        else p.setAllowFlight(true);
-    }
-
-    public String toString(Event e, boolean bool) {
-        return this.getClass().getName();
+        if (p == null) {
+            return;
+        }
+        if (this.i == 1) {
+            p.setAllowFlight(false);
+        }
+        else {
+            p.setAllowFlight(true);
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -28,5 +30,9 @@ public class EffFlight extends Effect {
         this.player = (Expression<Player>) expressions[0];
         this.i = i;
         return true;
+    }
+
+    public String toString(Event e, boolean bool) {
+        return this.getClass().getName();
     }
 }

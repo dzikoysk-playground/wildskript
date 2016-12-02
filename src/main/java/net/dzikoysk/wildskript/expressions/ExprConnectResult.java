@@ -22,7 +22,9 @@ public class ExprConnectResult extends SimpleExpression<String> {
     @SuppressWarnings("deprecation")
     protected String[] get(Event event) {
         final String url = this.url.getSingle(event);
-        if (url == null) return null;
+        if (url == null) {
+            return null;
+        }
         Thread t = new Thread() {
             public void run() {
                 StringBuilder response = new StringBuilder();
@@ -32,8 +34,9 @@ public class ExprConnectResult extends SimpleExpression<String> {
                     BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 
                     String inputLine;
-                    while ((inputLine = in.readLine()) != null)
+                    while ((inputLine = in.readLine()) != null) {
                         response.append(inputLine);
+                    }
                     in.close();
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -43,12 +46,21 @@ public class ExprConnectResult extends SimpleExpression<String> {
         };
         t.start();
         long tm = System.currentTimeMillis() + 5 * 1000;
-        while (System.currentTimeMillis() < tm) if (res != null) break;
+        while (System.currentTimeMillis() < tm) {
+            if (res != null) {
+                break;
+            }
+        }
         t.stop();
         t = null;
-        return new String[]{res};
+        return new String[]{ res };
     }
 
+    @SuppressWarnings("unchecked")
+    public boolean init(Expression<?>[] e, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
+        this.url = (Expression<String>) e[0];
+        return true;
+    }
 
     public boolean isSingle() {
         return true;
@@ -60,12 +72,6 @@ public class ExprConnectResult extends SimpleExpression<String> {
 
     public String toString(Event event, boolean b) {
         return this.getClass().getName();
-    }
-
-    @SuppressWarnings("unchecked")
-    public boolean init(Expression<?>[] e, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
-        this.url = (Expression<String>) e[0];
-        return true;
     }
 }
 

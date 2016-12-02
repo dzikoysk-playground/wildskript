@@ -10,8 +10,9 @@ public class Changers {
 
     public static final Changer<Age> age = new Changer<Age>() {
         public Class<?>[] acceptChange(Changer.ChangeMode mode) {
-            if (mode == Changer.ChangeMode.SET)
-                return (Class[]) CollectionUtils.array(new Class[]{Age.class});
+            if (mode == Changer.ChangeMode.SET) {
+                return (Class[]) CollectionUtils.array(new Class[]{ Age.class });
+            }
             return null;
         }
 
@@ -20,8 +21,12 @@ public class Changers {
                 for (Object o : delta) {
                     if (o instanceof Entity) {
                         if (o instanceof Ageable) {
-                            if (a == Age.BABY) ((Ageable) o).setBaby();
-                            if (a == Age.ADULT) ((Ageable) o).setAdult();
+                            if (a == Age.BABY) {
+                                ((Ageable) o).setBaby();
+                            }
+                            if (a == Age.ADULT) {
+                                ((Ageable) o).setAdult();
+                            }
                         }
                     }
                 }

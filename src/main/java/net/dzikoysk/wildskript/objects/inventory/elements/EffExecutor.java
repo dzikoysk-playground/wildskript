@@ -18,15 +18,13 @@ public class EffExecutor extends Effect {
         String name = (String) this.name.getSingle(event);
         Number slot = (Number) this.slot.getSingle(event);
         String exc = (String) this.exc.getSingle(event);
-        if (name == null || slot == null || exc == null) return;
+        if (name == null || slot == null || exc == null) {
+            return;
+        }
 
         int i = slot.intValue();
         Inventories.get(name).setExecutor(i, exc);
 
-    }
-
-    public String toString(Event event, boolean bool) {
-        return "[Inventory] Register Executor";
     }
 
     @SuppressWarnings("unchecked")
@@ -35,6 +33,10 @@ public class EffExecutor extends Effect {
         this.slot = (Expression<Number>) expressions[1];
         this.exc = (Expression<String>) expressions[2];
         return true;
+    }
+
+    public String toString(Event event, boolean bool) {
+        return "[Inventory] Register Executor";
     }
 }
 

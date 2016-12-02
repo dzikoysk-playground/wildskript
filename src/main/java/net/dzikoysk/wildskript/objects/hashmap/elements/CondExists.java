@@ -15,17 +15,19 @@ public class CondExists extends Condition {
 
     public boolean check(Event event) {
         String id = this.id.getSingle(event);
-        if (id == null) return false;
+        if (id == null) {
+            return false;
+        }
         if (SkriptHashMap.isExists(id)) {
-            if (isNegated()) return false;
+            if (isNegated()) {
+                return false;
+            }
             return true;
         }
-        if (isNegated()) return true;
+        if (isNegated()) {
+            return true;
+        }
         return false;
-    }
-
-    public String toString(Event event, boolean b) {
-        return this.getClass().getName();
     }
 
     @SuppressWarnings("unchecked")
@@ -33,5 +35,9 @@ public class CondExists extends Condition {
         this.id = (Expression<String>) expressions[0];
         setNegated(i == 1);
         return true;
+    }
+
+    public String toString(Event event, boolean b) {
+        return this.getClass().getName();
     }
 }

@@ -22,12 +22,16 @@ public class EffIcon extends Effect {
 
     protected void execute(Event event) {
         String s = this.s.getSingle(event);
-        if (s == null) return;
+        if (s == null) {
+            return;
+        }
         try {
             if (i == 0) {
                 s = s.replaceAll("/", Matcher.quoteReplacement(File.separator));
                 File file = new File(s);
-                if (!file.exists()) return;
+                if (!file.exists()) {
+                    return;
+                }
                 if (event instanceof ServerListPingEvent) {
                     ((ServerListPingEvent) event).setServerIcon(Bukkit.loadServerIcon(file));
                 }
@@ -44,15 +48,15 @@ public class EffIcon extends Effect {
         }
     }
 
-    public String toString(Event e, boolean bool) {
-        return this.getClass().getName();
-    }
-
     @SuppressWarnings("unchecked")
     public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
         this.i = i;
         this.s = (Expression<String>) expressions[0];
         return true;
+    }
+
+    public String toString(Event e, boolean bool) {
+        return this.getClass().getName();
     }
 }
 

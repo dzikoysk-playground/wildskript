@@ -16,8 +16,18 @@ public class ExprIP extends SimpleExpression<String> {
 
     protected String[] get(Event event) {
         String ip = null;
-        if (event instanceof ServerListPingEvent) ip = ((ServerListPingEvent) event).getAddress().getHostAddress();
-        return new String[]{ip};
+        if (event instanceof ServerListPingEvent) {
+            ip = ((ServerListPingEvent) event).getAddress().getHostAddress();
+        }
+        return new String[]{ ip };
+    }
+
+    public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
+        if (!ScriptLoader.isCurrentEvent(ServerListPingEvent.class)) {
+            return true;
+        }
+        Skript.error("Cannot use function argument outside of a server list ping event!", ErrorQuality.SEMANTIC_ERROR);
+        return false;
     }
 
     public boolean isSingle() {
@@ -30,12 +40,6 @@ public class ExprIP extends SimpleExpression<String> {
 
     public String toString(Event event, boolean b) {
         return this.getClass().getName();
-    }
-
-    public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
-        if (!ScriptLoader.isCurrentEvent(ServerListPingEvent.class)) return true;
-        Skript.error("Cannot use function argument outside of a server list ping event!", ErrorQuality.SEMANTIC_ERROR);
-        return false;
     }
 }
 

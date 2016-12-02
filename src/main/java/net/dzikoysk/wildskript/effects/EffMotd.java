@@ -14,20 +14,24 @@ public class EffMotd extends Effect {
 
     protected void execute(Event event) {
         String m = this.s.getSingle(event);
-        if (m == null) return;
+        if (m == null) {
+            return;
+        }
         m = m.replaceAll(";", System.getProperty("line.separator"));
-        if (event instanceof ServerListPingEvent) ((ServerListPingEvent) event).setMotd(m);
+        if (event instanceof ServerListPingEvent) {
+            ((ServerListPingEvent) event).setMotd(m);
+        }
         Data.motd = m;
-    }
-
-    public String toString(Event e, boolean bool) {
-        return this.getClass().getName();
     }
 
     @SuppressWarnings("unchecked")
     public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
         this.s = (Expression<String>) expressions[0];
         return true;
+    }
+
+    public String toString(Event e, boolean bool) {
+        return this.getClass().getName();
     }
 }
 

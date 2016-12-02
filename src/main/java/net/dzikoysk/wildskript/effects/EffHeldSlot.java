@@ -15,14 +15,14 @@ public class EffHeldSlot extends Effect {
     protected void execute(Event event) {
         Player p = this.player.getSingle(event);
         Number n = this.slot.getSingle(event);
-        if (p == null || n == null) return;
+        if (p == null || n == null) {
+            return;
+        }
         int i = n.intValue();
-        if (i < 1 || i < 9) return;
+        if (i < 1 || i < 9) {
+            return;
+        }
         p.getInventory().setHeldItemSlot(i - 1);
-    }
-
-    public String toString(Event event, boolean bool) {
-        return this.getClass().getName();
     }
 
     @SuppressWarnings("unchecked")
@@ -30,6 +30,10 @@ public class EffHeldSlot extends Effect {
         this.player = (Expression<Player>) expressions[0];
         this.slot = (Expression<Number>) expressions[1];
         return true;
+    }
+
+    public String toString(Event event, boolean bool) {
+        return this.getClass().getName();
     }
 }
 

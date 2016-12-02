@@ -18,15 +18,13 @@ public class EffLore extends Effect {
         String name = (String) this.name.getSingle(event);
         Number slot = (Number) this.slot.getSingle(event);
         String lore = (String) this.lore.getSingle(event);
-        if (name == null || lore == null || slot == null) return;
+        if (name == null || lore == null || slot == null) {
+            return;
+        }
 
         int i = slot.intValue();
         Inventories.get(name).setLore(i, lore);
 
-    }
-
-    public String toString(Event event, boolean bool) {
-        return "[Inventory] Register lore";
     }
 
     @SuppressWarnings("unchecked")
@@ -35,6 +33,10 @@ public class EffLore extends Effect {
         this.lore = (Expression<String>) expressions[2];
         this.slot = (Expression<Number>) expressions[1];
         return true;
+    }
+
+    public String toString(Event event, boolean bool) {
+        return "[Inventory] Register lore";
     }
 }
 

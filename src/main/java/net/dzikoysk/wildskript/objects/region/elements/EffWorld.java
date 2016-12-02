@@ -18,13 +18,11 @@ public class EffWorld extends Effect {
         String id = this.id.getSingle(event);
         World w = this.w.getSingle(event);
 
-        if (id == null || w == null) return;
+        if (id == null || w == null) {
+            return;
+        }
 
         RegionsUtils.get(id).setWorld(w);
-    }
-
-    public String toString(Event event, boolean bool) {
-        return "";
     }
 
     @SuppressWarnings("unchecked")
@@ -32,6 +30,10 @@ public class EffWorld extends Effect {
         this.id = (Expression<String>) e[0];
         this.w = (Expression<World>) e[1];
         return true;
+    }
+
+    public String toString(Event event, boolean bool) {
+        return "";
     }
 
 }

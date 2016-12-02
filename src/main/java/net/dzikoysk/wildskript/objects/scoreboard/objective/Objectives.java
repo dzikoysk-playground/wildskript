@@ -14,13 +14,21 @@ public class Objectives {
     public static Objective get(String id, String criteria) {
         Scoreboard sb = Scoreboards.getScoreboard();
         Objective o = sb.getObjective(id);
-        if (o == null) o = sb.registerNewObjective(id, criteria);
+        if (o == null) {
+            o = sb.registerNewObjective(id, criteria);
+        }
         return o;
     }
 
     public static void setDisplaySlot(Objective o, String slot) {
-        if (slot.equalsIgnoreCase("sidebar")) o.setDisplaySlot(SIDEBAR);
-        else if (slot.equalsIgnoreCase("player list")) o.setDisplaySlot(PLAYER_LIST);
-        else if (slot.equalsIgnoreCase("below name")) o.setDisplaySlot(BELOW_NAME);
+        if (slot.equalsIgnoreCase("sidebar")) {
+            o.setDisplaySlot(SIDEBAR);
+        }
+        else if (slot.equalsIgnoreCase("player list")) {
+            o.setDisplaySlot(PLAYER_LIST);
+        }
+        else if (slot.equalsIgnoreCase("below name")) {
+            o.setDisplaySlot(BELOW_NAME);
+        }
     }
 }

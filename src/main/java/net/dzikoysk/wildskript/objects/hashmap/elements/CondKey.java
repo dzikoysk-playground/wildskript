@@ -17,17 +17,19 @@ public class CondKey extends Condition {
     public boolean check(Event event) {
         Object o = this.o.getSingle(event);
         String id = this.id.getSingle(event);
-        if (o == null || id == null) return false;
+        if (o == null || id == null) {
+            return false;
+        }
         if (SkriptHashMap.get(id).getHashMap().containsKey(o)) {
-            if (isNegated()) return false;
+            if (isNegated()) {
+                return false;
+            }
             return true;
         }
-        if (isNegated()) return true;
+        if (isNegated()) {
+            return true;
+        }
         return false;
-    }
-
-    public String toString(Event event, boolean b) {
-        return this.getClass().getName();
     }
 
     @SuppressWarnings("unchecked")
@@ -36,5 +38,9 @@ public class CondKey extends Condition {
         this.id = (Expression<String>) expressions[0];
         setNegated(i == 1);
         return true;
+    }
+
+    public String toString(Event event, boolean b) {
+        return this.getClass().getName();
     }
 }

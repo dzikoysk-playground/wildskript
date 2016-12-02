@@ -14,20 +14,24 @@ public class EffFakeMaxPlayers extends Effect {
 
     protected void execute(Event event) {
         Number n = this.n.getSingle(event);
-        if (n == null) return;
+        if (n == null) {
+            return;
+        }
         int i = n.intValue();
-        if (event instanceof ServerListPingEvent) ((ServerListPingEvent) event).setMaxPlayers(i);
+        if (event instanceof ServerListPingEvent) {
+            ((ServerListPingEvent) event).setMaxPlayers(i);
+        }
         Data.fakeMaxPlayers = i;
-    }
-
-    public String toString(Event e, boolean bool) {
-        return this.getClass().getName();
     }
 
     @SuppressWarnings("unchecked")
     public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
         this.n = (Expression<Number>) expressions[0];
         return true;
+    }
+
+    public String toString(Event e, boolean bool) {
+        return this.getClass().getName();
     }
 }
 

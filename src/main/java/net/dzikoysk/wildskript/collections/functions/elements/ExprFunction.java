@@ -15,15 +15,28 @@ public class ExprFunction extends SimpleExpression<Object> {
 
     protected Object[] get(Event event) {
         final String function = this.function.getSingle(event);
-        if (function == null) return null;
+        if (function == null) {
+            return null;
+        }
 
         Object[] os = null;
-        if (this.arguments != null) os = this.arguments.getArray(event);
+        if (this.arguments != null) {
+            os = this.arguments.getArray(event);
+        }
         final Object[] args = os;
 
         FunctionEvent e = Function.call(function, args);
-        while (!e.isFinished()) ;
-        return new Object[]{e.getResult()};
+        while (!e.isFinished()) {
+            ;
+        }
+        return new Object[]{ e.getResult() };
+    }
+
+    @SuppressWarnings("unchecked")
+    public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
+        this.function = (Expression<String>) expressions[0];
+        this.arguments = (Expression<Object>) expressions[1];
+        return true;
     }
 
     public boolean isSingle() {
@@ -36,13 +49,6 @@ public class ExprFunction extends SimpleExpression<Object> {
 
     public String toString(Event event, boolean bool) {
         return this.getClass().getName();
-    }
-
-    @SuppressWarnings("unchecked")
-    public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
-        this.function = (Expression<String>) expressions[0];
-        this.arguments = (Expression<Object>) expressions[1];
-        return true;
     }
 }
 

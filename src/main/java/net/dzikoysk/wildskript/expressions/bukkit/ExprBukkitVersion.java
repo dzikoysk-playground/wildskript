@@ -10,7 +10,11 @@ import org.bukkit.event.Event;
 public class ExprBukkitVersion extends SimpleExpression<String> {
 
     protected String[] get(Event event) {
-        return new String[]{Bukkit.getBukkitVersion()};
+        return new String[]{ Bukkit.getBukkitVersion() };
+    }
+
+    public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
+        return true;
     }
 
     public boolean isSingle() {
@@ -23,9 +27,5 @@ public class ExprBukkitVersion extends SimpleExpression<String> {
 
     public String toString(Event event, boolean b) {
         return this.getClass().getName();
-    }
-
-    public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
-        return true;
     }
 }	

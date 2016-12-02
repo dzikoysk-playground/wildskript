@@ -17,23 +17,25 @@ public class EffAsOp extends Effect {
 
     public void execute(Event event) {
         for (String command : (String[]) this.command.getArray(event)) {
-            if (command.startsWith("/")) command = command.substring(1);
-            if (this.player == null) Skript.dispatchCommand(Bukkit.getConsoleSender(), command);
-            else
+            if (command.startsWith("/")) {
+                command = command.substring(1);
+            }
+            if (this.player == null) {
+                Skript.dispatchCommand(Bukkit.getConsoleSender(), command);
+            }
+            else {
                 for (CommandSender sender : (CommandSender[]) this.player.getArray(event)) {
                     if (!sender.isOp()) {
                         sender.setOp(true);
                         Skript.dispatchCommand(sender, command);
                         sender.setOp(false);
-                    } else {
+                    }
+                    else {
                         Skript.dispatchCommand(sender, command);
                     }
                 }
+            }
         }
-    }
-
-    public String toString(Event event, boolean bool) {
-        return this.getClass().getName();
     }
 
     @SuppressWarnings("unchecked")
@@ -41,6 +43,10 @@ public class EffAsOp extends Effect {
         this.player = (Expression<Player>) expressions[0];
         this.command = (Expression<String>) expressions[1];
         return true;
+    }
+
+    public String toString(Event event, boolean bool) {
+        return this.getClass().getName();
     }
 }
 

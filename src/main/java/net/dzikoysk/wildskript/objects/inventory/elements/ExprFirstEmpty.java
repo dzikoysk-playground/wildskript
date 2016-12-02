@@ -13,8 +13,16 @@ public class ExprFirstEmpty extends SimpleExpression<Integer> {
 
     protected Integer[] get(Event event) {
         String name = this.name.getSingle(event);
-        if (name == null) return null;
-        return new Integer[]{Inventories.get(name).getFirstEmpty()};
+        if (name == null) {
+            return null;
+        }
+        return new Integer[]{ Inventories.get(name).getFirstEmpty() };
+    }
+
+    @SuppressWarnings("unchecked")
+    public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
+        this.name = (Expression<String>) expressions[0];
+        return true;
     }
 
     public boolean isSingle() {
@@ -27,12 +35,6 @@ public class ExprFirstEmpty extends SimpleExpression<Integer> {
 
     public String toString(Event event, boolean b) {
         return this.getClass().getName();
-    }
-
-    @SuppressWarnings("unchecked")
-    public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
-        this.name = (Expression<String>) expressions[0];
-        return true;
     }
 }
 

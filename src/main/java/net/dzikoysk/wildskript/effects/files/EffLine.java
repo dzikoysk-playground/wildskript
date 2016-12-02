@@ -18,7 +18,9 @@ public class EffLine extends Effect {
     protected void execute(Event event) {
         String v = this.value.getSingle(event);
         String f = this.file.getSingle(event);
-        if ((v == null) || (f == null)) return;
+        if ((v == null) || (f == null)) {
+            return;
+        }
         try {
             RandomAccessFile x = new RandomAccessFile(f.replaceAll("/", Matcher.quoteReplacement(File.separator)), "rw");
             x.seek(x.length());
@@ -29,15 +31,15 @@ public class EffLine extends Effect {
         }
     }
 
-    public String toString(Event event, boolean bool) {
-        return this.getClass().getName();
-    }
-
     @SuppressWarnings("unchecked")
     public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
         this.value = (Expression<String>) expressions[0];
         this.file = (Expression<String>) expressions[1];
         return true;
+    }
+
+    public String toString(Event event, boolean bool) {
+        return this.getClass().getName();
     }
 }
 

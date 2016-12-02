@@ -16,15 +16,12 @@ public class EffRegister extends Effect {
 
         String id = this.id.getSingle(event);
         String c = this.criteria.getSingle(event);
-        if (id == null || c == null) return;
+        if (id == null || c == null) {
+            return;
+        }
 
         Objectives.get(id, c);
 
-    }
-
-
-    public String toString(Event e, boolean bool) {
-        return "";
     }
 
     @SuppressWarnings("unchecked")
@@ -33,6 +30,10 @@ public class EffRegister extends Effect {
         this.criteria = (Expression<String>) expressions[1];
 
         return true;
+    }
+
+    public String toString(Event e, boolean bool) {
+        return "";
     }
 
 }

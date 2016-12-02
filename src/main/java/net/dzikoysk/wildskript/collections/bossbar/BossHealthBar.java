@@ -16,10 +16,6 @@ public class BossHealthBar {
 
     private static PlayerMap<FakeDragon> dragons = new PlayerMap<FakeDragon>();
 
-    public static boolean has(Player player) {
-        return dragons.containsKey(player) && dragons.get(player) != null;
-    }
-
     public static void remove(Player player) {
         if (has(player)) {
             sendPacket(player, dragons.get(player).getDestroyPacket());
@@ -29,27 +25,36 @@ public class BossHealthBar {
         }
     }
 
+    public static boolean has(Player player) {
+        return dragons.containsKey(player) && dragons.get(player) != null;
+    }
+
     public static void display(Player player, String text, float percent) {
 
         remove(player);
 
         FakeDragon dragon = dragons.containsKey(player) ? dragons.get(player) : null;
 
-        if (text.length() > 64)
+        if (text.length() > 64) {
             text = text.substring(0, 63);
-        if (percent > 1.0f)
+        }
+        if (percent > 1.0f) {
             percent = 1.0f;
-        if (percent < 0.05f)
+        }
+        if (percent < 0.05f) {
             percent = 0.05f;
+        }
 
-        if (text.isEmpty() && dragon != null)
+        if (text.isEmpty() && dragon != null) {
             remove(player);
+        }
 
         if (dragon == null) {
             dragon = new FakeDragon(player.getLocation().add(0, -200, 0), text, percent);
             sendPacket(player, dragon.getSpawnPacket());
             dragons.put(player, dragon);
-        } else {
+        }
+        else {
             dragon.setName(text);
             dragon.setHealth(percent);
             sendPacket(player, dragon.getMetaPacket(dragon.getWatcher()));
@@ -99,6 +104,28 @@ public class BossHealthBar {
             this.world = ReflectionUtils.getHandle(loc.getWorld());
         }
 
+        public Object getMetaPacket(Object watcher) {
+            try {
+                Class<?> watcherClass = ReflectionUtils.getCraftClass("DataWatcher");
+                Class<?> packetClass = ReflectionUtils.getCraftClass("PacketPlayOutEntityMetadata");
+                return packetClass.getConstructor(new Class<?>[]{ int.class, watcherClass, boolean.class }).newInstance(id, watcher, true);
+            } catch (Exception e) {
+                e.printStackTrace();
+                return null;
+            }
+        }
+
+        public Object getTeleportPacket(Location loc) {
+            try {
+                Class<?> packetClass = ReflectionUtils.getCraftClass("PacketPlayOutEntityTeleport");
+                return packetClass.getConstructor(new Class<?>[]{ int.class, int.class, int.class, int.class, byte.class, byte.class }).newInstance(
+                        this.id, loc.getBlockX() * 32, loc.getBlockY() * 32, loc.getBlockZ() * 32, (byte) ((int) loc.getYaw() * 256 / 360), (byte) ((int) loc.getPitch() * 256 / 360));
+            } catch (Exception e) {
+                e.printStackTrace();
+                return null;
+            }
+        }
+
         public void setHealth(float percent) {
             this.health = percent / MAX_HEALTH;
         }
@@ -127,7 +154,7 @@ public class BossHealthBar {
                 this.id = (Integer) ReflectionUtils.getMethod(EntityEnderDragon, "getId").invoke(dragon);
 
                 Class<?> packetClass = ReflectionUtils.getCraftClass("PacketPlayOutSpawnEntityLiving");
-                return packetClass.getConstructor(new Class<?>[]{EntityLiving}).newInstance(dragon);
+                return packetClass.getConstructor(new Class<?>[]{ EntityLiving }).newInstance(dragon);
             } catch (Exception e) {
                 e.printStackTrace();
                 return null;
@@ -137,29 +164,7 @@ public class BossHealthBar {
         public Object getDestroyPacket() {
             try {
                 Class<?> packetClass = ReflectionUtils.getCraftClass("PacketPlayOutEntityDestroy");
-                return packetClass.getConstructor(new Class<?>[]{int[].class}).newInstance(new int[]{id});
-            } catch (Exception e) {
-                e.printStackTrace();
-                return null;
-            }
-        }
-
-        public Object getMetaPacket(Object watcher) {
-            try {
-                Class<?> watcherClass = ReflectionUtils.getCraftClass("DataWatcher");
-                Class<?> packetClass = ReflectionUtils.getCraftClass("PacketPlayOutEntityMetadata");
-                return packetClass.getConstructor(new Class<?>[]{int.class, watcherClass, boolean.class}).newInstance(id, watcher, true);
-            } catch (Exception e) {
-                e.printStackTrace();
-                return null;
-            }
-        }
-
-        public Object getTeleportPacket(Location loc) {
-            try {
-                Class<?> packetClass = ReflectionUtils.getCraftClass("PacketPlayOutEntityTeleport");
-                return packetClass.getConstructor(new Class<?>[]{int.class, int.class, int.class, int.class, byte.class, byte.class}).newInstance(
-                        this.id, loc.getBlockX() * 32, loc.getBlockY() * 32, loc.getBlockZ() * 32, (byte) ((int) loc.getYaw() * 256 / 360), (byte) ((int) loc.getPitch() * 256 / 360));
+                return packetClass.getConstructor(new Class<?>[]{ int[].class }).newInstance(new int[]{ id });
             } catch (Exception e) {
                 e.printStackTrace();
                 return null;
@@ -171,8 +176,8 @@ public class BossHealthBar {
             Class<?> DataWatcher = ReflectionUtils.getCraftClass("DataWatcher");
 
             try {
-                Object watcher = DataWatcher.getConstructor(new Class<?>[]{Entity}).newInstance(dragon);
-                Method a = ReflectionUtils.getMethod(DataWatcher, "a", new Class<?>[]{int.class, Object.class});
+                Object watcher = DataWatcher.getConstructor(new Class<?>[]{ Entity }).newInstance(dragon);
+                Method a = ReflectionUtils.getMethod(DataWatcher, "a", new Class<?>[]{ int.class, Object.class });
 
                 a.invoke(watcher, 0, visible ? (byte) 0 : (byte) 0x20);
                 a.invoke(watcher, 6, (Float) health);
@@ -204,10 +209,12 @@ public class BossHealthBar {
         }
 
         public boolean containsKey(Object key) {
-            if (key instanceof Player)
+            if (key instanceof Player) {
                 return contents.containsKey(((Player) key).getName());
-            if (key instanceof String)
+            }
+            if (key instanceof String) {
                 return contents.containsKey(key);
+            }
             return false;
         }
 
@@ -218,49 +225,43 @@ public class BossHealthBar {
         @SuppressWarnings("deprecation")
         public Set<Entry<Player, V>> entrySet() {
             Set<Entry<Player, V>> toReturn = new HashSet<Entry<Player, V>>();
-            for (String name : contents.keySet())
+            for (String name : contents.keySet()) {
                 toReturn.add(new PlayerEntry(Bukkit.getPlayer(name), contents.get(name)));
+            }
             return toReturn;
         }
 
         public V get(Object key) {
             V result = null;
-            if (key instanceof Player)
+            if (key instanceof Player) {
                 result = contents.get(((Player) key).getName());
-            if (key instanceof String)
+            }
+            if (key instanceof String) {
                 result = contents.get(key);
+            }
             return (result == null) ? defaultValue : result;
-        }
-
-        public boolean isEmpty() {
-            return contents.isEmpty();
         }
 
         @SuppressWarnings("deprecation")
         public Set<Player> keySet() {
             Set<Player> toReturn = new HashSet<Player>();
-            for (String name : contents.keySet())
+            for (String name : contents.keySet()) {
                 toReturn.add(Bukkit.getPlayer(name));
+            }
             return toReturn;
         }
 
         public V put(Player key, V value) {
-            if (key == null)
+            if (key == null) {
                 return null;
+            }
             return contents.put(key.getName(), value);
         }
 
         public void putAll(Map<? extends Player, ? extends V> map) {
-            for (Entry<? extends Player, ? extends V> entry : map.entrySet())
+            for (Entry<? extends Player, ? extends V> entry : map.entrySet()) {
                 put(entry.getKey(), entry.getValue());
-        }
-
-        public V remove(Object key) {
-            if (key instanceof Player)
-                return contents.remove(((Player) key).getName());
-            if (key instanceof String)
-                return contents.remove(key);
-            return null;
+            }
         }
 
         public int size() {
@@ -269,6 +270,20 @@ public class BossHealthBar {
 
         public Collection<V> values() {
             return contents.values();
+        }
+
+        public V remove(Object key) {
+            if (key instanceof Player) {
+                return contents.remove(((Player) key).getName());
+            }
+            if (key instanceof String) {
+                return contents.remove(key);
+            }
+            return null;
+        }
+
+        public boolean isEmpty() {
+            return contents.isEmpty();
         }
 
         public String toString() {
@@ -285,18 +300,18 @@ public class BossHealthBar {
                 this.value = value;
             }
 
+            public V setValue(V value) {
+                V toReturn = this.value;
+                this.value = value;
+                return toReturn;
+            }
+
             public Player getKey() {
                 return key;
             }
 
             public V getValue() {
                 return value;
-            }
-
-            public V setValue(V value) {
-                V toReturn = this.value;
-                this.value = value;
-                return toReturn;
             }
 
         }

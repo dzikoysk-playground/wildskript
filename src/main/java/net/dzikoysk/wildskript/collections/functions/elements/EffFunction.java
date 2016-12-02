@@ -15,13 +15,13 @@ public class EffFunction extends Effect {
     protected void execute(Event event) {
         String function = this.function.getSingle(event);
         Object[] args = null;
-        if (this.arguments != null) args = this.arguments.getAll(event);
-        if (function == null) return;
+        if (this.arguments != null) {
+            args = this.arguments.getAll(event);
+        }
+        if (function == null) {
+            return;
+        }
         Function.call(function, args);
-    }
-
-    public String toString(Event event, boolean bool) {
-        return this.getClass().getName();
     }
 
     @SuppressWarnings("unchecked")
@@ -29,6 +29,10 @@ public class EffFunction extends Effect {
         this.function = (Expression<String>) expressions[0];
         this.arguments = (Expression<Object>) expressions[1];
         return true;
+    }
+
+    public String toString(Event event, boolean bool) {
+        return this.getClass().getName();
     }
 }
 

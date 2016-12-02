@@ -73,9 +73,9 @@ public class Documentation {
         css();
     }
 
-    @SuppressWarnings({"unchecked"})
+    @SuppressWarnings({ "unchecked" })
     private static void single() {
-        List<Element>[] lists = new List[]{events, conditions, effects, expressions, types};
+        List<Element>[] lists = new List[]{ events, conditions, effects, expressions, types };
         for (List<Element> l : lists) {
             String name = l.get(0).getType().getName();
             String head = singleHead(name);
@@ -91,9 +91,9 @@ public class Documentation {
         }
     }
 
-    @SuppressWarnings({"unchecked"})
+    @SuppressWarnings({ "unchecked" })
     private static void multiple() {
-        ElementMap<String, List<Element>>[] maps = new ElementMap[]{collections, objects};
+        ElementMap<String, List<Element>>[] maps = new ElementMap[]{ collections, objects };
         for (ElementMap<String, List<Element>> ep : maps) {
             for (Entry<String, List<Element>> entry : ep.entrySet()) {
                 Type type = entry.getValue().get(0).getType();
@@ -150,7 +150,9 @@ public class Documentation {
             ptr.add(b);
         }
         StringBuilder sb = new StringBuilder("");
-        for (String s : ptr) sb.append(s);
+        for (String s : ptr) {
+            sb.append(s);
+        }
         return sb.toString();
     }
 
@@ -160,12 +162,16 @@ public class Documentation {
         InputStream is = resource("doc/multiple/header.txt");
         String s = isS(is);
         StringBuilder sb = new StringBuilder("");
-        if (type == Type.COLLECTION)
-            for (String name : collections.keySet())
+        if (type == Type.COLLECTION) {
+            for (String name : collections.keySet()) {
                 sb.append("<a href=" + '"' + "./" + name + ".html" + '"' + " class=" + '"' + "menu-link" + '"' + '>' + name + " </a> \n");
-        else if (type == Type.OBJECT)
-            for (String name : objects.keySet())
+            }
+        }
+        else if (type == Type.OBJECT) {
+            for (String name : objects.keySet()) {
                 sb.append("<a href=" + '"' + "./" + name + ".html" + '"' + " class=" + '"' + "menu-link" + '"' + '>' + name + " </a> \n");
+            }
+        }
         String head = s
                 .replace("{TITLE}", title)
                 .replace("{LIST}", sb.toString());
@@ -179,12 +185,20 @@ public class Documentation {
         StringBuilder sb = new StringBuilder("");
         int i = 0;
         for (Element e : es) {
-            if (i == 0) sb.append(e.getDesc() + " \n" + e.getExample());
-            else sb.append("\n \n" + e.getDesc() + " \n" + e.getExample());
+            if (i == 0) {
+                sb.append(e.getDesc() + " \n" + e.getExample());
+            }
+            else {
+                sb.append("\n \n" + e.getDesc() + " \n" + e.getExample());
+            }
             i++;
         }
         Element esc = null;
-        for (Element ef : desc) if (ef.getName().equalsIgnoreCase(name)) esc = ef;
+        for (Element ef : desc) {
+            if (ef.getName().equalsIgnoreCase(name)) {
+                esc = ef;
+            }
+        }
         return tmp
                 .replace("{DESC}", esc.getDesc())
                 .replace("{CONTENT}", sb.toString())
@@ -239,7 +253,9 @@ public class Documentation {
             file.getParentFile().mkdirs();
             FileWriter fw = new FileWriter(file);
             StringBuilder sb = new StringBuilder("");
-            for (String s : t) sb.append(s + "\n");
+            for (String s : t) {
+                sb.append(s + "\n");
+            }
             fw.write(sb.toString());
             fw.close();
         } catch (IOException io) {
@@ -254,7 +270,7 @@ public class Documentation {
     }
 
     private static String updateClasses(String s) {
-        String[] classes = new String[]{"string", "player", "number", "location", "entity"};
+        String[] classes = new String[]{ "string", "player", "number", "location", "entity" };
         for (String type : classes) {
             s = s.replace("%" + type + "%", "%<a href=" + '"' + "http://njol.ch/projects/skript/doc/classes/#" + type + '"' + "class=" + '"' + "a" + '"' + ">" + type + "</a>%");
         }
@@ -267,7 +283,8 @@ public class Documentation {
             for (File f : files) {
                 if (f.isDirectory()) {
                     deleteFolder(f);
-                } else {
+                }
+                else {
                     f.delete();
                 }
             }

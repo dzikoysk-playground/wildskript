@@ -13,18 +13,20 @@ public class EffClose extends Effect {
 
     protected void execute(Event event) {
         Player p = this.player.getSingle(event);
-        if (p == null) return;
+        if (p == null) {
+            return;
+        }
         p.closeInventory();
-    }
-
-    public String toString(Event event, boolean bool) {
-        return this.getClass().getName();
     }
 
     @SuppressWarnings("unchecked")
     public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
         this.player = (Expression<Player>) expressions[0];
         return true;
+    }
+
+    public String toString(Event event, boolean bool) {
+        return this.getClass().getName();
     }
 }
 

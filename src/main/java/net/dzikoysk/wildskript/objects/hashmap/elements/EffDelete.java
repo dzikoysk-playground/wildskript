@@ -13,18 +13,20 @@ public class EffDelete extends Effect {
 
     protected void execute(Event event) {
         String name = (String) this.name.getSingle(event);
-        if (name == null) return;
+        if (name == null) {
+            return;
+        }
         SkriptHashMap.get(name).delete();
-    }
-
-    public String toString(Event event, boolean bool) {
-        return this.getClass().getName();
     }
 
     @SuppressWarnings("unchecked")
     public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
         this.name = (Expression<String>) expressions[0];
         return true;
+    }
+
+    public String toString(Event event, boolean bool) {
+        return this.getClass().getName();
     }
 }
 

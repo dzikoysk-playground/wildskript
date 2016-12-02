@@ -26,14 +26,13 @@ public class Recipes {
         list.add(this);
     }
 
-    public static Recipes get(String id) {
-        for (Recipes recipe : list) if (recipe.getID().equals(id)) return recipe;
-        return new Recipes(id);
-    }
-
     public void register() {
-        if (this.result == null || this.ingredients == null) return;
-        while (this.register) this.unregister();
+        if (this.result == null || this.ingredients == null) {
+            return;
+        }
+        while (this.register) {
+            this.unregister();
+        }
         ShapedRecipe recipe = new ShapedRecipe(this.result);
         recipe.shape("123", "456", "789");
         this.patcher();
@@ -51,7 +50,9 @@ public class Recipes {
         for (Integer i = 0; i < 9; i++) {
             if (this.ingredients[i] != null) {
                 Material m = this.ingredients[i].getType();
-                if (m == Material.REDSTONE_TORCH_OFF) this.ingredients[i].setType(Material.REDSTONE_TORCH_ON);
+                if (m == Material.REDSTONE_TORCH_OFF) {
+                    this.ingredients[i].setType(Material.REDSTONE_TORCH_ON);
+                }
             }
         }
     }
@@ -72,12 +73,16 @@ public class Recipes {
         this.unregister();
     }
 
-    public void setResult(ItemStack result) {
-        this.result = result;
-    }
-
     public void setIngredient(int i, ItemStack ingredient) {
         this.ingredients[i] = ingredient;
+    }
+
+    public ItemStack getIngredient(int i) {
+        return this.ingredients[i];
+    }
+
+    public void setResult(ItemStack result) {
+        this.result = result;
     }
 
     public String getID() {
@@ -88,15 +93,20 @@ public class Recipes {
         return this.result;
     }
 
-    public ItemStack getIngredient(int i) {
-        return this.ingredients[i];
-    }
-
     public boolean isRegistered() {
         return this.register;
     }
 
     public ItemStack[] getIngredients() {
         return this.ingredients;
+    }
+
+    public static Recipes get(String id) {
+        for (Recipes recipe : list) {
+            if (recipe.getID().equals(id)) {
+                return recipe;
+            }
+        }
+        return new Recipes(id);
     }
 }

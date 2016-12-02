@@ -13,7 +13,11 @@ public class ExprAllowEnd extends SimpleExpression<Boolean> {
 
     protected Boolean[] get(Event event) {
         Boolean allow = Bukkit.getAllowEnd();
-        return new Boolean[]{allow};
+        return new Boolean[]{ allow };
+    }
+
+    public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
+        return true;
     }
 
     public boolean isSingle() {
@@ -26,10 +30,6 @@ public class ExprAllowEnd extends SimpleExpression<Boolean> {
 
     public String toString(Event event, boolean b) {
         return this.getClass().getName();
-    }
-
-    public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
-        return true;
     }
 }
 

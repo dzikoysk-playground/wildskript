@@ -12,8 +12,14 @@ public class ExprMotd extends SimpleExpression<String> {
 
     protected String[] get(Event event) {
         String motd = Bukkit.getMotd();
-        if (Data.motd != null) motd = Data.motd;
-        return new String[]{motd};
+        if (Data.motd != null) {
+            motd = Data.motd;
+        }
+        return new String[]{ motd };
+    }
+
+    public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
+        return true;
     }
 
     public boolean isSingle() {
@@ -26,10 +32,6 @@ public class ExprMotd extends SimpleExpression<String> {
 
     public String toString(Event event, boolean b) {
         return this.getClass().getName();
-    }
-
-    public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
-        return true;
     }
 }
 

@@ -18,15 +18,15 @@ public class EffIngredient extends Effect {
         String id = this.id.getSingle(event);
         int i = this.i.getSingle(event).intValue();
         ItemType ing = this.is.getSingle(event);
-        if (id == null || ing == null) return;
-        if (i < 1 || i > 9) return;
+        if (id == null || ing == null) {
+            return;
+        }
+        if (i < 1 || i > 9) {
+            return;
+        }
 
         Recipes.get(id).setIngredient(i - 1, ing.getRandom());
 
-    }
-
-    public String toString(Event event, boolean bool) {
-        return this.getClass().getName();
     }
 
     @SuppressWarnings("unchecked")
@@ -35,6 +35,10 @@ public class EffIngredient extends Effect {
         this.i = (Expression<Number>) expressions[1];
         this.is = (Expression<ItemType>) expressions[2];
         return true;
+    }
+
+    public String toString(Event event, boolean bool) {
+        return this.getClass().getName();
     }
 }
 

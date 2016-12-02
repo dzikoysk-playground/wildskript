@@ -15,6 +15,10 @@ public class EvtSetMotd extends Event implements Cancellable {
         this.m = m;
     }
 
+    public void setCancelled(boolean c) {
+        this.cancel = c;
+    }
+
     public String getMotd() {
         return this.m;
     }
@@ -30,10 +34,6 @@ public class EvtSetMotd extends Event implements Cancellable {
 
     public boolean isCancelled() {
         return cancel;
-    }
-
-    public void setCancelled(boolean c) {
-        this.cancel = c;
     }
 
 

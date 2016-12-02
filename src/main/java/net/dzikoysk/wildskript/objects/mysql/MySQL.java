@@ -29,15 +29,6 @@ public class MySQL {
         list.add(this);
     }
 
-    public static MySQL get(String id) {
-        for (MySQL sql : list) if (sql.getID().equals(id)) return sql;
-        return null;
-    }
-
-    public String getID() {
-        return this.id;
-    }
-
     public Connection openConnection() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -52,10 +43,6 @@ public class MySQL {
 
     public boolean checkConnection() {
         return connection != null;
-    }
-
-    public Connection getConnection() {
-        return connection;
     }
 
     public void closeConnection() {
@@ -101,8 +88,25 @@ public class MySQL {
         closeConnection();
     }
 
+    public String getID() {
+        return this.id;
+    }
+
+    public Connection getConnection() {
+        return connection;
+    }
+
     public String[] getAll() {
-        return new String[]{this.hostname, this.port, this.database, this.user, this.password};
+        return new String[]{ this.hostname, this.port, this.database, this.user, this.password };
+    }
+
+    public static MySQL get(String id) {
+        for (MySQL sql : list) {
+            if (sql.getID().equals(id)) {
+                return sql;
+            }
+        }
+        return null;
     }
 
 }

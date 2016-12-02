@@ -15,13 +15,10 @@ public class EffRemove extends Effect {
     protected void execute(Event event) {
 
         Player p = this.p.getSingle(event);
-        if (p == null) return;
+        if (p == null) {
+            return;
+        }
         p.setScoreboard(Scoreboards.getScoreboardManager().getNewScoreboard());
-    }
-
-
-    public String toString(Event e, boolean bool) {
-        return "";
     }
 
     @SuppressWarnings("unchecked")
@@ -29,6 +26,10 @@ public class EffRemove extends Effect {
         this.p = (Expression<Player>) expressions[0];
 
         return true;
+    }
+
+    public String toString(Event e, boolean bool) {
+        return "";
     }
 
 }

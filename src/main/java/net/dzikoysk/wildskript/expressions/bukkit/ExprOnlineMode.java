@@ -10,7 +10,11 @@ import org.bukkit.event.Event;
 public class ExprOnlineMode extends SimpleExpression<Boolean> {
 
     protected Boolean[] get(Event event) {
-        return new Boolean[]{Bukkit.getOnlineMode()};
+        return new Boolean[]{ Bukkit.getOnlineMode() };
+    }
+
+    public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
+        return true;
     }
 
     public boolean isSingle() {
@@ -23,10 +27,6 @@ public class ExprOnlineMode extends SimpleExpression<Boolean> {
 
     public String toString(Event event, boolean b) {
         return this.getClass().getName();
-    }
-
-    public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
-        return true;
     }
 }
 

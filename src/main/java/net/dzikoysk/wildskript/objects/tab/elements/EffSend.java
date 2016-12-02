@@ -17,7 +17,9 @@ public class EffSend extends Effect {
     protected void execute(Event event) {
         String id = this.id.getSingle(event);
         Player p = this.p.getSingle(event);
-        if (id == null || p == null) return;
+        if (id == null || p == null) {
+            return;
+        }
         try {
             TabUtils.sendTab(TabUtils.get(id), User.get(p));
         } catch (Exception e) {
@@ -25,14 +27,14 @@ public class EffSend extends Effect {
         }
     }
 
-    public String toString(Event event, boolean bool) {
-        return this.getClass().getName();
-    }
-
     @SuppressWarnings("unchecked")
     public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
         this.id = (Expression<String>) expressions[0];
         this.p = (Expression<Player>) expressions[1];
         return true;
+    }
+
+    public String toString(Event event, boolean bool) {
+        return this.getClass().getName();
     }
 }

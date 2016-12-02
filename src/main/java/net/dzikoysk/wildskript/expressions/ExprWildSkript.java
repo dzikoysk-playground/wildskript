@@ -12,7 +12,11 @@ import org.bukkit.event.Event;
 public class ExprWildSkript extends SimpleExpression<String> {
 
     protected String[] get(Event event) {
-        return new String[]{WildSkript.getVersion()};
+        return new String[]{ WildSkript.getVersion() };
+    }
+
+    public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
+        return true;
     }
 
     public boolean isSingle() {
@@ -25,10 +29,6 @@ public class ExprWildSkript extends SimpleExpression<String> {
 
     public String toString(Event event, boolean b) {
         return this.getClass().getName();
-    }
-
-    public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
-        return true;
     }
 }
 

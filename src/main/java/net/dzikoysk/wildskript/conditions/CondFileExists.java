@@ -16,19 +16,25 @@ public class CondFileExists extends Condition {
 
     public boolean check(Event event) {
         String d = this.dir.getSingle(event);
-        if (d == null) return false;
+        if (d == null) {
+            return false;
+        }
         File f = new File(d.replaceAll("/", Matcher.quoteReplacement(File.separator)));
         if (f.exists()) {
-            if (patt == 0) return true;
-            if (patt == 1) return false;
+            if (patt == 0) {
+                return true;
+            }
+            if (patt == 1) {
+                return false;
+            }
         }
-        if (patt == 0) return false;
-        if (patt == 1) return true;
+        if (patt == 0) {
+            return false;
+        }
+        if (patt == 1) {
+            return true;
+        }
         return false;
-    }
-
-    public String toString(Event event, boolean b) {
-        return this.getClass().getName();
     }
 
     @SuppressWarnings("unchecked")
@@ -36,5 +42,9 @@ public class CondFileExists extends Condition {
         this.dir = (Expression<String>) expressions[0];
         this.patt = matchedPattern;
         return true;
+    }
+
+    public String toString(Event event, boolean b) {
+        return this.getClass().getName();
     }
 }

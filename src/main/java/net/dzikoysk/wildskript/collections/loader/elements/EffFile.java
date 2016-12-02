@@ -16,21 +16,25 @@ public class EffFile extends Effect {
 
     protected void execute(Event event) {
         String f = this.f.getSingle(event);
-        if (f == null) return;
+        if (f == null) {
+            return;
+        }
 
         f = f.replaceAll("/", Matcher.quoteReplacement(File.separator));
         File file = new File(f);
-        if (file.isFile()) Loader.loadFile(file);
-    }
-
-    public String toString(Event event, boolean bool) {
-        return this.getClass().getName();
+        if (file.isFile()) {
+            Loader.loadFile(file);
+        }
     }
 
     @SuppressWarnings("unchecked")
     public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
         this.f = (Expression<String>) expressions[0];
         return true;
+    }
+
+    public String toString(Event event, boolean bool) {
+        return this.getClass().getName();
     }
 }
 

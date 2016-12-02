@@ -19,7 +19,9 @@ public class PacketUtils {
             Object handle = craftPlayer.getMethod("getHandle").invoke(cp);
             Object con = handle.getClass().getField("playerConnection").get(handle);
             Method method = con.getClass().getMethod("sendPacket", packetClass);
-            for (Object o : os) method.invoke(con, o);
+            for (Object o : os) {
+                method.invoke(con, o);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

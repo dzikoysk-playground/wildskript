@@ -18,13 +18,11 @@ public class EffP extends Effect {
         String id = this.id.getSingle(event);
         Location l = this.l.getSingle(event);
 
-        if (id == null || l == null) return;
+        if (id == null || l == null) {
+            return;
+        }
 
         RegionsUtils.get(id).setP(l);
-    }
-
-    public String toString(Event event, boolean bool) {
-        return "";
     }
 
     @SuppressWarnings("unchecked")
@@ -32,6 +30,10 @@ public class EffP extends Effect {
         this.id = (Expression<String>) e[0];
         this.l = (Expression<Location>) e[1];
         return true;
+    }
+
+    public String toString(Event event, boolean bool) {
+        return "";
     }
 
 }

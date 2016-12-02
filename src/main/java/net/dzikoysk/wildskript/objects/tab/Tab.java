@@ -23,17 +23,21 @@ public class Tab {
     }
 
     public void set(int i, String s) {
-        if (i >= 60) return;
+        if (i >= 60) {
+            return;
+        }
         String[] ss = s.split("(?<=\\G................)");
         if (ss.length >= 3) {
             prefix[i] = ss[0];
             center[i] = ss[1];
             suffix[i] = ss[2];
-        } else if (ss.length == 2) {
+        }
+        else if (ss.length == 2) {
             prefix[i] = ss[0];
             center[i] = ss[1];
             suffix[i] = "";
-        } else if (ss.length == 1) {
+        }
+        else if (ss.length == 1) {
             prefix[i] = "";
             center[i] = ss[0];
             suffix[i] = "";
@@ -42,9 +46,15 @@ public class Tab {
 
     public void fill() {
         for (int i = 0; i < center.length; i++) {
-            if (center[i] == null || center[i].isEmpty()) center[i] = TabUtils.uniqueField(this);
-            if (prefix[i] == null) prefix[i] = "";
-            if (suffix[i] == null) suffix[i] = "";
+            if (center[i] == null || center[i].isEmpty()) {
+                center[i] = TabUtils.uniqueField(this);
+            }
+            if (prefix[i] == null) {
+                prefix[i] = "";
+            }
+            if (suffix[i] == null) {
+                suffix[i] = "";
+            }
         }
     }
 
@@ -53,11 +63,11 @@ public class Tab {
     }
 
     public void backup(String[] prefix, String[] center, String[] suffix) {
-        this.backup = new String[][]{prefix.clone(), center.clone(), suffix.clone()};
+        this.backup = new String[][]{ prefix.clone(), center.clone(), suffix.clone() };
     }
 
     public void backup() {
-        this.backup = new String[][]{prefix.clone(), center.clone(), suffix.clone()};
+        this.backup = new String[][]{ prefix.clone(), center.clone(), suffix.clone() };
     }
 
     public void sent(boolean b) {
@@ -69,7 +79,7 @@ public class Tab {
     }
 
     public String[][] getRows() {
-        return new String[][]{prefix.clone(), center.clone(), suffix.clone()};
+        return new String[][]{ prefix.clone(), center.clone(), suffix.clone() };
     }
 
     public String[] getPrefix() {

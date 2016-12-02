@@ -17,12 +17,10 @@ public class EffCancelled extends Effect {
         String name = this.name.getSingle(event);
         Number slot = this.slot.getSingle(event);
         Boolean cancel = this.cancel.getSingle(event);
-        if (name == null || slot == null || cancel == null) return;
+        if (name == null || slot == null || cancel == null) {
+            return;
+        }
         Inventories.get(name).setCancelled(slot.intValue(), cancel);
-    }
-
-    public String toString(Event event, boolean bool) {
-        return "[Inventory] Register Item";
     }
 
     @SuppressWarnings("unchecked")
@@ -31,6 +29,10 @@ public class EffCancelled extends Effect {
         this.slot = (Expression<Number>) expressions[1];
         this.cancel = (Expression<Boolean>) expressions[2];
         return true;
+    }
+
+    public String toString(Event event, boolean bool) {
+        return "[Inventory] Register Item";
     }
 }
 

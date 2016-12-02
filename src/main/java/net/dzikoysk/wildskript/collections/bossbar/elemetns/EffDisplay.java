@@ -23,27 +23,32 @@ public class EffDisplay extends Effect {
         String text = this.text.getSingle(event);
         Number pn = this.percent.getSingle(event);
         Number pt = this.time.getSingle(event);
-        if (player == null || text == null) return;
+        if (player == null || text == null) {
+            return;
+        }
 
         int percent = 0;
-        if (pn != null) percent = pn.intValue();
-        if (percent < 1) percent = 1;
-        if (percent > 100) percent = 100;
+        if (pn != null) {
+            percent = pn.intValue();
+        }
+        if (percent < 1) {
+            percent = 1;
+        }
+        if (percent > 100) {
+            percent = 100;
+        }
 
         float p = (float) percent / 100;
         BossHealthBar.display(player, text, p);
 
-        if (pt != null && pt.intValue() > 0)
+        if (pt != null && pt.intValue() > 0) {
             Bukkit.getScheduler().runTaskLater(WildSkript.getInstance(), new Runnable() {
                 @Override
                 public void run() {
                     BossHealthBar.remove(player);
                 }
             }, pt.intValue() * 20);
-    }
-
-    public String toString(Event e, boolean bool) {
-        return this.getClass().getName();
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -53,6 +58,10 @@ public class EffDisplay extends Effect {
         this.time = (Expression<Number>) expressions[2];
         this.player = (Expression<Player>) expressions[3];
         return true;
+    }
+
+    public String toString(Event e, boolean bool) {
+        return this.getClass().getName();
     }
 }
 

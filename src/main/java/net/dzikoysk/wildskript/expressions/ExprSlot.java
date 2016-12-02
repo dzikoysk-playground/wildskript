@@ -15,8 +15,18 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 public class ExprSlot extends SimpleExpression<Integer> {
 
     protected Integer[] get(Event event) {
-        if (!(event instanceof InventoryClickEvent)) return new Integer[]{0};
-        return new Integer[]{((InventoryClickEvent) event).getSlot()};
+        if (!(event instanceof InventoryClickEvent)) {
+            return new Integer[]{ 0 };
+        }
+        return new Integer[]{ ((InventoryClickEvent) event).getSlot() };
+    }
+
+    public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
+        if (ScriptLoader.isCurrentEvent(InventoryClickEvent.class)) {
+            return true;
+        }
+        Skript.error("Cannot use slot expression outside of a inventory click event!", ErrorQuality.SEMANTIC_ERROR);
+        return false;
     }
 
     public boolean isSingle() {
@@ -29,12 +39,6 @@ public class ExprSlot extends SimpleExpression<Integer> {
 
     public String toString(Event event, boolean b) {
         return this.getClass().getName();
-    }
-
-    public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
-        if (ScriptLoader.isCurrentEvent(InventoryClickEvent.class)) return true;
-        Skript.error("Cannot use slot expression outside of a inventory click event!", ErrorQuality.SEMANTIC_ERROR);
-        return false;
     }
 }
 

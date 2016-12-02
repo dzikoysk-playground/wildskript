@@ -15,14 +15,33 @@ public class ExprCalendar extends SimpleExpression<Integer> {
     protected Integer[] get(Event event) {
         Calendar now = Calendar.getInstance();
         int i = 0;
-        if (this.matchedPattern == 0) i = now.get(Calendar.YEAR);
-        if (this.matchedPattern == 1) i = now.get(Calendar.MONTH) + 1;
-        if (this.matchedPattern == 2) i = now.get(Calendar.DAY_OF_MONTH);
-        if (this.matchedPattern == 3) i = now.get(Calendar.HOUR_OF_DAY);
-        if (this.matchedPattern == 4) i = now.get(Calendar.MINUTE);
-        if (this.matchedPattern == 5) i = now.get(Calendar.SECOND);
-        if (this.matchedPattern == 6) i = now.get(Calendar.MILLISECOND);
-        return new Integer[]{i};
+        if (this.matchedPattern == 0) {
+            i = now.get(Calendar.YEAR);
+        }
+        if (this.matchedPattern == 1) {
+            i = now.get(Calendar.MONTH) + 1;
+        }
+        if (this.matchedPattern == 2) {
+            i = now.get(Calendar.DAY_OF_MONTH);
+        }
+        if (this.matchedPattern == 3) {
+            i = now.get(Calendar.HOUR_OF_DAY);
+        }
+        if (this.matchedPattern == 4) {
+            i = now.get(Calendar.MINUTE);
+        }
+        if (this.matchedPattern == 5) {
+            i = now.get(Calendar.SECOND);
+        }
+        if (this.matchedPattern == 6) {
+            i = now.get(Calendar.MILLISECOND);
+        }
+        return new Integer[]{ i };
+    }
+
+    public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
+        this.matchedPattern = i;
+        return true;
     }
 
     public boolean isSingle() {
@@ -35,10 +54,5 @@ public class ExprCalendar extends SimpleExpression<Integer> {
 
     public String toString(Event event, boolean b) {
         return this.getClass().getName();
-    }
-
-    public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
-        this.matchedPattern = i;
-        return true;
     }
 }	

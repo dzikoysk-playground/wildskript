@@ -13,17 +13,33 @@ public class ExprBackup extends SimpleExpression<String> {
 
     protected String[] get(Event event) {
         String id = this.id.getSingle(event);
-        if (id == null) return null;
+        if (id == null) {
+            return null;
+        }
         String[][] backup = TabUtils.get(id).getRows().clone();
-        if (backup[1].length < 60 || backup[0].length < 60 || backup[2].length < 60) return null;
+        if (backup[1].length < 60 || backup[0].length < 60 || backup[2].length < 60) {
+            return null;
+        }
         StringBuilder res = new StringBuilder("");
         for (int i = 0; i < 60; i++) {
-            if (backup[0][i] == null || backup[0][i].isEmpty()) backup[0][i] = "<EMPTY>";
-            if (backup[2][i] == null || backup[2][i].isEmpty()) backup[2][i] = "<EMPTY>";
-            if (i != 0) res.append(";;;");
+            if (backup[0][i] == null || backup[0][i].isEmpty()) {
+                backup[0][i] = "<EMPTY>";
+            }
+            if (backup[2][i] == null || backup[2][i].isEmpty()) {
+                backup[2][i] = "<EMPTY>";
+            }
+            if (i != 0) {
+                res.append(";;;");
+            }
             res.append(backup[0][i] + ";;" + backup[1][i] + ";;" + backup[2][i]);
         }
-        return new String[]{res.toString()};
+        return new String[]{ res.toString() };
+    }
+
+    @SuppressWarnings("unchecked")
+    public boolean init(Expression<?>[] e, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
+        this.id = (Expression<String>) e[0];
+        return true;
     }
 
     public boolean isSingle() {
@@ -36,12 +52,6 @@ public class ExprBackup extends SimpleExpression<String> {
 
     public String toString(Event event, boolean b) {
         return this.getClass().getName();
-    }
-
-    @SuppressWarnings("unchecked")
-    public boolean init(Expression<?>[] e, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
-        this.id = (Expression<String>) e[0];
-        return true;
     }
 }
 

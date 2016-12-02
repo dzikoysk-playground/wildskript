@@ -15,9 +15,17 @@ public class ExprValues extends SimpleExpression<Object> {
 
     protected Object[] get(Event event) {
         String id = this.id.getSingle(event);
-        if (id == null) return null;
+        if (id == null) {
+            return null;
+        }
         Object[] o = SkriptHashMap.get(id).getHashMap().values().toArray();
-        return new Object[]{o};
+        return new Object[]{ o };
+    }
+
+    @SuppressWarnings("unchecked")
+    public boolean init(Expression<?>[] e, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
+        this.id = (Expression<String>) e[0];
+        return true;
     }
 
     public boolean isSingle() {
@@ -30,12 +38,6 @@ public class ExprValues extends SimpleExpression<Object> {
 
     public String toString(Event event, boolean b) {
         return this.getClass().getName();
-    }
-
-    @SuppressWarnings("unchecked")
-    public boolean init(Expression<?>[] e, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
-        this.id = (Expression<String>) e[0];
-        return true;
     }
 }
 

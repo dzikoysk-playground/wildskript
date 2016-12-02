@@ -16,15 +16,12 @@ public class EffFriendlyFire extends Effect {
 
         String id = this.id.getSingle(event);
         Boolean b = this.b.getSingle(event);
-        if (id == null || b == null) return;
+        if (id == null || b == null) {
+            return;
+        }
 
         Teams.get(id).getTeam().setAllowFriendlyFire(b);
 
-    }
-
-
-    public String toString(Event e, boolean bool) {
-        return "";
     }
 
     @SuppressWarnings("unchecked")
@@ -33,6 +30,10 @@ public class EffFriendlyFire extends Effect {
         this.b = (Expression<Boolean>) expressions[1];
 
         return true;
+    }
+
+    public String toString(Event e, boolean bool) {
+        return "";
     }
 
 }

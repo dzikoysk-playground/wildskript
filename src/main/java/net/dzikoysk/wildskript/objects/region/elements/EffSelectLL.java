@@ -21,7 +21,9 @@ public class EffSelectLL extends Effect {
         Location loc1 = this.loc1.getSingle(event);
         Location loc2 = this.loc2.getSingle(event);
 
-        if (id == null || loc1 == null || loc2 == null) return;
+        if (id == null || loc1 == null || loc2 == null) {
+            return;
+        }
 
         Regions region = RegionsUtils.get(id);
         region.setL(loc1);
@@ -30,16 +32,16 @@ public class EffSelectLL extends Effect {
 
     }
 
-    public String toString(Event event, boolean bool) {
-        return "";
-    }
-
     @SuppressWarnings("unchecked")
     public boolean init(Expression<?>[] e, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
         this.id = (Expression<String>) e[0];
         this.loc1 = (Expression<Location>) e[1];
         this.loc2 = (Expression<Location>) e[2];
         return true;
+    }
+
+    public String toString(Event event, boolean bool) {
+        return "";
     }
 
 }

@@ -17,7 +17,9 @@ public class EffRow extends Effect {
 
         String name = this.name.getSingle(event);
         Number row = this.row.getSingle(event);
-        if (name == null || row == null) return;
+        if (name == null || row == null) {
+            return;
+        }
         int i = row.intValue();
 
         if (!(i <= 6 || i >= 1)) {
@@ -28,15 +30,15 @@ public class EffRow extends Effect {
 
     }
 
-    public String toString(Event event, boolean bool) {
-        return "[Inventory] Register Row";
-    }
-
     @SuppressWarnings("unchecked")
     public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
         this.name = (Expression<String>) expressions[0];
         this.row = (Expression<Number>) expressions[1];
         return true;
+    }
+
+    public String toString(Event event, boolean bool) {
+        return "[Inventory] Register Row";
     }
 }
 

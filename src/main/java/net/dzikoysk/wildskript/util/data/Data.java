@@ -29,7 +29,7 @@ public class Data {
     }
 
     private static void loadConfig() {
-        loadDefaultFiles(new String[]{"config.yml"});
+        loadDefaultFiles(new String[]{ "config.yml" });
         YamlConfiguration yaml = YamlConfiguration.loadConfiguration(CFG);
 
         doc = yaml.getBoolean("doc");

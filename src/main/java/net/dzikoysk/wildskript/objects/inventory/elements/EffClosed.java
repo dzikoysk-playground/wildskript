@@ -18,15 +18,13 @@ public class EffClosed extends Effect {
         String name = this.name.getSingle(event);
         Number slot = this.slot.getSingle(event);
         Boolean close = this.close.getSingle(event);
-        if (name == null || slot == null || close == null) return;
+        if (name == null || slot == null || close == null) {
+            return;
+        }
 
         int i = slot.intValue();
         Inventories.get(name).setClosed(i, close);
 
-    }
-
-    public String toString(Event event, boolean bool) {
-        return "[Inventory] Set Closed";
     }
 
     @SuppressWarnings("unchecked")
@@ -35,6 +33,10 @@ public class EffClosed extends Effect {
         this.slot = (Expression<Number>) expressions[1];
         this.close = (Expression<Boolean>) expressions[2];
         return true;
+    }
+
+    public String toString(Event event, boolean bool) {
+        return "[Inventory] Set Closed";
     }
 }
 

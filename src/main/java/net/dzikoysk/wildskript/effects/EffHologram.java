@@ -18,14 +18,12 @@ public class EffHologram extends Effect {
         String[] s = this.s.getAll(event);
         Location l = this.l.getSingle(event);
         Number n = this.n.getSingle(event);
-        if (s == null || l == null || n == null) return;
+        if (s == null || l == null || n == null) {
+            return;
+        }
         Hologram h = new Hologram(s[0]);
         h.change(s);
         h.show(l, n.intValue());
-    }
-
-    public String toString(Event event, boolean bool) {
-        return this.getClass().getName();
     }
 
     @SuppressWarnings("unchecked")
@@ -34,5 +32,9 @@ public class EffHologram extends Effect {
         this.l = (Expression<Location>) expressions[1];
         this.n = (Expression<Number>) expressions[2];
         return true;
+    }
+
+    public String toString(Event event, boolean bool) {
+        return this.getClass().getName();
     }
 }

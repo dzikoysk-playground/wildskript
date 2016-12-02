@@ -15,19 +15,21 @@ public class CondIsTamed extends Condition {
 
     public boolean check(Event event) {
         Entity e = this.e.getSingle(event);
-        if (e == null) return false;
+        if (e == null) {
+            return false;
+        }
         if (e instanceof Tameable) {
             if (((Tameable) e).isTamed()) {
-                if (matchedPattern == 1) return false;
+                if (matchedPattern == 1) {
+                    return false;
+                }
                 return true;
             }
         }
-        if (matchedPattern == 1) return true;
+        if (matchedPattern == 1) {
+            return true;
+        }
         return false;
-    }
-
-    public String toString(Event event, boolean b) {
-        return this.getClass().getName();
     }
 
     @SuppressWarnings("unchecked")
@@ -35,5 +37,9 @@ public class CondIsTamed extends Condition {
         this.matchedPattern = matchedPattern;
         this.e = (Expression<Entity>) expressions[0];
         return true;
+    }
+
+    public String toString(Event event, boolean b) {
+        return this.getClass().getName();
     }
 }

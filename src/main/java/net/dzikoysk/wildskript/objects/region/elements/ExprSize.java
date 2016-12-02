@@ -16,9 +16,14 @@ public class ExprSize extends SimpleExpression<Integer> {
     protected Integer[] get(Event event) {
         String id = this.id.getSingle(event);
         int s = RegionsUtils.get(id).getSize();
-        return new Integer[]{s};
+        return new Integer[]{ s };
     }
 
+    @SuppressWarnings("unchecked")
+    public boolean init(Expression<?>[] e, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
+        this.id = (Expression<String>) e[0];
+        return true;
+    }
 
     public boolean isSingle() {
         return true;
@@ -30,12 +35,6 @@ public class ExprSize extends SimpleExpression<Integer> {
 
     public String toString(Event event, boolean b) {
         return "";
-    }
-
-    @SuppressWarnings("unchecked")
-    public boolean init(Expression<?>[] e, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
-        this.id = (Expression<String>) e[0];
-        return true;
     }
 }
 

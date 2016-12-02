@@ -11,7 +11,11 @@ public class ExprMaxPlayers extends SimpleExpression<Integer> {
 
     protected Integer[] get(Event event) {
         int max = Bukkit.getMaxPlayers();
-        return new Integer[]{max};
+        return new Integer[]{ max };
+    }
+
+    public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
+        return true;
     }
 
     public boolean isSingle() {
@@ -24,9 +28,5 @@ public class ExprMaxPlayers extends SimpleExpression<Integer> {
 
     public String toString(Event event, boolean b) {
         return this.getClass().getName();
-    }
-
-    public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
-        return true;
     }
 }	

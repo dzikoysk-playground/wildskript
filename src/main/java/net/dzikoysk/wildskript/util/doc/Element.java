@@ -59,11 +59,18 @@ public class Element extends Object implements Comparable<Element> {
     public Element example(String[] s) {
         StringBuilder sb = new StringBuilder("");
         for (int i = 0; i < s.length; i++) {
-            if (i != 0) sb.append(" \n");
+            if (i != 0) {
+                sb.append(" \n");
+            }
             sb.append(s[i].replace("''", '"' + ""));
         }
         this.example = sb.toString();
         return this;
+    }
+
+    @Override
+    public int compareTo(Element e) {
+        return this.name.compareTo(e.getName());
     }
 
     public Type getType() {
@@ -105,10 +112,5 @@ public class Element extends Object implements Comparable<Element> {
 
     public String getExample() {
         return this.example;
-    }
-
-    @Override
-    public int compareTo(Element e) {
-        return this.name.compareTo(e.getName());
     }
 }

@@ -18,10 +18,15 @@ public class ExprName extends SimpleExpression<String> {
         String id = this.id.getSingle(event);
 
         String name = RegionsUtils.get(id).getID();
-        return new String[]{name};
+        return new String[]{ name };
 
     }
 
+    @SuppressWarnings("unchecked")
+    public boolean init(Expression<?>[] e, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
+        this.id = (Expression<String>) e[0];
+        return true;
+    }
 
     public boolean isSingle() {
         return true;
@@ -33,12 +38,6 @@ public class ExprName extends SimpleExpression<String> {
 
     public String toString(Event event, boolean b) {
         return "";
-    }
-
-    @SuppressWarnings("unchecked")
-    public boolean init(Expression<?>[] e, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
-        this.id = (Expression<String>) e[0];
-        return true;
     }
 }
 

@@ -16,14 +16,12 @@ public class EffName extends Effect {
 
         String id = (String) this.id.getSingle(event);
         String name = (String) this.name.getSingle(event);
-        if (id == null || name == null) return;
+        if (id == null || name == null) {
+            return;
+        }
 
         Inventories.get(id).setName(name);
 
-    }
-
-    public String toString(Event event, boolean bool) {
-        return "[Inventory] Register";
     }
 
     @SuppressWarnings("unchecked")
@@ -31,6 +29,10 @@ public class EffName extends Effect {
         this.id = (Expression<String>) expressions[0];
         this.name = (Expression<String>) expressions[1];
         return true;
+    }
+
+    public String toString(Event event, boolean bool) {
+        return "[Inventory] Register";
     }
 }
 

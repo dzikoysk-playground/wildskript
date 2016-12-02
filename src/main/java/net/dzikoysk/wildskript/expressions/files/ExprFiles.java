@@ -17,17 +17,33 @@ public class ExprFiles extends SimpleExpression<String> {
 
     protected String[] get(Event event) {
         String d = this.dir.getSingle(event);
-        if (d == null) return null;
+        if (d == null) {
+            return null;
+        }
 
         File f = new File(d.replaceAll("/", Matcher.quoteReplacement(File.separator)));
-        if (!f.exists()) f.mkdir();
+        if (!f.exists()) {
+            f.mkdir();
+        }
         File[] path = f.listFiles();
-        if (path == null || path.length < 1) return null;
+        if (path == null || path.length < 1) {
+            return null;
+        }
 
         List<String> files = new ArrayList<>();
-        for (File file : path) if (file.isFile()) files.add(file.getName());
+        for (File file : path) {
+            if (file.isFile()) {
+                files.add(file.getName());
+            }
+        }
         String[] arr = new String[files.size()];
         return files.toArray(arr);
+    }
+
+    @SuppressWarnings("unchecked")
+    public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
+        this.dir = (Expression<String>) expressions[0];
+        return true;
     }
 
     public boolean isSingle() {
@@ -40,12 +56,6 @@ public class ExprFiles extends SimpleExpression<String> {
 
     public String toString(Event event, boolean b) {
         return this.getClass().toString();
-    }
-
-    @SuppressWarnings("unchecked")
-    public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
-        this.dir = (Expression<String>) expressions[0];
-        return true;
     }
 }
 

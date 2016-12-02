@@ -16,12 +16,10 @@ public class EffReturn extends Effect {
 
     protected void execute(Event event) {
         Object o = result.getSingle(event);
-        if (event instanceof FunctionEvent) ((FunctionEvent) event).setResult(o);
+        if (event instanceof FunctionEvent) {
+            ((FunctionEvent) event).setResult(o);
+        }
         this.getTrigger().setNext(null);
-    }
-
-    public String toString(Event event, boolean bool) {
-        return this.getClass().getName();
     }
 
     @SuppressWarnings("unchecked")
@@ -32,6 +30,10 @@ public class EffReturn extends Effect {
         }
         Skript.error("Cannot use return effect outside of a function!", ErrorQuality.SEMANTIC_ERROR);
         return false;
+    }
+
+    public String toString(Event event, boolean bool) {
+        return this.getClass().getName();
     }
 }
 

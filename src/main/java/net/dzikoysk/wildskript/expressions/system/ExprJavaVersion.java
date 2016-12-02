@@ -10,7 +10,11 @@ public class ExprJavaVersion extends SimpleExpression<String> {
 
     protected String[] get(Event event) {
         String v = getVersion().toString();
-        return new String[]{v};
+        return new String[]{ v };
+    }
+
+    public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
+        return true;
     }
 
     public boolean isSingle() {
@@ -21,19 +25,19 @@ public class ExprJavaVersion extends SimpleExpression<String> {
         return String.class;
     }
 
-    public String toString(Event event, boolean b) {
-        return this.getClass().getName();
-    }
-
-    public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
-        return true;
-    }
-
     private static Double getVersion() {
         String version = System.getProperty("java.version");
         int pos = 0, count = 0;
-        for (; pos < version.length() && count < 2; pos++) if (version.charAt(pos) == '.') count++;
+        for (; pos < version.length() && count < 2; pos++) {
+            if (version.charAt(pos) == '.') {
+                count++;
+            }
+        }
         return Double.parseDouble(version.substring(0, pos));
+    }
+
+    public String toString(Event event, boolean b) {
+        return this.getClass().getName();
     }
 }
 

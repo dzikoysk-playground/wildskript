@@ -23,12 +23,10 @@ public class EffNew extends Effect {
         String database = this.database.getSingle(event);
         String user = this.user.getSingle(event);
         String pass = this.pass.getSingle(event);
-        if (id == null || host == null || port == null || database == null || user == null || pass == null) return;
+        if (id == null || host == null || port == null || database == null || user == null || pass == null) {
+            return;
+        }
         new MySQL(id, host, port.toString(), database, user, pass);
-    }
-
-    public String toString(Event event, boolean b) {
-        return this.getClass().getName();
     }
 
     @SuppressWarnings("unchecked")
@@ -40,6 +38,10 @@ public class EffNew extends Effect {
         this.user = (Expression<String>) e[4];
         this.pass = (Expression<String>) e[5];
         return true;
+    }
+
+    public String toString(Event event, boolean b) {
+        return this.getClass().getName();
     }
 }
 

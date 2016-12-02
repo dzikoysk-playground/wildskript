@@ -20,10 +20,14 @@ public class ExprQuery extends SimpleExpression<Object> {
         String id = this.id.getSingle(event);
         String q = this.q.getSingle(event);
         String c = this.c.getSingle(event);
-        if (id == null || q == null || c == null) return null;
+        if (id == null || q == null || c == null) {
+            return null;
+        }
 
         MySQL sql = MySQL.get(id);
-        if (sql == null) return null;
+        if (sql == null) {
+            return null;
+        }
 
         ResultSet rs = sql.querySQL(q);
         Object res = null;
@@ -33,7 +37,15 @@ public class ExprQuery extends SimpleExpression<Object> {
             e.printStackTrace();
         }
 
-        return new Object[]{res};
+        return new Object[]{ res };
+    }
+
+    @SuppressWarnings("unchecked")
+    public boolean init(Expression<?>[] e, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
+        this.id = (Expression<String>) e[0];
+        this.q = (Expression<String>) e[1];
+        this.c = (Expression<String>) e[2];
+        return true;
     }
 
     public boolean isSingle() {
@@ -46,14 +58,6 @@ public class ExprQuery extends SimpleExpression<Object> {
 
     public String toString(Event event, boolean b) {
         return this.getClass().getName();
-    }
-
-    @SuppressWarnings("unchecked")
-    public boolean init(Expression<?>[] e, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
-        this.id = (Expression<String>) e[0];
-        this.q = (Expression<String>) e[1];
-        this.c = (Expression<String>) e[2];
-        return true;
     }
 }
 

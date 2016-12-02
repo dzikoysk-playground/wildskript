@@ -16,14 +16,12 @@ public class EffResult extends Effect {
     protected void execute(Event event) {
         String id = this.id.getSingle(event);
         ItemType r = this.r.getSingle(event);
-        if (id == null || r == null) return;
+        if (id == null || r == null) {
+            return;
+        }
 
         Recipes.get(id).setResult(r.getRandom());
 
-    }
-
-    public String toString(Event event, boolean bool) {
-        return "";
     }
 
     @SuppressWarnings("unchecked")
@@ -31,6 +29,10 @@ public class EffResult extends Effect {
         this.id = (Expression<String>) expressions[0];
         this.r = (Expression<ItemType>) expressions[1];
         return true;
+    }
+
+    public String toString(Event event, boolean bool) {
+        return "";
     }
 }
 

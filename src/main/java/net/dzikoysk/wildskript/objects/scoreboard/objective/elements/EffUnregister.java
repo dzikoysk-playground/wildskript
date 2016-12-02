@@ -14,20 +14,21 @@ public class EffUnregister extends Effect {
     protected void execute(Event event) {
 
         String id = this.id.getSingle(event);
-        if (id == null) return;
+        if (id == null) {
+            return;
+        }
 
         Objectives.get(id, "dummy").unregister();
-    }
-
-
-    public String toString(Event e, boolean bool) {
-        return "";
     }
 
     @SuppressWarnings("unchecked")
     public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
         this.id = (Expression<String>) expressions[0];
         return true;
+    }
+
+    public String toString(Event e, boolean bool) {
+        return "";
     }
 
 }

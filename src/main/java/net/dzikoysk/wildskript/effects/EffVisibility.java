@@ -16,13 +16,19 @@ public class EffVisibility extends Effect {
     protected void execute(Event event) {
         Player hide = this.hidden.getSingle(event);
         Player[] tos = this.to.getAll(event);
-        if (hide == null || to == null) return;
-        if (this.matchedPattern == 0) for (Player to : tos) to.hidePlayer(hide);
-        else for (Player to : tos) to.showPlayer(hide);
-    }
-
-    public String toString(Event event, boolean bool) {
-        return this.getClass().getName();
+        if (hide == null || to == null) {
+            return;
+        }
+        if (this.matchedPattern == 0) {
+            for (Player to : tos) {
+                to.hidePlayer(hide);
+            }
+        }
+        else {
+            for (Player to : tos) {
+                to.showPlayer(hide);
+            }
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -31,6 +37,10 @@ public class EffVisibility extends Effect {
         this.hidden = (Expression<Player>) expressions[0];
         this.to = (Expression<Player>) expressions[1];
         return true;
+    }
+
+    public String toString(Event event, boolean bool) {
+        return this.getClass().getName();
     }
 }
 

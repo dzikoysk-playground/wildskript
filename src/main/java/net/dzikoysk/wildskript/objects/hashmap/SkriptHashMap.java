@@ -17,18 +17,10 @@ public class SkriptHashMap {
         maps.add(this);
     }
 
-    public static SkriptHashMap get(String name) {
-        for (SkriptHashMap shm : maps) {
-            if (shm.getName().equals(name)) return shm;
-        }
-        return new SkriptHashMap(name);
-    }
-
-    public static boolean isExists(String name) {
-        for (SkriptHashMap shm : maps) {
-            if (shm.getName().equals(name)) return true;
-        }
-        return false;
+    public void delete() {
+        maps.remove(this);
+        this.hashmap = null;
+        this.name = null;
     }
 
     public String getName() {
@@ -39,9 +31,21 @@ public class SkriptHashMap {
         return this.hashmap;
     }
 
-    public void delete() {
-        maps.remove(this);
-        this.hashmap = null;
-        this.name = null;
+    public static SkriptHashMap get(String name) {
+        for (SkriptHashMap shm : maps) {
+            if (shm.getName().equals(name)) {
+                return shm;
+            }
+        }
+        return new SkriptHashMap(name);
+    }
+
+    public static boolean isExists(String name) {
+        for (SkriptHashMap shm : maps) {
+            if (shm.getName().equals(name)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

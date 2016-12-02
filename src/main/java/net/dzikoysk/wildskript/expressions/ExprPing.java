@@ -17,20 +17,27 @@ public class ExprPing extends SimpleExpression<Integer> {
 
     protected Integer[] get(Event event) {
         Player p = this.player.getSingle(event);
-        if (p == null) return null;
+        if (p == null) {
+            return null;
+        }
         try {
             Class<?> craftPlayer = Class.forName("org.bukkit.craftbukkit." + version + ".entity.CraftPlayer");
             Object cp = craftPlayer.cast(p);
             Object handle = craftPlayer.getMethod("getHandle").invoke(cp);
             Integer ping = (int) handle.getClass().getField("ping").get(handle);
-            return new Integer[]{ping};
+            return new Integer[]{ ping };
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return new Integer[]{null};
+        return new Integer[]{ null };
 
     }
 
+    @SuppressWarnings("unchecked")
+    public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
+        this.player = (Expression<Player>) expressions[0];
+        return true;
+    }
 
     public boolean isSingle() {
         return true;
@@ -42,12 +49,6 @@ public class ExprPing extends SimpleExpression<Integer> {
 
     public String toString(Event event, boolean b) {
         return this.getClass().getName();
-    }
-
-    @SuppressWarnings("unchecked")
-    public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
-        this.player = (Expression<Player>) expressions[0];
-        return true;
     }
 }	
 

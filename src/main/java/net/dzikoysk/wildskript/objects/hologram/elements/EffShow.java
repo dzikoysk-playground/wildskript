@@ -16,12 +16,10 @@ public class EffShow extends Effect {
     protected void execute(Event event) {
         String s = this.s.getSingle(event);
         Location n = this.loc.getSingle(event);
-        if (s == null || n == null) return;
+        if (s == null || n == null) {
+            return;
+        }
         Hologram.get(s).show(n);
-    }
-
-    public String toString(Event event, boolean bool) {
-        return this.getClass().getName();
     }
 
     @SuppressWarnings("unchecked")
@@ -29,5 +27,9 @@ public class EffShow extends Effect {
         this.s = (Expression<String>) expressions[0];
         this.loc = (Expression<Location>) expressions[1];
         return true;
+    }
+
+    public String toString(Event event, boolean bool) {
+        return this.getClass().getName();
     }
 }

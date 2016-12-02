@@ -14,15 +14,12 @@ public class EffRegister extends Effect {
     protected void execute(Event event) {
 
         String id = this.id.getSingle(event);
-        if (id == null) return;
+        if (id == null) {
+            return;
+        }
 
         Teams.get(id);
 
-    }
-
-
-    public String toString(Event e, boolean bool) {
-        return "";
     }
 
     @SuppressWarnings("unchecked")
@@ -30,6 +27,10 @@ public class EffRegister extends Effect {
 
         this.id = (Expression<String>) expressions[0];
         return true;
+    }
+
+    public String toString(Event e, boolean bool) {
+        return "";
     }
 
 }

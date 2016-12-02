@@ -17,15 +17,13 @@ public class EffDisplay extends Effect {
 
         String name = (String) this.name.getSingle(event);
         Player p = (Player) this.player.getSingle(event);
-        if (name == null || p == null) return;
+        if (name == null || p == null) {
+            return;
+        }
 
         Inventories inv = Inventories.get(name);
         inv.display(p);
 
-    }
-
-    public String toString(Event event, boolean bool) {
-        return "[Inventory] Display";
     }
 
     @SuppressWarnings("unchecked")
@@ -33,6 +31,10 @@ public class EffDisplay extends Effect {
         this.name = (Expression<String>) expressions[0];
         this.player = (Expression<Player>) expressions[1];
         return true;
+    }
+
+    public String toString(Event event, boolean bool) {
+        return "[Inventory] Display";
     }
 }
 

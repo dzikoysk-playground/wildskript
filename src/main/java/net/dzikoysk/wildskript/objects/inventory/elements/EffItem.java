@@ -19,15 +19,13 @@ public class EffItem extends Effect {
         String name = this.name.getSingle(event);
         Number slot = this.slot.getSingle(event);
         ItemType item = this.item.getSingle(event);
-        if (name == null || slot == null || item == null) return;
+        if (name == null || slot == null || item == null) {
+            return;
+        }
 
         int i = slot.intValue();
         Inventories.get(name).setItem(i, item);
 
-    }
-
-    public String toString(Event event, boolean bool) {
-        return "[Inventory] setItem";
     }
 
     @SuppressWarnings("unchecked")
@@ -36,6 +34,10 @@ public class EffItem extends Effect {
         this.item = (Expression<ItemType>) expressions[2];
         this.slot = (Expression<Number>) expressions[1];
         return true;
+    }
+
+    public String toString(Event event, boolean bool) {
+        return "[Inventory] setItem";
     }
 }
 

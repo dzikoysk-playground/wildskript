@@ -16,21 +16,25 @@ public class CondExists extends Condition {
         String id = this.id.getSingle(event);
 
         if (RegionsUtils.exists(id)) {
-            if (isNegated()) return false;
+            if (isNegated()) {
+                return false;
+            }
             return true;
         }
-        if (isNegated()) return true;
+        if (isNegated()) {
+            return true;
+        }
         return false;
-    }
-
-    public String toString(Event event, boolean b) {
-        return "";
     }
 
     @SuppressWarnings("unchecked")
     public boolean init(Expression<?>[] e, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
-        this.id = e[0].getConvertedExpression(new Class[]{Object.class});
+        this.id = e[0].getConvertedExpression(new Class[]{ Object.class });
         setNegated(i == 1);
         return true;
+    }
+
+    public String toString(Event event, boolean b) {
+        return "";
     }
 }

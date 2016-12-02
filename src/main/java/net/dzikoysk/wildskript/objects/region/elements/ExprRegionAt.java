@@ -19,10 +19,17 @@ public class ExprRegionAt extends SimpleExpression<String> {
         Location loc = this.loc.getSingle(event);
         Regions region = RegionsUtils.getAt(loc);
         String name = null;
-        if (region != null) name = region.getID();
-        return new String[]{name};
+        if (region != null) {
+            name = region.getID();
+        }
+        return new String[]{ name };
     }
 
+    @SuppressWarnings("unchecked")
+    public boolean init(Expression<?>[] e, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
+        this.loc = (Expression<Location>) e[0];
+        return true;
+    }
 
     public boolean isSingle() {
         return true;
@@ -34,12 +41,6 @@ public class ExprRegionAt extends SimpleExpression<String> {
 
     public String toString(Event event, boolean b) {
         return "";
-    }
-
-    @SuppressWarnings("unchecked")
-    public boolean init(Expression<?>[] e, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
-        this.loc = (Expression<Location>) e[0];
-        return true;
     }
 }
 

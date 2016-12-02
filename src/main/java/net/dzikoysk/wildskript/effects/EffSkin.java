@@ -15,11 +15,9 @@ public class EffSkin extends Effect {
     protected void execute(Event event) {
         Player p = this.p.getSingle(event);
         String to = this.to.getSingle(event);
-        if (p == null || to == null) return;
-    }
-
-    public String toString(Event event, boolean bool) {
-        return this.getClass().getName();
+        if (p == null || to == null) {
+            return;
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -27,6 +25,10 @@ public class EffSkin extends Effect {
         this.p = (Expression<Player>) expressions[0];
         this.to = (Expression<String>) expressions[1];
         return true;
+    }
+
+    public String toString(Event event, boolean bool) {
+        return this.getClass().getName();
     }
 }
 

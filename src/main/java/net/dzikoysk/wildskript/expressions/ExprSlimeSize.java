@@ -14,11 +14,18 @@ public class ExprSlimeSize extends SimpleExpression<Integer> {
 
     protected Integer[] get(Event event) {
         Entity e = this.e.getSingle(event);
-        if (!(e instanceof Slime)) return new Integer[]{0};
+        if (!(e instanceof Slime)) {
+            return new Integer[]{ 0 };
+        }
         int i = ((Slime) e).getSize();
-        return new Integer[]{i};
+        return new Integer[]{ i };
     }
 
+    @SuppressWarnings("unchecked")
+    public boolean init(Expression<?>[] e, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
+        this.e = (Expression<Entity>) e[0];
+        return true;
+    }
 
     public boolean isSingle() {
         return true;
@@ -30,12 +37,6 @@ public class ExprSlimeSize extends SimpleExpression<Integer> {
 
     public String toString(Event event, boolean b) {
         return this.getClass().getName();
-    }
-
-    @SuppressWarnings("unchecked")
-    public boolean init(Expression<?>[] e, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
-        this.e = (Expression<Entity>) e[0];
-        return true;
     }
 }
 

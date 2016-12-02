@@ -19,10 +19,15 @@ public class ExprL extends SimpleExpression<Location> {
         String id = this.id.getSingle(event);
 
         Location loc = RegionsUtils.get(id).getL();
-        return new Location[]{loc};
+        return new Location[]{ loc };
 
     }
 
+    @SuppressWarnings("unchecked")
+    public boolean init(Expression<?>[] e, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
+        this.id = (Expression<String>) e[0];
+        return true;
+    }
 
     public boolean isSingle() {
         return true;
@@ -34,12 +39,6 @@ public class ExprL extends SimpleExpression<Location> {
 
     public String toString(Event event, boolean b) {
         return "";
-    }
-
-    @SuppressWarnings("unchecked")
-    public boolean init(Expression<?>[] e, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
-        this.id = (Expression<String>) e[0];
-        return true;
     }
 }
 

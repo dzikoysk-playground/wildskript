@@ -17,20 +17,19 @@ public class EffPlugin extends Effect {
 
     protected void execute(Event event) {
         String s = this.s.getSingle(event);
-        if (s == null) return;
+        if (s == null) {
+            return;
+        }
 
         PluginManager pm = Bukkit.getPluginManager();
 
         if (matchedPattern == 0) {
             Loader.loadPlugin(s);
-        } else if (matchedPattern == 1) {
+        }
+        else if (matchedPattern == 1) {
             Plugin plugin = pm.getPlugin(s);
             pm.disablePlugin(plugin);
         }
-    }
-
-    public String toString(Event event, boolean bool) {
-        return this.getClass().getName();
     }
 
     @SuppressWarnings("unchecked")
@@ -38,5 +37,9 @@ public class EffPlugin extends Effect {
         this.matchedPattern = i;
         this.s = (Expression<String>) expressions[0];
         return true;
+    }
+
+    public String toString(Event event, boolean bool) {
+        return this.getClass().getName();
     }
 }

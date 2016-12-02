@@ -19,15 +19,6 @@ public class User {
         users.add(this);
     }
 
-    public static User get(Player player) {
-        for (User user : users) {
-            if (user.getPlayer().equals(player)) {
-                return user;
-            }
-        }
-        return new User(player);
-    }
-
     public void setScoreboard(Scoreboard scoreboard) {
         this.scoreboard = scoreboard;
         this.player.setScoreboard(scoreboard);
@@ -43,5 +34,14 @@ public class User {
 
     public Player getPlayer() {
         return player;
+    }
+
+    public static User get(Player player) {
+        for (User user : users) {
+            if (user.getPlayer().equals(player)) {
+                return user;
+            }
+        }
+        return new User(player);
     }
 }

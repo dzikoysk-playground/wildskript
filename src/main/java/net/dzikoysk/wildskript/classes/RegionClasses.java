@@ -15,7 +15,7 @@ import org.bukkit.World;
 import javax.annotation.Nullable;
 import java.io.StreamCorruptedException;
 
-@SuppressWarnings({"unchecked", "rawtypes"})
+@SuppressWarnings({ "unchecked", "rawtypes" })
 public class RegionClasses {
 
     static {
@@ -43,11 +43,21 @@ public class RegionClasses {
                         String l = toS(r.getL());
                         String p = toS(r.getP());
                         String w = r.getWorld().getName();
-                        if (id == null) return null;
-                        if (c == null) c = "";
-                        if (l == null) l = "";
-                        if (p == null) p = "";
-                        if (w == null) w = "";
+                        if (id == null) {
+                            return null;
+                        }
+                        if (c == null) {
+                            c = "";
+                        }
+                        if (l == null) {
+                            l = "";
+                        }
+                        if (p == null) {
+                            p = "";
+                        }
+                        if (w == null) {
+                            w = "";
+                        }
                         b.append(id + ","); // ID = 0
                         b.append(c + ","); // Center = 1
                         b.append(r.getSize() + ","); // Size = 2
@@ -96,14 +106,28 @@ public class RegionClasses {
                         final Location l = fields.getObject("l", Location.class);
                         final Location p = fields.getObject("p", Location.class);
                         final World w = fields.getObject("world", World.class);
-                        if (id == null) throw new StreamCorruptedException();
+                        if (id == null) {
+                            throw new StreamCorruptedException();
+                        }
                         Regions r = RegionsUtils.get(id);
-                        if (c != null) r.setCenter(c);
-                        if (s != null) r.setSize(s);
-                        if (l != null) r.setL(l);
-                        if (p != null) r.setP(p);
-                        if (w != null) r.setWorld(w);
-                        if (r == null) throw new StreamCorruptedException();
+                        if (c != null) {
+                            r.setCenter(c);
+                        }
+                        if (s != null) {
+                            r.setSize(s);
+                        }
+                        if (l != null) {
+                            r.setL(l);
+                        }
+                        if (p != null) {
+                            r.setP(p);
+                        }
+                        if (w != null) {
+                            r.setWorld(w);
+                        }
+                        if (r == null) {
+                            throw new StreamCorruptedException();
+                        }
                         return r;
                     }
 
@@ -127,11 +151,21 @@ public class RegionClasses {
                         Location l = null;
                         Location p = null;
                         World w = null;
-                        if (!(t[1]).equals("")) c = fromS(t[1]);
-                        if (!(t[2]).equals("")) s = Integer.valueOf(t[2]);
-                        if (!(t[3]).equals("")) l = fromS(t[3]);
-                        if (!(t[4]).equals("")) p = fromS(t[4]);
-                        if (!(t[5]).equals("")) w = Bukkit.getWorld(t[5]);
+                        if (!(t[1]).equals("")) {
+                            c = fromS(t[1]);
+                        }
+                        if (!(t[2]).equals("")) {
+                            s = Integer.valueOf(t[2]);
+                        }
+                        if (!(t[3]).equals("")) {
+                            l = fromS(t[3]);
+                        }
+                        if (!(t[4]).equals("")) {
+                            p = fromS(t[4]);
+                        }
+                        if (!(t[5]).equals("")) {
+                            w = Bukkit.getWorld(t[5]);
+                        }
 
                         region.setCenter(c);
                         region.setSize(s);

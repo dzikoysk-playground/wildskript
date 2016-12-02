@@ -18,7 +18,9 @@ public class EffTag extends Effect {
     protected void execute(Event event) {
         Player p = this.player.getSingle(event);
         String s = this.tag.getSingle(event);
-        if (p == null || s == null) return;
+        if (p == null || s == null) {
+            return;
+        }
         if (s.length() > 16) {
             Bukkit.getLogger().severe("String to edit tag name is too long! Max length is 16");
             return;
@@ -27,15 +29,13 @@ public class EffTag extends Effect {
         Team team = sb.getPlayerTeam(p);
         if (team == null) {
             team = sb.getTeam(p.getName());
-            if (team == null) team = sb.registerNewTeam(p.getName());
+            if (team == null) {
+                team = sb.registerNewTeam(p.getName());
+            }
             team.addPlayer(p);
         }
         team.setPrefix(s);
         p.setScoreboard(sb);
-    }
-
-    public String toString(Event event, boolean bool) {
-        return this.getClass().getName();
     }
 
     @SuppressWarnings("unchecked")
@@ -43,6 +43,10 @@ public class EffTag extends Effect {
         this.player = (Expression<Player>) expressions[0];
         this.tag = (Expression<String>) expressions[1];
         return true;
+    }
+
+    public String toString(Event event, boolean bool) {
+        return this.getClass().getName();
     }
 }
 
