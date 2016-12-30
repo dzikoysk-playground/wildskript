@@ -5,7 +5,7 @@ import ch.njol.skript.registrations.EventValues;
 import net.dzikoysk.wildskript.events.skript.EvtJump;
 import net.dzikoysk.wildskript.util.doc.Element;
 import net.dzikoysk.wildskript.util.doc.Type;
-import org.bukkit.entity.Horse;
+import org.bukkit.entity.AbstractHorse;
 import org.bukkit.entity.Player;
 import org.bukkit.event.enchantment.EnchantItemEvent;
 import org.bukkit.event.entity.HorseJumpEvent;
@@ -90,8 +90,8 @@ public class EventValue {
         }, 0);
 
         es.add(new Element(Type.EVENT_VALUE).name("[On Horse Jump] horse"));
-        EventValues.registerEventValue(HorseJumpEvent.class, Horse.class, new SerializableGetter<Horse, HorseJumpEvent>() {
-            public Horse get(HorseJumpEvent event) {
+        EventValues.registerEventValue(HorseJumpEvent.class, AbstractHorse.class, new SerializableGetter<AbstractHorse, HorseJumpEvent>() {
+            public AbstractHorse get(HorseJumpEvent event) {
                 return event.getEntity();
             }
         }, 0);
