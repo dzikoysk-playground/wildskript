@@ -3,4 +3,4 @@ Addon to plugin Skript that increases the set of events, conditions, effects, ex
 
 ### Useful Links
 * **DevBukkit** - http://dev.bukkit.org/bukkit-plugins/wildskript/
-* **SkUnity** - http://skunity.com/WildSkript
+* **SkUnity** - https://docs.skunity.com/addon/WildSkript
